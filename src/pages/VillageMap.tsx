@@ -3,7 +3,7 @@ import React from 'react';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { MapPin, Navigation as NavigationIcon, Home, Building, TreePine, Waves } from 'lucide-react';
+import { MapPin, Navigation as NavigationIcon, Home, Building, TreePine } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 const VillageMap = () => {
@@ -65,7 +65,7 @@ const VillageMap = () => {
               <Card className="p-6 mb-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Peta Interaktif</h3>
                 <div className="relative bg-gradient-to-br from-green-100 to-blue-100 rounded-lg h-96 overflow-hidden">
-                  <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Cpath d="M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z"/%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                  <div className="absolute inset-0 opacity-20 bg-pattern"></div>
                   
                   {mapLocations.map((location, index) => {
                     const Icon = getLocationIcon(location.type);
@@ -121,7 +121,7 @@ const VillageMap = () => {
               <Card className="p-6 mt-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-4">Informasi Lokasi</h3>
                 <div className="space-y-3 text-sm text-gray-600">
-                  <p><strong>Koordinat:</strong> 5°22'S, 105°16'E</p>
+                  <p><strong>Koordinat:</strong> 5°22&apos;S, 105°16&apos;E</p>
                   <p><strong>Luas Wilayah:</strong> 847 Ha</p>
                   <p><strong>Ketinggian:</strong> 45-120 mdpl</p>
                   <p><strong>Jarak ke Pusat Kota:</strong> 15 km</p>
