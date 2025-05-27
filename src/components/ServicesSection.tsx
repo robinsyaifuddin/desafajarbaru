@@ -1,0 +1,192 @@
+
+import React from 'react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { 
+  FileText, 
+  Users, 
+  Calendar, 
+  MapPin, 
+  Book, 
+  Image,
+  ChevronRight
+} from 'lucide-react';
+
+const ServicesSection = () => {
+  const services = [
+    {
+      icon: FileText,
+      title: 'IDM (Indeks Desa Membangun)',
+      description: 'Data perkembangan dan kemajuan desa dalam berbagai aspek pembangunan',
+      category: 'Data & Statistik',
+      color: 'bg-blue-500'
+    },
+    {
+      icon: Book,
+      title: 'PPID',
+      description: 'Pejabat Pengelola Informasi dan Dokumentasi untuk transparansi data',
+      category: 'Transparansi',
+      color: 'bg-green-500'
+    },
+    {
+      icon: Users,
+      title: 'Administrasi Penduduk',
+      description: 'Layanan pengelolaan data kependudukan dan pelayanan publik',
+      category: 'Pelayanan',
+      color: 'bg-purple-500'
+    },
+    {
+      icon: FileText,
+      title: 'APB Desa',
+      description: 'Informasi transparan anggaran pendapatan dan belanja desa',
+      category: 'Keuangan',
+      color: 'bg-orange-500'
+    },
+    {
+      icon: Users,
+      title: 'Belanja dan Bansos',
+      description: 'Informasi anggaran desa dan program bantuan sosial',
+      category: 'Bantuan Sosial',
+      color: 'bg-red-500'
+    },
+    {
+      icon: Image,
+      title: 'Galeri Kegiatan',
+      description: 'Dokumentasi foto kegiatan dan acara desa',
+      category: 'Dokumentasi',
+      color: 'bg-indigo-500'
+    }
+  ];
+
+  const documentServices = [
+    'Surat Keterangan Domisili',
+    'Surat Keterangan Usaha',
+    'Surat Pengantar KTP',
+    'Surat Keterangan Tidak Mampu',
+    'Surat Pengantar Nikah',
+    'Surat Keterangan Kelahiran'
+  ];
+
+  return (
+    <section id="services" className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            Layanan Desa
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Berbagai layanan digital dan administrasi untuk kemudahan masyarakat 
+            dalam mengakses informasi dan pelayanan publik.
+          </p>
+        </div>
+
+        {/* Main Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {services.map((service, index) => (
+            <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.1}s`}}>
+              <div className="flex items-start space-x-4">
+                <div className={`w-12 h-12 ${service.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                  <service.icon className="text-white" size={24} />
+                </div>
+                <div className="flex-1">
+                  <span className="text-sm text-gray-500 font-medium">{service.category}</span>
+                  <h3 className="text-lg font-semibold text-gray-800 mb-2">{service.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                  <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
+                    Akses Layanan <ChevronRight size={16} className="ml-1" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Document Services */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              Kebutuhan Dokumen
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Layanan pembuatan dokumen administrasi dengan proses yang mudah dan cepat. 
+              Masyarakat dapat mengajukan permohonan secara online.
+            </p>
+            
+            <div className="space-y-3">
+              {documentServices.map((doc, index) => (
+                <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <span className="font-medium text-gray-800">{doc}</span>
+                  <Button variant="ghost" size="sm" className="text-village-green">
+                    <ChevronRight size={16} />
+                  </Button>
+                </div>
+              ))}
+            </div>
+
+            <Button className="bg-gradient-village hover:opacity-90 text-white mt-6" size="lg">
+              Ajukan Permohonan
+            </Button>
+          </div>
+
+          <Card className="p-8 bg-gradient-to-br from-village-green to-village-blue text-white">
+            <h4 className="text-2xl font-bold mb-4">Tanda Tangan Elektronik</h4>
+            <p className="mb-6 opacity-90">
+              Sistem tanda tangan digital kepala desa untuk dokumen resmi yang 
+              aman dan terverifikasi secara elektronik.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold">100%</div>
+                <div className="text-sm opacity-80">Digital</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">24/7</div>
+                <div className="text-sm opacity-80">Tersedia</div>
+              </div>
+            </div>
+
+            <Button variant="secondary" className="w-full">
+              Pelajari Lebih Lanjut
+            </Button>
+          </Card>
+        </div>
+
+        {/* Access Levels */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">
+            Sistem Akses Multi-Level
+          </h3>
+          
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card className="p-6 text-center">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="text-blue-600" size={32} />
+              </div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">Masyarakat</h4>
+              <p className="text-gray-600 text-sm">Akses informasi dan pengajuan permohonan layanan</p>
+            </Card>
+            
+            <Card className="p-6 text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="text-green-600" size={32} />
+              </div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">Admin RW</h4>
+              <p className="text-gray-600 text-sm">Mengelola data dan informasi tingkat RW</p>
+            </Card>
+            
+            <Card className="p-6 text-center">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="text-purple-600" size={32} />
+              </div>
+              <h4 className="text-lg font-semibold text-gray-800 mb-2">Perangkat Desa</h4>
+              <p className="text-gray-600 text-sm">Kontrol penuh sistem dan verifikasi data</p>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ServicesSection;
