@@ -2,20 +2,34 @@
 import React, { useState } from 'react';
 import { Menu, X, MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const menuItems = [
-    { name: 'Beranda', href: '#home' },
-    { name: 'Profil Desa', href: '#profile' },
-    { name: 'Infografis', href: '#infographics' },
-    { name: 'Berita', href: '#news' },
-    { name: 'Galeri', href: '#gallery' },
-    { name: 'Layanan', href: '#services' },
-    { name: 'Wisata', href: '#tourism' },
-    { name: 'UMKM', href: '#umkm' },
+    { name: 'Beranda', href: '/' },
+    { name: 'Profil Desa', href: '/#profile' },
+    { name: 'Infografis', href: '/infographics' },
+    { name: 'Berita', href: '/#news' },
+    { name: 'Galeri', href: '/gallery' },
+    { name: 'Layanan', href: '/#services' },
+    { name: 'Wisata', href: '/#tourism' },
+    { name: 'UMKM', href: '/umkm' },
   ];
+
+  const handleMenuClick = (href: string) => {
+    setIsMenuOpen(false);
+    
+    // Handle hash links for sections on homepage
+    if (href.startsWith('/#') && location.pathname === '/') {
+      const element = document.querySelector(href.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <nav className="bg-white/95 backdrop-blur-sm shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -43,7 +57,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-gradient-village rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-lg">FB</span>
             </div>
@@ -51,18 +65,34 @@ const Navigation = () => {
               <h1 className="font-bold text-xl text-gray-800">Desa Fajar Baru</h1>
               <p className="text-sm text-gray-600">Way Kandis, Bandar Lampung</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
-              >
-                {item.name}
-              </a>
+              item.href.startsWith('/#') ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
+                  onClick={(e) => {
+                    if (location.pathname === '/') {
+                      e.preventDefault();
+                      handleMenuClick(item.href);
+                    }
+                  }}
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
             <Button className="bg-gradient-village hover:opacity-90 text-white">
               Login
@@ -83,14 +113,30 @@ const Navigation = () => {
           <div className="lg:hidden mt-4 pb-4 animate-slide-in">
             <div className="flex flex-col space-y-4">
               {menuItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.href.startsWith('/#') ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
+                    onClick={(e) => {
+                      if (location.pathname === '/') {
+                        e.preventDefault();
+                      }
+                      handleMenuClick(item.href);
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
                 Login
