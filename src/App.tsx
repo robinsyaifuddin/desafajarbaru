@@ -13,6 +13,7 @@ import VillageMap from "./pages/VillageMap";
 import Login from "./pages/Login";
 import DocumentRequest from "./pages/DocumentRequest";
 import Budget from "./pages/Budget";
+import RWDetail from "./pages/RWDetail";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/document-request" element={<DocumentRequest />} />
           <Route path="/budget" element={<Budget />} />
+          <Route path="/rw-detail/:rwId" element={<RWDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,5 +1,5 @@
-
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { MapPin, Users, Home, ChevronRight, Eye } from 'lucide-react';
@@ -208,20 +208,24 @@ const RWPopulationSection = () => {
           </div>
           
           <div className="mt-6 text-center">
-            <Button 
-              variant="outline" 
-              className="mr-3"
-              style={{ borderColor: rwData.find(rw => rw.id === selectedRW)?.color }}
-            >
-              Lihat Semua Penduduk <ChevronRight size={16} className="ml-2" />
-            </Button>
-            <Button 
-              style={{ backgroundColor: rwData.find(rw => rw.id === selectedRW)?.color }}
-              className="text-white"
-            >
-              <MapPin size={16} className="mr-2" />
-              Lihat di Peta
-            </Button>
+            <Link to={`/rw-detail/${selectedRW}`}>
+              <Button 
+                variant="outline" 
+                className="mr-3"
+                style={{ borderColor: rwData.find(rw => rw.id === selectedRW)?.color }}
+              >
+                Lihat Semua Penduduk <ChevronRight size={16} className="ml-2" />
+              </Button>
+            </Link>
+            <Link to="/village-map">
+              <Button 
+                style={{ backgroundColor: rwData.find(rw => rw.id === selectedRW)?.color }}
+                className="text-white"
+              >
+                <MapPin size={16} className="mr-2" />
+                Lihat di Peta
+              </Button>
+            </Link>
           </div>
         </Card>
       )}
