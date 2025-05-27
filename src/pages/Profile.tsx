@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -229,7 +229,7 @@ const Profile = () => {
               <div className="space-y-4 text-gray-700">
                 <div className="flex justify-between">
                   <span className="font-medium">Koordinat:</span>
-                  <span>5°22'S, 105°16'E</span>
+                  <span>5°22&apos;S, 105°16&apos;E</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Ketinggian:</span>
