@@ -10,12 +10,12 @@ const Navigation = () => {
 
   const menuItems = [
     { name: 'Beranda', href: '/' },
-    { name: 'Profil Desa', href: '/#profile' },
+    { name: 'Profil Desa', href: '/profile' },
     { name: 'Infografis', href: '/infographics' },
-    { name: 'Berita', href: '/#news' },
+    { name: 'Berita', href: '/news' },
     { name: 'Galeri', href: '/gallery' },
-    { name: 'Layanan', href: '/#services' },
-    { name: 'Wisata', href: '/#tourism' },
+    { name: 'Layanan', href: '/services' },
+    { name: 'Wisata', href: '/tourism' },
     { name: 'UMKM', href: '/umkm' },
   ];
 
@@ -70,29 +70,13 @@ const Navigation = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-8">
             {menuItems.map((item) => (
-              item.href.startsWith('/#') ? (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
-                  onClick={(e) => {
-                    if (location.pathname === '/') {
-                      e.preventDefault();
-                      handleMenuClick(item.href);
-                    }
-                  }}
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
-                >
-                  {item.name}
-                </Link>
-              )
+              <Link
+                key={item.name}
+                to={item.href}
+                className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium"
+              >
+                {item.name}
+              </Link>
             ))}
             <Button className="bg-gradient-village hover:opacity-90 text-white">
               Login
@@ -113,30 +97,14 @@ const Navigation = () => {
           <div className="lg:hidden mt-4 pb-4 animate-slide-in">
             <div className="flex flex-col space-y-4">
               {menuItems.map((item) => (
-                item.href.startsWith('/#') ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
-                    onClick={(e) => {
-                      if (location.pathname === '/') {
-                        e.preventDefault();
-                      }
-                      handleMenuClick(item.href);
-                    }}
-                  >
-                    {item.name}
-                  </a>
-                ) : (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                )
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
               <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
                 Login

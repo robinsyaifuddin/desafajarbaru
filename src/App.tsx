@@ -8,6 +8,10 @@ import Index from "./pages/Index";
 import Infographics from "./pages/Infographics";
 import Gallery from "./pages/Gallery";
 import UMKM from "./pages/UMKM";
+import News from "./pages/News";
+import Services from "./pages/Services";
+import Tourism from "./pages/Tourism";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,12 +25,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/infographics" element={<Infographics />} />
-          <Route path="/news" element={<Index />} />
+          <Route path="/news" element={<News />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/services" element={<Index />} />
-          <Route path="/tourism" element={<Index />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/tourism" element={<Tourism />} />
           <Route path="/umkm" element={<UMKM />} />
-          <Route path="/profile" element={<Index />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
