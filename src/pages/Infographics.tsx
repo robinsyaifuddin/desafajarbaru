@@ -133,9 +133,16 @@ const Infographics = () => {
                   Desa Fajar Baru telah mencapai status "Desa Berkembang" dengan skor IDM 0.7234, 
                   menunjukkan kemajuan signifikan dalam berbagai aspek pembangunan.
                 </p>
-                <Button variant="secondary" className="mb-4">
-                  Lihat Detail IDM <ChevronRight size={16} className="ml-2" />
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button variant="secondary" className="mb-4">
+                    Lihat Detail IDM <ChevronRight size={16} className="ml-2" />
+                  </Button>
+                  <Link to="/budget">
+                    <Button variant="outline" className="border-white text-white hover:bg-white hover:text-village-green">
+                      Lihat APBDes <ChevronRight size={16} className="ml-2" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-6xl font-bold mb-2">0.7234</div>

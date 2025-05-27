@@ -78,9 +78,11 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-gradient-village hover:opacity-90 text-white">
-              Login
-            </Button>
+            <Link to="/login">
+              <Button className="bg-gradient-village hover:opacity-90 text-white">
+                Login
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,9 +108,11 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
-                Login
-              </Button>
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
+                  Login
+                </Button>
+              </Link>
             </div>
           </div>
         )}

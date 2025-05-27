@@ -12,6 +12,10 @@ import News from "./pages/News";
 import Services from "./pages/Services";
 import Tourism from "./pages/Tourism";
 import Profile from "./pages/Profile";
+import VillageMap from "./pages/VillageMap";
+import Login from "./pages/Login";
+import DocumentRequest from "./pages/DocumentRequest";
+import Budget from "./pages/Budget";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +35,10 @@ const App = () => (
           <Route path="/tourism" element={<Tourism />} />
           <Route path="/umkm" element={<UMKM />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/village-map" element={<VillageMap />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/document-request" element={<DocumentRequest />} />
+          <Route path="/budget" element={<Budget />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

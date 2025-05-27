@@ -270,10 +270,12 @@ const Profile = () => {
                   <span>Hutan Lindung</span>
                 </div>
               </div>
-              <Button className="w-full mt-6 bg-gradient-village hover:opacity-90">
-                <MapPin size={16} className="mr-2" />
-                Lihat Peta Desa
-              </Button>
+              <Link to="/village-map">
+                <Button className="w-full mt-6 bg-gradient-village hover:opacity-90">
+                  <MapPin size={16} className="mr-2" />
+                  Lihat Peta Desa
+                </Button>
+              </Link>
             </Card>
           </div>
         </div>

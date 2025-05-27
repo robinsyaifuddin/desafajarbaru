@@ -281,10 +281,12 @@ const Tourism = () => {
               budaya yang kaya, dan kuliner yang lezat.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg">
-                <MapPin size={16} className="mr-2" />
-                Lihat Peta Wisata
-              </Button>
+              <Link to="/village-map">
+                <Button variant="secondary" size="lg">
+                  <MapPin size={16} className="mr-2" />
+                  Lihat Peta Wisata
+                </Button>
+              </Link>
               <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-village-green">
                 Hubungi Guide
               </Button>

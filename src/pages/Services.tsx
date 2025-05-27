@@ -1,10 +1,10 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { FileText, Users, CreditCard, MapPin, Clock, Phone, CheckCircle, ArrowRight } from 'lucide-react';
 import Footer from '@/components/Footer';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const services = [
@@ -132,9 +132,11 @@ const Services = () => {
                   </div>
                 </div>
                 
-                <Button className="w-full bg-gradient-village hover:opacity-90">
-                  Ajukan Permohonan <ArrowRight size={16} className="ml-2" />
-                </Button>
+                <Link to="/document-request">
+                  <Button className="w-full bg-gradient-village hover:opacity-90">
+                    Ajukan Permohonan <ArrowRight size={16} className="ml-2" />
+                  </Button>
+                </Link>
               </Card>
             ))}
           </div>
@@ -202,9 +204,11 @@ const Services = () => {
                 <Phone size={16} className="mr-2" />
                 Hubungi Kami
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-village-green">
-                Download Formulir
-              </Button>
+              <Link to="/document-request">
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-village-green">
+                  Download Formulir
+                </Button>
+              </Link>
             </div>
           </Card>
         </div>
