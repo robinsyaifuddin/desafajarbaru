@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar, User, ChevronRight } from 'lucide-react';
@@ -79,14 +80,15 @@ const NewsSection = () => {
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map((category, index) => (
-            <Button
-              key={index}
-              variant={index === 0 ? "default" : "outline"}
-              size="sm"
-              className={index === 0 ? "bg-gradient-village hover:opacity-90" : "hover:bg-village-green hover:text-white"}
-            >
-              {category}
-            </Button>
+            <Link key={index} to="/news">
+              <Button
+                variant={index === 0 ? "default" : "outline"}
+                size="sm"
+                className={index === 0 ? "bg-gradient-village hover:opacity-90" : "hover:bg-village-green hover:text-white"}
+              >
+                {category}
+              </Button>
+            </Link>
           ))}
         </div>
 
@@ -118,9 +120,11 @@ const NewsSection = () => {
                 <User size={16} className="mr-2" />
                 <span>{featuredNews.author}</span>
               </div>
-              <Button className="bg-gradient-village hover:opacity-90 text-white self-start">
-                Baca Selengkapnya <ChevronRight size={16} className="ml-2" />
-              </Button>
+              <Link to="/news">
+                <Button className="bg-gradient-village hover:opacity-90 text-white self-start">
+                  Baca Selengkapnya <ChevronRight size={16} className="ml-2" />
+                </Button>
+              </Link>
             </div>
           </div>
         </Card>
@@ -154,9 +158,11 @@ const NewsSection = () => {
                   <p className="text-gray-600 text-sm mb-3 line-clamp-3">
                     {news.excerpt}
                   </p>
-                  <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
-                    Baca lebih lanjut <ChevronRight size={14} className="ml-1" />
-                  </Button>
+                  <Link to="/news">
+                    <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
+                      Baca lebih lanjut <ChevronRight size={14} className="ml-1" />
+                    </Button>
+                  </Link>
                 </div>
               </Card>
             ))}

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -19,52 +20,58 @@ const ServicesSection = () => {
       title: 'IDM (Indeks Desa Membangun)',
       description: 'Data perkembangan dan kemajuan desa dalam berbagai aspek pembangunan',
       category: 'Data & Statistik',
-      color: 'bg-blue-500'
+      color: 'bg-blue-500',
+      link: '/infographics'
     },
     {
       icon: Book,
       title: 'PPID',
       description: 'Pejabat Pengelola Informasi dan Dokumentasi untuk transparansi data',
       category: 'Transparansi',
-      color: 'bg-green-500'
+      color: 'bg-green-500',
+      link: '/profile'
     },
     {
       icon: Users,
       title: 'Administrasi Penduduk',
       description: 'Layanan pengelolaan data kependudukan dan pelayanan publik',
       category: 'Pelayanan',
-      color: 'bg-purple-500'
+      color: 'bg-purple-500',
+      link: '/services'
     },
     {
       icon: FileText,
       title: 'APB Desa',
       description: 'Informasi transparan anggaran pendapatan dan belanja desa',
       category: 'Keuangan',
-      color: 'bg-orange-500'
+      color: 'bg-orange-500',
+      link: '/budget'
     },
     {
       icon: Users,
       title: 'Belanja dan Bansos',
       description: 'Informasi anggaran desa dan program bantuan sosial',
       category: 'Bantuan Sosial',
-      color: 'bg-red-500'
+      color: 'bg-red-500',
+      link: '/budget'
     },
     {
       icon: Image,
       title: 'Galeri Kegiatan',
       description: 'Dokumentasi foto kegiatan dan acara desa',
       category: 'Dokumentasi',
-      color: 'bg-indigo-500'
+      color: 'bg-indigo-500',
+      link: '/gallery'
     }
   ];
 
   const documentServices = [
-    'Surat Keterangan Domisili',
-    'Surat Keterangan Usaha',
-    'Surat Pengantar KTP',
-    'Surat Keterangan Tidak Mampu',
-    'Surat Pengantar Nikah',
-    'Surat Keterangan Kelahiran'
+    { name: 'Surat Keterangan Domisili', link: '/document-request' },
+    { name: 'Surat Keterangan Usaha', link: '/document-request' },
+    { name: 'Surat Pengantar KTP', link: '/document-request' },
+    { name: 'Surat Keterangan Tidak Mampu', link: '/document-request' },
+    { name: 'Surat Pengantar Nikah', link: '/document-request' },
+    { name: 'Surat Keterangan Kelahiran', link: '/document-request' }
   ];
 
   return (
@@ -92,9 +99,11 @@ const ServicesSection = () => {
                   <span className="text-sm text-gray-500 font-medium">{service.category}</span>
                   <h3 className="text-lg font-semibold text-gray-800 mb-2">{service.title}</h3>
                   <p className="text-gray-600 text-sm mb-4">{service.description}</p>
-                  <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
-                    Akses Layanan <ChevronRight size={16} className="ml-1" />
-                  </Button>
+                  <Link to={service.link}>
+                    <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
+                      Akses Layanan <ChevronRight size={16} className="ml-1" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>
@@ -115,17 +124,21 @@ const ServicesSection = () => {
             <div className="space-y-3">
               {documentServices.map((doc, index) => (
                 <div key={index} className="flex items-center justify-between p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <span className="font-medium text-gray-800">{doc}</span>
-                  <Button variant="ghost" size="sm" className="text-village-green">
-                    <ChevronRight size={16} />
-                  </Button>
+                  <span className="font-medium text-gray-800">{doc.name}</span>
+                  <Link to={doc.link}>
+                    <Button variant="ghost" size="sm" className="text-village-green">
+                      <ChevronRight size={16} />
+                    </Button>
+                  </Link>
                 </div>
               ))}
             </div>
 
-            <Button className="bg-gradient-village hover:opacity-90 text-white mt-6" size="lg">
-              Ajukan Permohonan
-            </Button>
+            <Link to="/document-request">
+              <Button className="bg-gradient-village hover:opacity-90 text-white mt-6" size="lg">
+                Ajukan Permohonan
+              </Button>
+            </Link>
           </div>
 
           <Card className="p-8 bg-gradient-to-br from-village-green to-village-blue text-white">
@@ -146,9 +159,11 @@ const ServicesSection = () => {
               </div>
             </div>
 
-            <Button variant="secondary" className="w-full">
-              Pelajari Lebih Lanjut
-            </Button>
+            <Link to="/services">
+              <Button variant="secondary" className="w-full">
+                Pelajari Lebih Lanjut
+              </Button>
+            </Link>
           </Card>
         </div>
 
