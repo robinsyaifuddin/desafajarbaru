@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
@@ -6,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 import { TrendingUp, Users, Building, Leaf, ChevronRight } from 'lucide-react';
 import Footer from '@/components/Footer';
+import RWPopulationSection from '@/components/RWPopulationSection';
+import VillageGISMap from '@/components/VillageGISMap';
 
 const Infographics = () => {
   const populationData = [
@@ -70,6 +73,12 @@ const Infographics = () => {
               </Card>
             ))}
           </div>
+
+          {/* RW Population Section */}
+          <RWPopulationSection />
+
+          {/* Village GIS Map */}
+          <VillageGISMap />
 
           {/* Charts Section */}
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
@@ -152,7 +161,6 @@ const Infographics = () => {
             </div>
           </Card>
 
-          {/* Additional Info */}
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="p-6 text-center animate-fade-in">
               <h4 className="text-lg font-semibold text-gray-800 mb-3">Fasilitas Publik</h4>

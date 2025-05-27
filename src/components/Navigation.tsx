@@ -13,10 +13,7 @@ const Navigation = () => {
     { name: 'Profil Desa', href: '/profile' },
     { name: 'Infografis', href: '/infographics' },
     { name: 'Berita', href: '/news' },
-    { name: 'Galeri', href: '/gallery' },
     { name: 'Layanan', href: '/services' },
-    { name: 'Wisata', href: '/tourism' },
-    { name: 'UMKM', href: '/umkm' },
   ];
 
   const handleMenuClick = (href: string) => {
