@@ -8,7 +8,6 @@ import Index from "./pages/Index";
 import Infographics from "./pages/Infographics";
 import News from "./pages/News";
 import NewsDetail from "./pages/NewsDetail";
-import Services from "./pages/Services";
 import Profile from "./pages/Profile";
 import VillageMap from "./pages/VillageMap";
 import Login from "./pages/Login";
@@ -37,7 +36,6 @@ const App = () => (
           <Route path="/infographics" element={<Infographics />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
-          <Route path="/services" element={<Services />} />
           <Route path="/services/idm" element={<IDM />} />
           <Route path="/services/ppid" element={<PPID />} />
           <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
