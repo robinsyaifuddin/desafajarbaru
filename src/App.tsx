@@ -25,8 +25,14 @@ import NotFound from "./pages/NotFound";
 
 // Statistics pages
 import AgeRange from "./pages/statistics/AgeRange";
+import AgeCategory from "./pages/statistics/AgeCategory";
 import Education from "./pages/statistics/Education";
 import Occupation from "./pages/statistics/Occupation";
+import MaritalStatus from "./pages/statistics/MaritalStatus";
+import Religion from "./pages/statistics/Religion";
+import Gender from "./pages/statistics/Gender";
+import FamilyRelation from "./pages/statistics/FamilyRelation";
+import ResidentStatus from "./pages/statistics/ResidentStatus";
 
 const queryClient = new QueryClient();
 
@@ -42,8 +48,14 @@ const App = () => (
           
           {/* Statistics routes */}
           <Route path="/infographics/age-range" element={<AgeRange />} />
+          <Route path="/infographics/age-category" element={<AgeCategory />} />
           <Route path="/infographics/education" element={<Education />} />
           <Route path="/infographics/occupation" element={<Occupation />} />
+          <Route path="/infographics/marital-status" element={<MaritalStatus />} />
+          <Route path="/infographics/religion" element={<Religion />} />
+          <Route path="/infographics/gender" element={<Gender />} />
+          <Route path="/infographics/family-relation" element={<FamilyRelation />} />
+          <Route path="/infographics/resident-status" element={<ResidentStatus />} />
           
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
