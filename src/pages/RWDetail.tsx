@@ -301,7 +301,7 @@ const RWDetail = () => {
                                 <span className="font-medium">{kk.anggota.length} orang</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-gray-600">Anak-anak (< 18 th):</span>
+                                <span className="text-gray-600">Anak-anak (&lt; 18 th):</span>
                                 <span className="font-medium">
                                   {kk.anggota.filter((a: any) => a.umur < 18).length} orang
                                 </span>
