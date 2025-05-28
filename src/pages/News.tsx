@@ -1,15 +1,14 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
-import NewsArticleDetail from '@/components/NewsArticleDetail';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar, User, Eye, ArrowRight, Clock, Share2 } from 'lucide-react';
+import { Calendar, User, Eye, ArrowRight, Clock } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 const News = () => {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
-  const [selectedArticle, setSelectedArticle] = useState<any>(null);
 
   const categories = ['Semua', 'Pemerintahan', 'Kegiatan', 'Pembangunan', 'UMKM', 'Sosial'];
 
@@ -19,19 +18,17 @@ const News = () => {
       title: 'Pembangunan Jalan Utama Desa Fase II Dimulai',
       category: 'Pembangunan',
       excerpt: 'Pemerintah Desa Fajar Baru memulai pembangunan jalan utama fase kedua dengan anggaran Rp 500 juta untuk meningkatkan aksesibilitas...',
-      content: 'Pembangunan jalan utama Desa Fajar Baru fase kedua resmi dimulai hari ini dengan total anggaran sebesar Rp 500 juta. Proyek ini merupakan kelanjutan dari fase pertama yang telah berhasil diselesaikan tahun lalu. Kepala Desa menyatakan bahwa pembangunan ini bertujuan untuk meningkatkan aksesibilitas dan mobilitas masyarakat, terutama untuk menghubungkan area pertanian dengan pusat desa. Pekerjaan meliputi pelebaran jalan, perbaikan drainase, dan pemasangan penerangan jalan. Diharapkan proyek ini dapat selesai dalam waktu 6 bulan ke depan.',
       image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
       date: '25 Januari 2024',
       author: 'Admin Desa',
       views: 245,
-      readTime: '3 min'
+      readTime: '5 min'
     },
     {
       id: 2,
       title: 'Pelatihan UMKM Digital Marketing Sukses Digelar',
       category: 'UMKM',
       excerpt: 'Sebanyak 50 pelaku UMKM mengikuti pelatihan digital marketing yang diselenggarakan oleh Dinas Koperasi dan UMKM Kota Bandar Lampung...',
-      content: 'Pelatihan digital marketing untuk pelaku UMKM Desa Fajar Baru telah sukses digelar dengan dihadiri 50 peserta. Pelatihan ini bertujuan untuk meningkatkan kemampuan pemasaran digital para pelaku usaha lokal. Materi yang disampaikan meliputi strategi media sosial, pembuatan konten yang menarik, dan teknik penjualan online. Para peserta sangat antusias dan berharap dapat menerapkan ilmu yang didapat untuk mengembangkan usaha mereka.',
       image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80',
       date: '23 Januari 2024',
       author: 'Humas Desa',
@@ -43,7 +40,6 @@ const News = () => {
       title: 'Musyawarah Desa Membahas APBDes 2024',
       category: 'Pemerintahan',
       excerpt: 'Kepala Desa bersama BPD dan tokoh masyarakat membahas Anggaran Pendapatan dan Belanja Desa tahun 2024 dengan fokus pembangunan infrastruktur...',
-      content: 'Musyawarah Desa untuk pembahasan APBDes 2024 telah dilaksanakan dengan melibatkan seluruh elemen masyarakat. Dalam pertemuan ini, dibahas alokasi anggaran untuk berbagai program pembangunan, termasuk infrastruktur, pendidikan, kesehatan, dan pemberdayaan masyarakat. Total anggaran yang direncanakan mencapai Rp 2,5 miliar dengan fokus utama pada peningkatan kualitas jalan desa dan fasilitas umum.',
       image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80',
       date: '20 Januari 2024',
       author: 'Sekretaris Desa',
@@ -55,7 +51,6 @@ const News = () => {
       title: 'Festival Budaya Way Kandis Meriah Digelar',
       category: 'Kegiatan',
       excerpt: 'Festival budaya tahunan Way Kandis sukses digelar dengan berbagai pertunjukan seni tradisional dan pameran produk lokal...',
-      content: 'Festival Budaya Way Kandis 2024 telah sukses digelar dengan meriah dan dihadiri ribuan pengunjung dari berbagai daerah. Acara ini menampilkan berbagai pertunjukan seni tradisional Lampung, pameran produk UMKM lokal, dan lomba-lomba budaya. Festival ini tidak hanya menjadi ajang hiburan, tetapi juga sarana untuk melestarikan budaya lokal dan memperkenalkan potensi wisata Desa Fajar Baru kepada masyarakat luas.',
       image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
       date: '18 Januari 2024',
       author: 'Karang Taruna',
@@ -67,7 +62,6 @@ const News = () => {
       title: 'Program Bantuan Sosial Tunai Disalurkan',
       category: 'Sosial',
       excerpt: 'Penyaluran bantuan sosial tunai kepada 150 keluarga penerima manfaat sebagai upaya pemulihan ekonomi pasca pandemi...',
-      content: 'Program bantuan sosial tunai untuk 150 keluarga penerima manfaat telah resmi disalurkan. Program ini merupakan bagian dari upaya pemerintah desa dalam pemulihan ekonomi masyarakat pasca pandemi. Setiap keluarga menerima bantuan sebesar Rp 300.000 per bulan selama 3 bulan. Penyaluran dilakukan secara transparan dengan melibatkan RT/RW setempat untuk memastikan tepat sasaran.',
       image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80',
       date: '15 Januari 2024',
       author: 'Tim PKH',
@@ -79,7 +73,6 @@ const News = () => {
       title: 'Vaksinasi COVID-19 Dosis Booster Berlangsung',
       category: 'Sosial',
       excerpt: 'Kegiatan vaksinasi dosis booster COVID-19 diselenggarakan di Balai Desa dengan target 200 warga per hari...',
-      content: 'Kegiatan vaksinasi dosis booster COVID-19 telah berlangsung lancar di Balai Desa dengan target 200 warga per hari. Program ini dilaksanakan selama 5 hari berturut-turut dengan didukung tenaga medis dari Puskesmas setempat. Antusiasme masyarakat sangat tinggi, terbukti dari target yang tercapai 100%. Kegiatan ini merupakan bagian dari upaya pemerintah desa dalam menjaga kesehatan masyarakat dan mencegah penyebaran COVID-19.',
       image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80',
       date: '12 Januari 2024',
       author: 'Puskesmas',
@@ -92,25 +85,20 @@ const News = () => {
     ? newsItems 
     : newsItems.filter(item => item.category === selectedCategory);
 
-  const handleReadMore = (article: any) => {
-    setSelectedArticle(article);
-  };
-
-  const handleCloseArticle = () => {
-    setSelectedArticle(null);
+  const getCategoryColor = (category: string) => {
+    const colors: { [key: string]: string } = {
+      'Pembangunan': 'bg-blue-100 text-blue-800',
+      'UMKM': 'bg-green-100 text-green-800',
+      'Pemerintahan': 'bg-purple-100 text-purple-800',
+      'Kegiatan': 'bg-yellow-100 text-yellow-800',
+      'Sosial': 'bg-red-100 text-red-800'
+    };
+    return colors[category] || 'bg-gray-100 text-gray-800';
   };
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
-      {/* Article Detail Modal */}
-      {selectedArticle && (
-        <NewsArticleDetail 
-          article={selectedArticle} 
-          onClose={handleCloseArticle} 
-        />
-      )}
       
       <div className="pt-20 md:pt-32 pb-16">
         <div className="container mx-auto px-4">
@@ -161,7 +149,7 @@ const News = () => {
                 </div>
                 <div className="p-6 lg:p-8">
                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
-                    <span className="bg-village-blue text-white px-3 py-1 rounded-full text-xs">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(filteredNews[0].category)}`}>
                       {filteredNews[0].category}
                     </span>
                     <div className="flex items-center gap-1">
@@ -190,12 +178,11 @@ const News = () => {
                         <span>{filteredNews[0].views} views</span>
                       </div>
                     </div>
-                    <Button 
-                      className="bg-gradient-village hover:opacity-90"
-                      onClick={() => handleReadMore(filteredNews[0])}
-                    >
-                      Baca Selengkapnya <ArrowRight size={16} className="ml-2" />
-                    </Button>
+                    <Link to={`/news/${filteredNews[0].id}`}>
+                      <Button className="bg-gradient-village hover:opacity-90">
+                        Baca Selengkapnya <ArrowRight size={16} className="ml-2" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -213,7 +200,7 @@ const News = () => {
                     className="w-full h-48 object-cover"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-village-green text-white px-3 py-1 rounded-full text-xs font-medium">
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(item.category)}`}>
                       {item.category}
                     </span>
                   </div>
@@ -246,14 +233,15 @@ const News = () => {
                         <span>{item.views}</span>
                       </div>
                     </div>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-village-green text-village-green hover:bg-village-green hover:text-white flex-shrink-0"
-                      onClick={() => handleReadMore(item)}
-                    >
-                      Baca
-                    </Button>
+                    <Link to={`/news/${item.id}`}>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="border-village-green text-village-green hover:bg-village-green hover:text-white flex-shrink-0"
+                      >
+                        Baca
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Card>

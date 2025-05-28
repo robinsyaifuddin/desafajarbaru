@@ -120,7 +120,7 @@ const NewsSection = () => {
                 <User size={16} className="mr-2" />
                 <span>{featuredNews.author}</span>
               </div>
-              <Link to="/news">
+              <Link to={`/news/${featuredNews.id}`}>
                 <Button className="bg-gradient-village hover:opacity-90 text-white self-start">
                   Baca Selengkapnya <ChevronRight size={16} className="ml-2" />
                 </Button>
@@ -158,7 +158,7 @@ const NewsSection = () => {
                   <p className="text-gray-600 text-sm mb-3 line-clamp-3">
                     {news.excerpt}
                   </p>
-                  <Link to="/news">
+                  <Link to={`/news/${news.id}`}>
                     <Button variant="ghost" size="sm" className="text-village-green hover:text-village-green hover:bg-green-50 p-0">
                       Baca lebih lanjut <ChevronRight size={14} className="ml-1" />
                     </Button>
