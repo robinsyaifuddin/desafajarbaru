@@ -1,8 +1,9 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { MapPin, Users, Calendar, Star, ArrowRight, Phone, Mail } from 'lucide-react';
+import { MapPin, Users, Calendar, Star, User, Settings, Phone, Mail } from 'lucide-react';
 
 const HeroSection = () => {
   const stats = [
@@ -68,13 +69,18 @@ const HeroSection = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <Button size="lg" className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg group">
-                  Jelajahi Desa
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg backdrop-blur-sm">
-                  Lihat Galeri
-                </Button>
+                <Link to="/profile">
+                  <Button size="lg" className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 py-4 text-lg group">
+                    <User className="mr-2 h-5 w-5" />
+                    Profil Desa
+                  </Button>
+                </Link>
+                <Link to="/services">
+                  <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg backdrop-blur-sm">
+                    <Settings className="mr-2 h-5 w-5" />
+                    Layanan
+                  </Button>
+                </Link>
               </div>
 
               {/* Contact Info */}
