@@ -1,8 +1,14 @@
 
 import React, { useState } from 'react';
-import { Menu, X, MapPin, Phone, Mail } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +19,15 @@ const Navigation = () => {
     { name: 'Profil Desa', href: '/profile' },
     { name: 'Infografis', href: '/infographics' },
     { name: 'Berita', href: '/news' },
-    { name: 'Layanan', href: '/services' },
+  ];
+
+  const serviceSubmenus = [
+    { name: 'IDM (Indeks Desa Membangun)', href: '/services/idm' },
+    { name: 'PPID', href: '/services/ppid' },
+    { name: 'Administrasi Penduduk', href: '/services/administrasi-penduduk' },
+    { name: 'APB Desa', href: '/services/apb-desa' },
+    { name: 'Belanja', href: '/services/belanja' },
+    { name: 'Bansos', href: '/services/bansos' },
   ];
 
   const handleMenuClick = (href: string) => {
@@ -75,6 +89,35 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
+            
+            {/* Layanan Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-village-green transition-colors duration-200 font-medium text-sm xl:text-base">
+                Layanan
+                <ChevronDown size={16} className="ml-1" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64 bg-white border shadow-lg">
+                {serviceSubmenus.map((submenu) => (
+                  <DropdownMenuItem key={submenu.name} asChild>
+                    <Link
+                      to={submenu.href}
+                      className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-village-green"
+                    >
+                      {submenu.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem asChild>
+                  <Link
+                    to="/services"
+                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-village-green border-t"
+                  >
+                    Semua Layanan
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <Link to="/login">
               <Button className="bg-gradient-village hover:opacity-90 text-white text-sm">
                 Login
@@ -106,6 +149,31 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
+              
+              {/* Mobile Layanan Submenu */}
+              <div className="border-t pt-2">
+                <span className="text-gray-500 text-sm font-medium px-2">Layanan</span>
+                <div className="mt-2 space-y-2 pl-4">
+                  {serviceSubmenus.map((submenu) => (
+                    <Link
+                      key={submenu.name}
+                      to={submenu.href}
+                      className="block text-gray-600 hover:text-village-green transition-colors duration-200 py-1 px-2 rounded hover:bg-gray-50 text-sm"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {submenu.name}
+                    </Link>
+                  ))}
+                  <Link
+                    to="/services"
+                    className="block text-gray-600 hover:text-village-green transition-colors duration-200 py-1 px-2 rounded hover:bg-gray-50 text-sm border-t pt-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Semua Layanan
+                  </Link>
+                </div>
+              </div>
+              
               <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                 <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
                   Login

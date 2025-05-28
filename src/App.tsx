@@ -16,6 +16,12 @@ import DocumentRequest from "./pages/DocumentRequest";
 import Budget from "./pages/Budget";
 import RWDetail from "./pages/RWDetail";
 import Gallery from "./pages/Gallery";
+import IDM from "./pages/IDM";
+import PPID from "./pages/PPID";
+import AdministrasiPenduduk from "./pages/AdministrasiPenduduk";
+import APBDesa from "./pages/APBDesa";
+import Belanja from "./pages/Belanja";
+import Bansos from "./pages/Bansos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +38,12 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/idm" element={<IDM />} />
+          <Route path="/services/ppid" element={<PPID />} />
+          <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
+          <Route path="/services/apb-desa" element={<APBDesa />} />
+          <Route path="/services/belanja" element={<Belanja />} />
+          <Route path="/services/bansos" element={<Bansos />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/village-map" element={<VillageMap />} />
           <Route path="/login" element={<Login />} />
