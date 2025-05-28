@@ -1,8 +1,9 @@
 
-import React, { useState } from 'react';
-import { Menu, X, MapPin, Phone, Mail, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, useLocation } from 'react-router-dom';
+import { Input } from '@/components/ui/input';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,28 +13,46 @@ import {
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
-    { name: 'Beranda', href: '/' },
-    { name: 'Profil Desa', href: '/profile' },
-    { name: 'Infografis', href: '/infographics' },
-    { name: 'Berita', href: '/news' },
+    { name: 'Beranda', href: '/', icon: Home },
+    { name: 'Profil Desa', href: '/profile', icon: User },
+    { name: 'Infografis', href: '/infographics', icon: BarChart3 },
+    { name: 'Berita', href: '/news', icon: Newspaper },
   ];
 
   const serviceSubmenus = [
-    { name: 'IDM (Indeks Desa Membangun)', href: '/services/idm' },
-    { name: 'PPID', href: '/services/ppid' },
-    { name: 'Administrasi Penduduk', href: '/services/administrasi-penduduk' },
-    { name: 'APB Desa', href: '/services/apb-desa' },
-    { name: 'Belanja', href: '/services/belanja' },
-    { name: 'Bansos', href: '/services/bansos' },
+    { name: 'IDM (Indeks Desa Membangun)', href: '/services/idm', icon: BarChart3 },
+    { name: 'PPID', href: '/services/ppid', icon: FileText },
+    { name: 'Administrasi Penduduk', href: '/services/administrasi-penduduk', icon: Users },
+    { name: 'APB Desa', href: '/services/apb-desa', icon: Building2 },
+    { name: 'Belanja', href: '/services/belanja', icon: CreditCard },
+    { name: 'Bansos', href: '/services/bansos', icon: Heart },
   ];
+
+  const searchableItems = [
+    ...menuItems,
+    ...serviceSubmenus,
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleMenuClick = (href: string) => {
     setIsMenuOpen(false);
+    setIsServicesOpen(false);
     
-    // Handle hash links for sections on homepage
     if (href.startsWith('/#') && location.pathname === '/') {
       const element = document.querySelector(href.substring(1));
       if (element) {
@@ -42,125 +61,299 @@ const Navigation = () => {
     }
   };
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const foundItem = searchableItems.find(item => 
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      if (foundItem) {
+        navigate(foundItem.href);
+        setSearchQuery('');
+        setIsSearchOpen(false);
+        setIsMenuOpen(false);
+      }
+    }
+  };
+
+  const filteredSearchResults = searchQuery.trim() 
+    ? searchableItems.filter(item =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      ).slice(0, 5)
+    : [];
+
   return (
-    <nav className="bg-white/95 backdrop-blur-sm shadow-lg fixed top-0 left-0 right-0 z-50">
-      {/* Top Info Bar - Hidden on mobile to save space */}
-      <div className="bg-gradient-village text-white py-2 px-4 hidden md:block">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10' 
+        : 'bg-white/90 backdrop-blur-md shadow-lg'
+    }`}>
+      {/* Top Info Bar */}
+      <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white py-2 px-4 hidden lg:block transition-all duration-500 ${
+        isScrolled ? 'py-1' : 'py-2'
+      }`}>
         <div className="container mx-auto flex flex-wrap items-center justify-between text-sm">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1">
-              <MapPin size={14} />
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+              <MapPin size={14} className="animate-pulse" />
               <span>Way Kandis, Bandar Lampung</span>
             </div>
-            <div className="flex items-center space-x-1">
-              <Phone size={14} />
+            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+              <Phone size={14} className="animate-pulse delay-150" />
               <span>(0721) 123-4567</span>
             </div>
           </div>
-          <div className="flex items-center space-x-1">
-            <Mail size={14} />
+          <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+            <Mail size={14} className="animate-pulse delay-300" />
             <span>info@fajar-baru.desa.id</span>
           </div>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <div className="container mx-auto px-4 py-3 md:py-4">
+      <div className="container mx-auto px-4 py-3 lg:py-4">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 md:space-x-3">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-village rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-base md:text-lg">FB</span>
+          {/* Logo with 3D effect */}
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative w-12 h-12 lg:w-14 lg:h-14">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500 shadow-lg group-hover:shadow-xl"></div>
+              <div className="relative w-full h-full bg-gradient-to-br from-emerald-600 to-blue-700 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl">
+                <span className="text-white font-bold text-lg lg:text-xl">FB</span>
+              </div>
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-bold text-lg md:text-xl text-gray-800">Desa Fajar Baru</h1>
-              <p className="text-xs md:text-sm text-gray-600">Way Kandis, Bandar Lampung</p>
+              <h1 className="font-bold text-xl lg:text-2xl text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
+                Desa Fajar Baru
+              </h1>
+              <p className="text-sm lg:text-base text-gray-600">Way Kandis, Bandar Lampung</p>
             </div>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
-            {menuItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium text-sm xl:text-base"
-              >
-                {item.name}
-              </Link>
-            ))}
+          <div className="hidden lg:flex items-center space-x-8">
+            {menuItems.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative"
+                >
+                  <IconComponent size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <span className="relative">
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+                  </span>
+                </Link>
+              );
+            })}
             
             {/* Layanan Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center text-gray-700 hover:text-village-green transition-colors duration-200 font-medium text-sm xl:text-base">
-                Layanan
-                <ChevronDown size={16} className="ml-1" />
+              <DropdownMenuTrigger className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative">
+                <Settings size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                <span className="relative">
+                  Layanan
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+                </span>
+                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-64 bg-white border shadow-lg">
-                {serviceSubmenus.map((submenu) => (
-                  <DropdownMenuItem key={submenu.name} asChild>
-                    <Link
-                      to={submenu.href}
-                      className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-village-green"
-                    >
-                      {submenu.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
+              <DropdownMenuContent className="w-72 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2">
+                {serviceSubmenus.map((submenu) => {
+                  const IconComponent = submenu.icon;
+                  return (
+                    <DropdownMenuItem key={submenu.name} asChild>
+                      <Link
+                        to={submenu.href}
+                        className="flex items-center space-x-3 w-full px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group"
+                      >
+                        <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>{submenu.name}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  );
+                })}
               </DropdownMenuContent>
             </DropdownMenu>
 
+            {/* Search */}
+            <div className="relative">
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="p-2 rounded-xl bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-600 transition-all duration-300 hover:scale-110"
+              >
+                <Search size={20} />
+              </button>
+              
+              {isSearchOpen && (
+                <div className="absolute top-full right-0 mt-2 w-80 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border-0 p-4 animate-scale-in">
+                  <form onSubmit={handleSearch} className="space-y-3">
+                    <div className="relative">
+                      <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                      <Input
+                        type="text"
+                        placeholder="Cari layanan atau halaman..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-10 pr-4 py-2 border-2 border-gray-200 focus:border-emerald-500 rounded-xl transition-all duration-300"
+                        autoFocus
+                      />
+                    </div>
+                    
+                    {filteredSearchResults.length > 0 && (
+                      <div className="space-y-1">
+                        {filteredSearchResults.map((item) => {
+                          const IconComponent = item.icon;
+                          return (
+                            <button
+                              key={item.name}
+                              onClick={() => {
+                                navigate(item.href);
+                                setSearchQuery('');
+                                setIsSearchOpen(false);
+                              }}
+                              className="flex items-center space-x-3 w-full px-3 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-all duration-300 group"
+                            >
+                              <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                              <span>{item.name}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </form>
+                </div>
+              )}
+            </div>
+
             <Link to="/login">
-              <Button className="bg-gradient-village hover:opacity-90 text-white text-sm">
+              <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-xl">
                 Login
               </Button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Search */}
+            <button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="p-2 rounded-xl bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-600 transition-all duration-300"
+            >
+              <Search size={20} />
+            </button>
+            
+            <button
+              className="p-2 rounded-xl bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-600 transition-all duration-300"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Search */}
+        {isSearchOpen && (
+          <div className="lg:hidden mt-4 animate-slide-in">
+            <form onSubmit={handleSearch} className="space-y-3">
+              <div className="relative">
+                <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                <Input
+                  type="text"
+                  placeholder="Cari layanan atau halaman..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-4 py-2 border-2 border-gray-200 focus:border-emerald-500 rounded-xl transition-all duration-300"
+                />
+              </div>
+              
+              {filteredSearchResults.length > 0 && (
+                <div className="bg-white rounded-xl shadow-lg p-2 space-y-1">
+                  {filteredSearchResults.map((item) => {
+                    const IconComponent = item.icon;
+                    return (
+                      <button
+                        key={item.name}
+                        onClick={() => {
+                          navigate(item.href);
+                          setSearchQuery('');
+                          setIsSearchOpen(false);
+                          setIsMenuOpen(false);
+                        }}
+                        className="flex items-center space-x-3 w-full px-3 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-700 rounded-lg transition-all duration-300 group"
+                      >
+                        <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                        <span>{item.name}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </form>
+          </div>
+        )}
 
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 animate-slide-in border-t border-gray-200 pt-4">
-            <div className="flex flex-col space-y-4">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="text-gray-700 hover:text-village-green transition-colors duration-200 font-medium py-2 px-2 rounded hover:bg-gray-50"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <div className="flex flex-col space-y-2">
+              {menuItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="flex items-center space-x-3 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 font-medium py-3 px-4 rounded-xl group"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <IconComponent size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              })}
               
-              {/* Mobile Layanan Submenu */}
-              <div className="border-t pt-2">
-                <span className="text-gray-500 text-sm font-medium px-2">Layanan</span>
-                <div className="mt-2 space-y-2 pl-4">
-                  {serviceSubmenus.map((submenu) => (
-                    <Link
-                      key={submenu.name}
-                      to={submenu.href}
-                      className="block text-gray-600 hover:text-village-green transition-colors duration-200 py-1 px-2 rounded hover:bg-gray-50 text-sm"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {submenu.name}
-                    </Link>
-                  ))}
-                </div>
+              {/* Mobile Layanan */}
+              <div className="border-t pt-4">
+                <button
+                  onClick={() => setIsServicesOpen(!isServicesOpen)}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 font-medium py-3 px-4 rounded-xl group"
+                >
+                  <div className="flex items-center space-x-3">
+                    <Settings size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                    <span>Layanan</span>
+                  </div>
+                  {isServicesOpen ? 
+                    <ChevronUp size={20} className="transition-transform duration-300" /> : 
+                    <ChevronDown size={20} className="transition-transform duration-300" />
+                  }
+                </button>
+                
+                {isServicesOpen && (
+                  <div className="mt-2 space-y-1 pl-6 animate-fade-in">
+                    {serviceSubmenus.map((submenu) => {
+                      const IconComponent = submenu.icon;
+                      return (
+                        <Link
+                          key={submenu.name}
+                          to={submenu.href}
+                          className="flex items-center space-x-3 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 py-2 px-3 rounded-lg group text-sm"
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            setIsServicesOpen(false);
+                          }}
+                        >
+                          <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                          <span>{submenu.name}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
               
               <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                <Button className="bg-gradient-village hover:opacity-90 text-white w-full mt-4">
+                <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white w-full mt-4 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
                   Login
                 </Button>
               </Link>
