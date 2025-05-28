@@ -87,7 +87,7 @@ const IDM = () => {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="tahun" />
                     <YAxis domain={[0, 1]} />
-                    <Tooltip formatter={(value) => [value.toFixed(4), 'Skor IDM']} />
+                    <Tooltip formatter={(value) => [typeof value === 'number' ? value.toFixed(4) : value, 'Skor IDM']} />
                     <Bar dataKey="skor" fill="#22C55E" />
                   </BarChart>
                 </ResponsiveContainer>
