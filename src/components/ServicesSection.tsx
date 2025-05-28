@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -165,10 +166,10 @@ const ServicesSection = () => {
           </div>
 
           <Card className="p-8 bg-gradient-to-br from-village-green to-village-blue text-white">
-            <h4 className="text-2xl font-bold mb-4">Tanda Tangan Elektronik</h4>
+            <h4 className="text-2xl font-bold mb-4">Layanan Digital</h4>
             <p className="mb-6 opacity-90">
-              Sistem tanda tangan digital kepala desa untuk dokumen resmi yang 
-              aman dan terverifikasi secara elektronik.
+              Sistem layanan digital terintegrasi untuk memudahkan proses 
+              administrasi dan pelayanan masyarakat.
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-6">
@@ -188,39 +189,6 @@ const ServicesSection = () => {
               </Button>
             </Link>
           </Card>
-        </div>
-
-        {/* Access Levels */}
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8">
-            Sistem Akses Multi-Level
-          </h3>
-          
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="text-blue-600" size={32} />
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Masyarakat</h4>
-              <p className="text-gray-600 text-sm">Akses informasi dan pengajuan permohonan layanan</p>
-            </Card>
-            
-            <Card className="p-6 text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MapPin className="text-green-600" size={32} />
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Admin RW</h4>
-              <p className="text-gray-600 text-sm">Mengelola data dan informasi tingkat RW</p>
-            </Card>
-            
-            <Card className="p-6 text-center">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="text-purple-600" size={32} />
-              </div>
-              <h4 className="text-lg font-semibold text-gray-800 mb-2">Perangkat Desa</h4>
-              <p className="text-gray-600 text-sm">Kontrol penuh sistem dan verifikasi data</p>
-            </Card>
-          </div>
         </div>
       </div>
     </section>
