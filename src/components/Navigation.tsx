@@ -107,14 +107,6 @@ const Navigation = () => {
                     </Link>
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuItem asChild>
-                  <Link
-                    to="/services"
-                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-village-green border-t"
-                  >
-                    Semua Layanan
-                  </Link>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -164,13 +156,6 @@ const Navigation = () => {
                       {submenu.name}
                     </Link>
                   ))}
-                  <Link
-                    to="/services"
-                    className="block text-gray-600 hover:text-village-green transition-colors duration-200 py-1 px-2 rounded hover:bg-gray-50 text-sm border-t pt-2"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Semua Layanan
-                  </Link>
                 </div>
               </div>
               
