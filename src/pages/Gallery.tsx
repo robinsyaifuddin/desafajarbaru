@@ -1,6 +1,6 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
+import BackNavigation from '@/components/BackNavigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Camera, Calendar, MapPin, Eye } from 'lucide-react';
@@ -8,6 +8,10 @@ import Footer from '@/components/Footer';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const categories = ['Semua', 'Kegiatan Desa', 'Infrastruktur', 'Wisata', 'UMKM', 'Budaya'];
 
@@ -93,22 +97,23 @@ const Gallery = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
+      <BackNavigation title="Galeri Desa Fajar Baru" />
       
-      <div className="pt-32 pb-16">
-        <div className="container mx-auto px-4">
+      <div className="pt-8 pb-16 px-4 md:px-0">
+        <div className="container mx-auto">
           {/* Header */}
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+          <div className="text-center mb-8 md:mb-12 animate-fade-in">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
               Galeri Desa Fajar Baru
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
               Dokumentasi visual kegiatan, pembangunan, dan keindahan alam 
               Desa Fajar Baru Way Kandis
             </p>
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <div className="flex flex-wrap justify-center gap-2 mb-8 md:mb-12 px-4">
             {categories.map((category, index) => (
               <Button
                 key={index}
@@ -126,14 +131,14 @@ const Gallery = () => {
           </div>
 
           {/* Gallery Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12 px-4">
             {filteredItems.map((item, index) => (
               <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="relative group">
                   <img 
                     src={item.image} 
                     alt={item.title}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
                     <Eye className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={32} />
@@ -144,11 +149,11 @@ const Gallery = () => {
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                <div className="p-4 md:p-6">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">
+                  <p className="text-gray-600 text-sm mb-3 md:mb-4">
                     {item.description}
                   </p>
                   <div className="flex items-center justify-between text-xs text-gray-500">
@@ -167,26 +172,26 @@ const Gallery = () => {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <Card className="p-6 text-center">
-              <Camera className="w-12 h-12 text-village-green mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">150+</h3>
-              <p className="text-gray-600 text-sm">Total Foto</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-4">
+            <Card className="p-4 md:p-6 text-center">
+              <Camera className="w-8 h-8 md:w-12 md:h-12 text-village-green mx-auto mb-2 md:mb-4" />
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2">150+</h3>
+              <p className="text-gray-600 text-xs md:text-sm">Total Foto</p>
             </Card>
-            <Card className="p-6 text-center">
-              <Calendar className="w-12 h-12 text-village-blue mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">25</h3>
-              <p className="text-gray-600 text-sm">Event Terdokumentasi</p>
+            <Card className="p-4 md:p-6 text-center">
+              <Calendar className="w-8 h-8 md:w-12 md:h-12 text-village-blue mx-auto mb-2 md:mb-4" />
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2">25</h3>
+              <p className="text-gray-600 text-xs md:text-sm">Event Terdokumentasi</p>
             </Card>
-            <Card className="p-6 text-center">
-              <MapPin className="w-12 h-12 text-village-orange mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">8</h3>
-              <p className="text-gray-600 text-sm">Lokasi Berbeda</p>
+            <Card className="p-4 md:p-6 text-center">
+              <MapPin className="w-8 h-8 md:w-12 md:h-12 text-village-orange mx-auto mb-2 md:mb-4" />
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2">8</h3>
+              <p className="text-gray-600 text-xs md:text-sm">Lokasi Berbeda</p>
             </Card>
-            <Card className="p-6 text-center">
-              <Eye className="w-12 h-12 text-purple-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">2.5K</h3>
-              <p className="text-gray-600 text-sm">Total Views</p>
+            <Card className="p-4 md:p-6 text-center">
+              <Eye className="w-8 h-8 md:w-12 md:h-12 text-purple-500 mx-auto mb-2 md:mb-4" />
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-1 md:mb-2">2.5K</h3>
+              <p className="text-gray-600 text-xs md:text-sm">Total Views</p>
             </Card>
           </div>
         </div>

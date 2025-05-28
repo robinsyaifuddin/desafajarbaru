@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import BackNavigation from '@/components/BackNavigation';
 import { Card } from '@/components/ui/card';
@@ -7,6 +7,10 @@ import { MapPin, Navigation as NavigationIcon, Home, Building, TreePine } from '
 import Footer from '@/components/Footer';
 
 const VillageMap = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const mapLocations = [
     { name: 'Balai Desa', type: 'government', coordinates: { x: 45, y: 30 } },
     { name: 'Puskesmas', type: 'health', coordinates: { x: 60, y: 25 } },

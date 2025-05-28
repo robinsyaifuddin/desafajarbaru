@@ -1,6 +1,6 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
+import BackNavigation from '@/components/BackNavigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,6 +18,10 @@ const DocumentRequest = () => {
     purpose: '',
     description: ''
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const documentTypes = [
     'Surat Keterangan Domisili',
@@ -37,23 +41,24 @@ const DocumentRequest = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
+      <BackNavigation title="Pengajuan Dokumen" />
       
-      <div className="pt-32 pb-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+      <div className="pt-8 pb-16 px-4 md:px-0">
+        <div className="container mx-auto">
+          <div className="text-center mb-8 md:mb-12 animate-fade-in">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
               Pengajuan Dokumen
             </h1>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
               Ajukan permohonan dokumen administrasi secara online dengan mudah dan cepat
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
             <div className="lg:col-span-2">
-              <Card className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-6">Form Pengajuan</h3>
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <Card className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4 md:mb-6">Form Pengajuan</h3>
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="documentType">Jenis Dokumen</Label>
                     <Select onValueChange={(value) => setFormData({...formData, documentType: value})}>
@@ -114,11 +119,11 @@ const DocumentRequest = () => {
 
                   <div className="space-y-2">
                     <Label>Upload Dokumen Pendukung</Label>
-                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                      <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <p className="text-gray-600 mb-2">Drag & drop file atau klik untuk upload</p>
-                      <p className="text-sm text-gray-500">Format: PDF, JPG, PNG (Max: 5MB)</p>
-                      <Button variant="outline" className="mt-4">
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 md:p-6 text-center">
+                      <Upload className="w-8 h-8 md:w-12 md:h-12 text-gray-400 mx-auto mb-2 md:mb-4" />
+                      <p className="text-gray-600 mb-2 text-sm md:text-base">Drag & drop file atau klik untuk upload</p>
+                      <p className="text-xs md:text-sm text-gray-500">Format: PDF, JPG, PNG (Max: 5MB)</p>
+                      <Button variant="outline" className="mt-4 w-full md:w-auto">
                         Pilih File
                       </Button>
                     </div>
@@ -132,30 +137,30 @@ const DocumentRequest = () => {
               </Card>
             </div>
 
-            <div>
-              <Card className="p-6 mb-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Status Pengajuan</h3>
+            <div className="space-y-6">
+              <Card className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4">Status Pengajuan</h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg">
                     <Clock className="text-yellow-500" size={20} />
                     <div>
-                      <p className="font-medium text-gray-800">Surat Domisili</p>
-                      <p className="text-sm text-gray-600">Sedang diproses</p>
+                      <p className="font-medium text-gray-800 text-sm md:text-base">Surat Domisili</p>
+                      <p className="text-xs md:text-sm text-gray-600">Sedang diproses</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
                     <CheckCircle className="text-green-500" size={20} />
                     <div>
-                      <p className="font-medium text-gray-800">Surat Usaha</p>
-                      <p className="text-sm text-gray-600">Selesai</p>
+                      <p className="font-medium text-gray-800 text-sm md:text-base">Surat Usaha</p>
+                      <p className="text-xs md:text-sm text-gray-600">Selesai</p>
                     </div>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">Informasi Penting</h3>
-                <div className="space-y-3 text-sm text-gray-600">
+              <Card className="p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-4">Informasi Penting</h3>
+                <div className="space-y-3 text-xs md:text-sm text-gray-600">
                   <div className="border-l-4 border-village-green pl-3">
                     <p className="font-medium">Persyaratan Umum:</p>
                     <ul className="list-disc list-inside mt-1 space-y-1">
