@@ -23,6 +23,11 @@ import Belanja from "./pages/Belanja";
 import Bansos from "./pages/Bansos";
 import NotFound from "./pages/NotFound";
 
+// Statistics pages
+import AgeRange from "./pages/statistics/AgeRange";
+import Education from "./pages/statistics/Education";
+import Occupation from "./pages/statistics/Occupation";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -34,6 +39,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/infographics" element={<Infographics />} />
+          
+          {/* Statistics routes */}
+          <Route path="/infographics/age-range" element={<AgeRange />} />
+          <Route path="/infographics/education" element={<Education />} />
+          <Route path="/infographics/occupation" element={<Occupation />} />
+          
           <Route path="/news" element={<News />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/services/idm" element={<IDM />} />

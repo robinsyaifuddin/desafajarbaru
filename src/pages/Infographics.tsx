@@ -1,11 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
-import { TrendingUp, Users, Building, Leaf, ChevronRight } from 'lucide-react';
+import { TrendingUp, Users, Building, Leaf, ChevronRight, BarChart3, GraduationCap, Briefcase } from 'lucide-react';
 import Footer from '@/components/Footer';
 import RWPopulationSection from '@/components/RWPopulationSection';
 import VillageGISMap from '@/components/VillageGISMap';
@@ -44,6 +43,39 @@ const Infographics = () => {
     { title: 'Tingkat Partisipasi', value: '87%', icon: TrendingUp, color: 'bg-purple-500' }
   ];
 
+  const statisticsMenus = [
+    {
+      title: 'Statistik Penduduk',
+      description: 'Data demografis dan karakteristik penduduk',
+      icon: Users,
+      color: 'from-blue-500 to-blue-600',
+      items: [
+        { name: 'Rentang Umur', path: '/infographics/age-range' },
+        { name: 'Pendidikan', path: '/infographics/education' },
+        { name: 'Pekerjaan', path: '/infographics/occupation' },
+      ]
+    },
+    {
+      title: 'Statistik Keluarga',
+      description: 'Data struktur dan kondisi keluarga',
+      icon: Building,
+      color: 'from-green-500 to-green-600',
+      items: [
+        { name: 'Kelas Sosial', path: '/infographics/social-class' },
+      ]
+    },
+    {
+      title: 'Statistik Bantuan',
+      description: 'Data penerima program bantuan sosial',
+      icon: TrendingUp,
+      color: 'from-purple-500 to-purple-600',
+      items: [
+        { name: 'Bantuan Penduduk', path: '/infographics/individual-aid' },
+        { name: 'Bantuan Keluarga', path: '/infographics/family-aid' },
+      ]
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
@@ -59,6 +91,37 @@ const Infographics = () => {
               Data visual dan statistik komprehensif tentang perkembangan dan kondisi terkini 
               Desa Fajar Baru Way Kandis
             </p>
+          </div>
+
+          {/* Quick Access to Statistics */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Statistik Detail
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {statisticsMenus.map((menu, index) => {
+                const IconComponent = menu.icon;
+                return (
+                  <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 animate-fade-in" style={{animationDelay: `${index * 0.1}s`}}>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${menu.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
+                      <IconComponent className="text-white" size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">{menu.title}</h3>
+                    <p className="text-gray-600 text-sm text-center mb-4">{menu.description}</p>
+                    <div className="space-y-2">
+                      {menu.items.map((item, itemIndex) => (
+                        <Link key={itemIndex} to={item.path}>
+                          <Button variant="outline" className="w-full justify-between hover:bg-gray-50">
+                            {item.name}
+                            <ChevronRight size={16} />
+                          </Button>
+                        </Link>
+                      ))}
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
 
           {/* Statistics Cards */}
