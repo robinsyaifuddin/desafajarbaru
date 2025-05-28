@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import BackNavigation from '@/components/BackNavigation';
 import { Card } from '@/components/ui/card';
@@ -11,6 +12,9 @@ import { FileText, Upload, Clock, CheckCircle } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 const DocumentRequest = () => {
+  const [searchParams] = useSearchParams();
+  const docType = searchParams.get('type');
+  
   const [formData, setFormData] = useState({
     documentType: '',
     name: '',
@@ -21,7 +25,24 @@ const DocumentRequest = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    
+    // Auto-select document type based on URL parameter
+    if (docType) {
+      const documentTypeMap: { [key: string]: string } = {
+        'domisili': 'Surat Keterangan Domisili',
+        'usaha': 'Surat Keterangan Usaha',
+        'ktp': 'Surat Pengantar KTP',
+        'tidak-mampu': 'Surat Keterangan Tidak Mampu',
+        'nikah': 'Surat Pengantar Nikah',
+        'kelahiran': 'Surat Keterangan Kelahiran'
+      };
+      
+      const selectedType = documentTypeMap[docType];
+      if (selectedType) {
+        setFormData(prev => ({ ...prev, documentType: selectedType }));
+      }
+    }
+  }, [docType]);
 
   const documentTypes = [
     'Surat Keterangan Domisili',
@@ -38,16 +59,23 @@ const DocumentRequest = () => {
     // Handle form submission
   };
 
+  const getDocumentTitle = () => {
+    if (formData.documentType) {
+      return `Pengajuan ${formData.documentType}`;
+    }
+    return 'Pengajuan Dokumen';
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <BackNavigation title="Pengajuan Dokumen" />
+      <BackNavigation title={getDocumentTitle()} />
       
       <div className="pt-8 pb-16 px-4 md:px-0">
         <div className="container mx-auto">
           <div className="text-center mb-8 md:mb-12 animate-fade-in">
             <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-              Pengajuan Dokumen
+              {getDocumentTitle()}
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
               Ajukan permohonan dokumen administrasi secara online dengan mudah dan cepat
@@ -61,7 +89,10 @@ const DocumentRequest = () => {
                 <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="documentType">Jenis Dokumen</Label>
-                    <Select onValueChange={(value) => setFormData({...formData, documentType: value})}>
+                    <Select 
+                      value={formData.documentType} 
+                      onValueChange={(value) => setFormData({...formData, documentType: value})}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Pilih jenis dokumen" />
                       </SelectTrigger>

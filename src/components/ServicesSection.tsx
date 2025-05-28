@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -66,12 +65,36 @@ const ServicesSection = () => {
   ];
 
   const documentServices = [
-    { name: 'Surat Keterangan Domisili', link: '/document-request' },
-    { name: 'Surat Keterangan Usaha', link: '/document-request' },
-    { name: 'Surat Pengantar KTP', link: '/document-request' },
-    { name: 'Surat Keterangan Tidak Mampu', link: '/document-request' },
-    { name: 'Surat Pengantar Nikah', link: '/document-request' },
-    { name: 'Surat Keterangan Kelahiran', link: '/document-request' }
+    { 
+      name: 'Surat Keterangan Domisili', 
+      link: '/document-request?type=domisili',
+      value: 'Surat Keterangan Domisili'
+    },
+    { 
+      name: 'Surat Keterangan Usaha', 
+      link: '/document-request?type=usaha',
+      value: 'Surat Keterangan Usaha'
+    },
+    { 
+      name: 'Surat Pengantar KTP', 
+      link: '/document-request?type=ktp',
+      value: 'Surat Pengantar KTP'
+    },
+    { 
+      name: 'Surat Keterangan Tidak Mampu', 
+      link: '/document-request?type=tidak-mampu',
+      value: 'Surat Keterangan Tidak Mampu'
+    },
+    { 
+      name: 'Surat Pengantar Nikah', 
+      link: '/document-request?type=nikah',
+      value: 'Surat Pengantar Nikah'
+    },
+    { 
+      name: 'Surat Keterangan Kelahiran', 
+      link: '/document-request?type=kelahiran',
+      value: 'Surat Keterangan Kelahiran'
+    }
   ];
 
   return (
