@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ const Navigation = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -48,6 +49,34 @@ const Navigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Real-time date and time update
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatDateTime = (date: Date) => {
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    
+    const dayName = days[date.getDay()];
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    
+    return {
+      dayName,
+      date: `${day} ${month} ${year}`,
+      time: `${hours}:${minutes}:${seconds}`
+    };
+  };
 
   const handleMenuClick = (href: string) => {
     setIsMenuOpen(false);
@@ -82,6 +111,8 @@ const Navigation = () => {
       ).slice(0, 5)
     : [];
 
+  const dateTime = formatDateTime(currentDateTime);
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
@@ -103,9 +134,19 @@ const Navigation = () => {
               <span>(0721) 123-4567</span>
             </div>
           </div>
-          <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-            <Mail size={12} className="animate-pulse delay-300" />
-            <span>info@fajar-baru.desa.id</span>
+          <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
+              <Mail size={12} className="animate-pulse delay-300" />
+              <span>info@fajar-baru.desa.id</span>
+            </div>
+            {/* Real-time Date and Time Display */}
+            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-md px-3 py-1 border border-white/20">
+              <Clock size={12} className="animate-pulse delay-500" />
+              <div className="flex flex-col">
+                <span className="font-medium">{dateTime.dayName}, {dateTime.date}</span>
+                <span className="font-mono text-xs">{dateTime.time}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
