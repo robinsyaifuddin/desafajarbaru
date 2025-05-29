@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -88,58 +87,57 @@ const Navigation = () => {
         ? 'bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10' 
         : 'bg-white/90 backdrop-blur-md shadow-lg'
     }`}>
-      {/* Top Info Bar */}
-      <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white py-2 px-4 hidden lg:block transition-all duration-500 ${
-        isScrolled ? 'py-1' : 'py-2'
+      {/* Top Info Bar - Made smaller */}
+      <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white px-4 hidden lg:block transition-all duration-500 ${
+        isScrolled ? 'py-1' : 'py-1.5'
       }`}>
-        <div className="container mx-auto flex flex-wrap items-center justify-between text-sm">
+        <div className="container mx-auto flex flex-wrap items-center justify-between text-xs">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <MapPin size={14} className="animate-pulse" />
+              <MapPin size={12} className="animate-pulse" />
               <span>Way Kandis, Bandar Lampung</span>
             </div>
             <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <Phone size={14} className="animate-pulse delay-150" />
+              <Phone size={12} className="animate-pulse delay-150" />
               <span>(0721) 123-4567</span>
             </div>
           </div>
           <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-            <Mail size={14} className="animate-pulse delay-300" />
+            <Mail size={12} className="animate-pulse delay-300" />
             <span>info@fajar-baru.desa.id</span>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <div className="container mx-auto px-4 py-3 lg:py-4">
+      {/* Main Navigation - Made smaller */}
+      <div className="container mx-auto px-4 py-2 lg:py-2.5">
         <div className="flex items-center justify-between">
-          {/* Logo with 3D effect */}
+          {/* Logo - Removed 3D effects */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 lg:w-14 lg:h-14">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500 shadow-lg group-hover:shadow-xl"></div>
-              <div className="relative w-full h-full bg-gradient-to-br from-emerald-600 to-blue-700 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl">
+            <div className="relative w-10 h-10 lg:w-12 lg:h-12">
+              <div className="w-full h-full bg-gradient-to-br from-emerald-600 to-blue-700 rounded-xl flex items-center justify-center shadow-md">
                 <span className="text-white font-bold text-lg lg:text-xl">FB</span>
               </div>
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-bold text-xl lg:text-2xl text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
+              <h1 className="font-bold text-lg lg:text-xl text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
                 Desa Fajar Baru
               </h1>
-              <p className="text-sm lg:text-base text-gray-600">Way Kandis, Bandar Lampung</p>
+              <p className="text-xs lg:text-sm text-gray-600">Way Kandis, Bandar Lampung</p>
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Menu - Adjusted spacing */}
+          <div className="hidden lg:flex items-center space-x-6">
             {menuItems.map((item) => {
               const IconComponent = item.icon;
               return (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative"
+                  className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative text-sm"
                 >
-                  <IconComponent size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
                   <span className="relative">
                     {item.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
@@ -150,13 +148,13 @@ const Navigation = () => {
             
             {/* Layanan Dropdown */}
             <DropdownMenu>
-              <DropdownMenuTrigger className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative">
-                <Settings size={18} className="group-hover:scale-110 transition-transform duration-300" />
+              <DropdownMenuTrigger className="group flex items-center space-x-2 text-gray-700 hover:text-emerald-600 transition-all duration-300 font-medium relative text-sm">
+                <Settings size={16} className="group-hover:scale-110 transition-transform duration-300" />
                 <span className="relative">
                   Layanan
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 group-hover:w-full transition-all duration-300"></span>
                 </span>
-                <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+                <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-72 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2">
                 {serviceSubmenus.map((submenu) => {
@@ -182,7 +180,7 @@ const Navigation = () => {
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="p-2 rounded-xl bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-600 transition-all duration-300 hover:scale-110"
               >
-                <Search size={20} />
+                <Search size={18} />
               </button>
               
               {isSearchOpen && (
@@ -227,7 +225,7 @@ const Navigation = () => {
             </div>
 
             <Link to="/login">
-              <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-xl">
+              <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-xl text-sm px-4 py-2">
                 Login
               </Button>
             </Link>
@@ -240,7 +238,7 @@ const Navigation = () => {
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               className="p-2 rounded-xl bg-gray-100 hover:bg-emerald-100 text-gray-600 hover:text-emerald-600 transition-all duration-300"
             >
-              <Search size={20} />
+              <Search size={18} />
             </button>
             
             <button
@@ -248,7 +246,7 @@ const Navigation = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -307,7 +305,7 @@ const Navigation = () => {
                     className="flex items-center space-x-3 text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 font-medium py-3 px-4 rounded-xl group"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <IconComponent size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                    <IconComponent size={18} className="group-hover:scale-110 transition-transform duration-300" />
                     <span>{item.name}</span>
                   </Link>
                 );
@@ -320,12 +318,12 @@ const Navigation = () => {
                   className="flex items-center justify-between w-full text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 transition-all duration-300 font-medium py-3 px-4 rounded-xl group"
                 >
                   <div className="flex items-center space-x-3">
-                    <Settings size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                    <Settings size={18} className="group-hover:scale-110 transition-transform duration-300" />
                     <span>Layanan</span>
                   </div>
                   {isServicesOpen ? 
-                    <ChevronUp size={20} className="transition-transform duration-300" /> : 
-                    <ChevronDown size={20} className="transition-transform duration-300" />
+                    <ChevronUp size={18} className="transition-transform duration-300" /> : 
+                    <ChevronDown size={18} className="transition-transform duration-300" />
                   }
                 </button>
                 
@@ -343,7 +341,7 @@ const Navigation = () => {
                             setIsServicesOpen(false);
                           }}
                         >
-                          <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                          <IconComponent size={14} className="group-hover:scale-110 transition-transform duration-300" />
                           <span>{submenu.name}</span>
                         </Link>
                       );
