@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, Building2, MapPin, Wifi, Smartphone, BarChart3, Globe } from 'lucide-react';
@@ -157,13 +158,15 @@ const HeroSection = () => {
 
           {/* Enhanced Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button 
-              size="lg" 
-              className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
-            >
-              Jelajahi Smart Village
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
-            </Button>
+            <Link to="/infographics" className="w-full sm:w-auto">
+              <Button 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
+              >
+                Jelajahi Smart Village
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
+              </Button>
+            </Link>
             
             <Link to="/services/administrasi-penduduk" className="w-full sm:w-auto">
               <Button 
