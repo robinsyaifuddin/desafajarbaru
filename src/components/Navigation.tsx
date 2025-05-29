@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -112,12 +113,14 @@ const Navigation = () => {
       {/* Main Navigation - Made smaller */}
       <div className="container mx-auto px-4 py-2 lg:py-2.5">
         <div className="flex items-center justify-between">
-          {/* Logo - Removed 3D effects */}
+          {/* Logo - Updated with new logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative w-10 h-10 lg:w-12 lg:h-12">
-              <div className="w-full h-full bg-gradient-to-br from-emerald-600 to-blue-700 rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-lg lg:text-xl">FB</span>
-              </div>
+              <img 
+                src="/lovable-uploads/bdcea5cc-3297-411e-a78d-3084095d265f.png" 
+                alt="Logo Desa Fajar Baru"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="font-bold text-lg lg:text-xl text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">

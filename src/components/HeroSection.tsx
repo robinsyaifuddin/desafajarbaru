@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, Building2, MapPin, Wifi, Smartphone, BarChart3, Globe } from 'lucide-react';
@@ -6,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-16">
       {/* Advanced Background with Gradient and Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-blue-50 to-green-50">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-blue-600/10 to-green-600/10"></div>
@@ -30,8 +29,8 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-7xl mx-auto">
-          {/* Smart Village Badge */}
-          <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200/50 shadow-lg mb-8 animate-fade-in">
+          {/* Smart Village Badge - Adjusted top margin for desktop */}
+          <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200/50 shadow-lg mb-8 animate-fade-in mt-4 lg:mt-0">
             <Globe className="w-4 h-4 text-emerald-600 mr-2" />
             <span className="text-sm font-medium text-emerald-700">Smart Village Digital</span>
             <div className="w-2 h-2 bg-emerald-500 rounded-full ml-2 animate-pulse"></div>
