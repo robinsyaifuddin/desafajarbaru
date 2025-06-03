@@ -13,7 +13,12 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <HeroSection />
+      
+      {/* Added proper spacing to prevent navbar overlap */}
+      <div className="pt-24 lg:pt-32">
+        <HeroSection />
+      </div>
+      
       <VillageProfile />
       
       {/* Layanan Button Section */}

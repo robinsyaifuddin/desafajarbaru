@@ -114,7 +114,8 @@ const Infographics = () => {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
-      <div className="pt-32 pb-16">
+      {/* Increased padding top to prevent navbar overlap */}
+      <div className="pt-28 lg:pt-36 pb-16">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12 animate-fade-in">

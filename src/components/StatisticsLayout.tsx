@@ -17,7 +17,8 @@ export function StatisticsLayout({ children, title, description }: StatisticsLay
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       
-      <div className="pt-24 lg:pt-32">
+      {/* Increased padding top to prevent navbar overlap */}
+      <div className="pt-28 lg:pt-36">
         <SidebarProvider>
           <div className="flex min-h-screen w-full">
             <StatisticsSidebar />
