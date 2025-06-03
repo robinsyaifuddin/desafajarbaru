@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -119,39 +118,38 @@ const Navigation = () => {
         ? 'bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10' 
         : 'bg-white/90 backdrop-blur-md shadow-lg'
     }`}>
-      {/* Top Info Bar - Made smaller */}
-      <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white px-4 hidden lg:block transition-all duration-500 ${
-        isScrolled ? 'py-1' : 'py-1.5'
+      {/* Top Info Bar - Made much smaller and single line */}
+      <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white px-2 hidden lg:block transition-all duration-500 ${
+        isScrolled ? 'py-0.5' : 'py-1'
       }`}>
-        <div className="container mx-auto flex flex-wrap items-center justify-between text-xs">
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <MapPin size={12} className="animate-pulse" />
+        <div className="container mx-auto flex items-center justify-between text-xs">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1.5 hover:scale-105 transition-transform duration-300">
+              <MapPin size={10} className="animate-pulse" />
               <span>Way Kandis, Bandar Lampung</span>
             </div>
-            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <Phone size={12} className="animate-pulse delay-150" />
+            <div className="flex items-center space-x-1.5 hover:scale-105 transition-transform duration-300">
+              <Phone size={10} className="animate-pulse delay-150" />
               <span>(0721) 123-4567</span>
             </div>
-          </div>
-          <div className="flex items-center space-x-6">
-            <div className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300">
-              <Mail size={12} className="animate-pulse delay-300" />
+            <div className="flex items-center space-x-1.5 hover:scale-105 transition-transform duration-300">
+              <Mail size={10} className="animate-pulse delay-300" />
               <span>info@fajar-baru.desa.id</span>
             </div>
-            {/* Real-time Date and Time Display */}
-            <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-md px-3 py-1 border border-white/20">
-              <Clock size={12} className="animate-pulse delay-500" />
-              <div className="flex flex-col">
-                <span className="font-medium">{dateTime.dayName}, {dateTime.date}</span>
-                <span className="font-mono text-xs">{dateTime.time}</span>
-              </div>
+          </div>
+          <div className="flex items-center space-x-1.5">
+            {/* Single line Date and Time Display */}
+            <div className="flex items-center space-x-1.5 bg-white/10 backdrop-blur-sm rounded px-2 py-0.5 border border-white/20">
+              <Clock size={10} className="animate-pulse delay-500" />
+              <span className="font-medium">{dateTime.dayName}, {dateTime.date}</span>
+              <span className="font-mono">|</span>
+              <span className="font-mono">{dateTime.time}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation - Made smaller */}
+      {/* Main Navigation - Keep existing code */}
       <div className="container mx-auto px-4 py-2 lg:py-2.5">
         <div className="flex items-center justify-between">
           {/* Logo - Updated with new logo */}
