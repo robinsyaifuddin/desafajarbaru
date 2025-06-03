@@ -11,9 +11,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarProvider,
-  SidebarTrigger,
-  useSidebar,
 } from '@/components/ui/sidebar';
 import { 
   Users, 
@@ -77,18 +74,21 @@ export function StatisticsSidebar() {
   const currentPath = location.pathname;
 
   return (
-    <Sidebar className="w-80 border-r bg-white/95 backdrop-blur-sm">
-      <SidebarContent>
-        <div className="p-4">
-          <Link to="/infographics" className="flex items-center space-x-2 text-lg font-semibold text-gray-800 hover:text-emerald-600 transition-colors">
-            <BarChart3 size={20} />
-            <span>Kembali ke Infografis</span>
+    <Sidebar className="w-64 sm:w-72 lg:w-80 border-r bg-white/95 backdrop-blur-sm">
+      <SidebarContent className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+        <div className="p-3 sm:p-4 border-b">
+          <Link 
+            to="/infographics" 
+            className="flex items-center space-x-2 text-sm sm:text-base lg:text-lg font-semibold text-gray-800 hover:text-emerald-600 transition-colors"
+          >
+            <BarChart3 size={18} className="sm:size-5" />
+            <span className="truncate">Kembali ke Infografis</span>
           </Link>
         </div>
         
         {statisticMenus.map((group, index) => (
-          <SidebarGroup key={index}>
-            <SidebarGroupLabel className="text-sm font-semibold text-gray-700 px-4 py-2">
+          <SidebarGroup key={index} className="px-2 sm:px-3">
+            <SidebarGroupLabel className="text-xs sm:text-sm font-semibold text-gray-700 px-2 py-2 mb-1">
               {group.title}
             </SidebarGroupLabel>
             <SidebarGroupContent>
@@ -103,14 +103,20 @@ export function StatisticsSidebar() {
                         <Link
                           to={item.url}
                           className={cn(
-                            "flex items-center space-x-3 px-4 py-2 text-sm rounded-lg transition-all duration-200",
+                            "flex items-center space-x-3 px-3 py-2.5 text-xs sm:text-sm rounded-lg transition-all duration-200 group hover:scale-[1.02]",
                             isActive 
-                              ? "bg-emerald-100 text-emerald-700 font-medium" 
+                              ? "bg-emerald-100 text-emerald-700 font-medium shadow-sm border border-emerald-200" 
                               : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                           )}
                         >
-                          <IconComponent size={16} />
-                          <span>{item.title}</span>
+                          <IconComponent 
+                            size={14} 
+                            className={cn(
+                              "flex-shrink-0 transition-colors",
+                              isActive ? "text-emerald-600" : "text-gray-500 group-hover:text-gray-700"
+                            )}
+                          />
+                          <span className="truncate leading-tight">{item.title}</span>
                         </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
@@ -120,6 +126,12 @@ export function StatisticsSidebar() {
             </SidebarGroupContent>
           </SidebarGroup>
         ))}
+        
+        <div className="p-3 sm:p-4 mt-auto border-t bg-gray-50">
+          <p className="text-xs text-gray-500 text-center leading-relaxed">
+            Data statistik terkini Desa Fajar Baru Way Kandis
+          </p>
+        </div>
       </SidebarContent>
     </Sidebar>
   );
