@@ -137,13 +137,13 @@ const AgeRange = () => {
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis 
                     type="number" 
-                    domain={[-150, 150]}
-                    tickFormatter={(value) => Math.abs(value)}
+                    domain={["-150", "150"]}
+                    tickFormatter={(value) => Math.abs(Number(value)).toString()}
                     fontSize={10}
                   />
                   <YAxis type="category" dataKey="range" fontSize={10} />
                   <Tooltip 
-                    formatter={(value, name) => [Math.abs(value), name === 'male' ? 'Laki-laki' : 'Perempuan']}
+                    formatter={(value, name) => [Math.abs(Number(value)), name === 'male' ? 'Laki-laki' : 'Perempuan']}
                   />
                   <Bar dataKey="male" fill="#3b82f6" name="Laki-laki" />
                   <Bar dataKey="female" fill="#ec4899" name="Perempuan" />
