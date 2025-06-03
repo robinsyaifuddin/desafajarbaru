@@ -120,6 +120,29 @@ const HeroSection = () => {
             </div>
           </div>
 
+          {/* Enhanced Action Buttons - Moved above statistics cards */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+            <Link to="/infographics" className="w-full sm:w-auto">
+              <Button 
+                size="lg" 
+                className="w-full bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
+              >
+                Jelajahi Smart Village
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
+              </Button>
+            </Link>
+            
+            <Link to="/services/administrasi-penduduk" className="w-full sm:w-auto">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="w-full border-2 border-gray-300 hover:bg-gray-50 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-8 py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/80"
+              >
+                Layanan Digital
+              </Button>
+            </Link>
+          </div>
+
           {/* Enhanced Statistics Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 max-w-5xl mx-auto">
             <div className="group bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-white/30 hover:border-emerald-200/50 hover:-translate-y-2">
@@ -154,29 +177,6 @@ const HeroSection = () => {
               <p className="text-gray-600 font-medium">Rukun Warga</p>
               <div className="mt-2 text-xs text-green-600 font-medium">100% Terdigitalisasi</div>
             </div>
-          </div>
-
-          {/* Enhanced Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Link to="/infographics" className="w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                className="w-full bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
-              >
-                Jelajahi Smart Village
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
-              </Button>
-            </Link>
-            
-            <Link to="/services/administrasi-penduduk" className="w-full sm:w-auto">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full border-2 border-gray-300 hover:bg-gray-50 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-8 py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/80"
-              >
-                Layanan Digital
-              </Button>
-            </Link>
           </div>
 
           {/* Enhanced Contact Info */}
