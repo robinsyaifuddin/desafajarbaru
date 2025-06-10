@@ -29,6 +29,13 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminNews from "./pages/admin/AdminNews";
+import AdminResidents from "./pages/admin/AdminResidents";
+import AdminGallery from "./pages/admin/AdminGallery";
+import AdminStatistics from "./pages/admin/AdminStatistics";
+import AdminMap from "./pages/admin/AdminMap";
+import AdminFinance from "./pages/admin/AdminFinance";
+import AdminEvents from "./pages/admin/AdminEvents";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 // Statistics pages
 import AgeRange from "./pages/statistics/AgeRange";
@@ -85,6 +92,13 @@ const App = () => (
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
             <Route path="/admin/news" element={<AdminLayout><AdminNews /></AdminLayout>} />
+            <Route path="/admin/residents" element={<AdminLayout><AdminResidents /></AdminLayout>} />
+            <Route path="/admin/gallery" element={<AdminLayout><AdminGallery /></AdminLayout>} />
+            <Route path="/admin/statistics" element={<AdminLayout><AdminStatistics /></AdminLayout>} />
+            <Route path="/admin/map" element={<AdminLayout><AdminMap /></AdminLayout>} />
+            <Route path="/admin/finance" element={<AdminLayout><AdminFinance /></AdminLayout>} />
+            <Route path="/admin/events" element={<AdminLayout><AdminEvents /></AdminLayout>} />
+            <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
