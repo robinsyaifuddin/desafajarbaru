@@ -119,9 +119,9 @@ const CitizenServices = () => {
   return <div className="space-y-6">
       <Tabs defaultValue="request" className="space-y-6">
         <TabsList className="grid grid-cols-3 w-full max-w-md">
-          <TabsTrigger value="request">Pengajuan</TabsTrigger>
-          <TabsTrigger value="status">Status Pengajuan</TabsTrigger>
-          <TabsTrigger value="documents">Unduh Dokumen</TabsTrigger>
+          <TabsTrigger value="request" className="text-sm">Pengajuan</TabsTrigger>
+          <TabsTrigger value="status" className="text-sm">Status</TabsTrigger>
+          <TabsTrigger value="documents" className="text-sm">Unduh</TabsTrigger>
         </TabsList>
 
         {/* Pengajuan Layanan */}
