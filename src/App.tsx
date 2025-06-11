@@ -38,6 +38,9 @@ import AdminFinance from "./pages/admin/AdminFinance";
 import AdminEvents from "./pages/admin/AdminEvents";
 import AdminSettings from "./pages/admin/AdminSettings";
 
+// Citizen components
+import CitizenDashboard from "./components/citizen/CitizenDashboard";
+
 // Statistics pages
 import AgeRange from "./pages/statistics/AgeRange";
 import AgeCategory from "./pages/statistics/AgeCategory";
@@ -89,6 +92,9 @@ const App = () => (
               <Route path="/budget" element={<Budget />} />
               <Route path="/rw-detail/:rwId" element={<RWDetail />} />
               <Route path="/gallery" element={<Gallery />} />
+
+              {/* Citizen Dashboard */}
+              <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
 
               {/* Admin routes */}
               <Route path="/admin/login" element={<AdminLogin />} />

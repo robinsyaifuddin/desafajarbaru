@@ -291,9 +291,15 @@ const Navigation = () => {
                     <p className="text-xs text-gray-500">{user?.email}</p>
                   </div>
                   <DropdownMenuItem asChild>
+                    <Link to="/citizen/dashboard" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <UserCircle size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                      <span>Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link to="/profile" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
                       <UserCircle size={16} className="group-hover:scale-110 transition-transform duration-300" />
-                      <span>Profil Saya</span>
+                      <span>Profil Desa</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
@@ -344,9 +350,15 @@ const Navigation = () => {
                     <p className="text-xs text-gray-500">{user?.email}</p>
                   </div>
                   <DropdownMenuItem asChild>
+                    <Link to="/citizen/dashboard" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <UserCircle size={16} />
+                      <span>Dashboard</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
                     <Link to="/profile" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
                       <UserCircle size={16} />
-                      <span>Profil Saya</span>
+                      <span>Profil Desa</span>
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
