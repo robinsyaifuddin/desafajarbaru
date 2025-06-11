@@ -23,42 +23,38 @@ const Login = () => {
   const [registerData, setRegisterData] = useState({
     name: '', nik: '', phone: '', address: '', email: '', password: ''
   });
-  const [loginType, setLoginType] = useState<'citizen' | 'admin'>('citizen');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (loginType === 'citizen') {
-      const success = citizenLogin(loginData.email, loginData.password);
-      if (success) {
-        toast({
-          title: "Login berhasil",
-          description: "Selamat datang di portal masyarakat!"
-        });
-        navigate('/citizen/dashboard');
-      } else {
-        toast({
-          title: "Login gagal",
-          description: "Email atau password salah.",
-          variant: "destructive"
-        });
-      }
-    } else {
-      const success = adminLogin(loginData.email, loginData.password);
-      if (success) {
-        toast({
-          title: "Login berhasil",
-          description: "Selamat datang di panel admin!"
-        });
-        navigate('/admin/dashboard');
-      } else {
-        toast({
-          title: "Login gagal",
-          description: "Email atau password salah.",
-          variant: "destructive"
-        });
-      }
+    // Try citizen login first
+    const citizenSuccess = citizenLogin(loginData.email, loginData.password);
+    if (citizenSuccess) {
+      toast({
+        title: "Login berhasil",
+        description: "Selamat datang di portal masyarakat!"
+      });
+      navigate('/citizen/dashboard');
+      return;
     }
+
+    // Try admin login
+    const adminSuccess = adminLogin(loginData.email, loginData.password);
+    if (adminSuccess) {
+      toast({
+        title: "Login berhasil",
+        description: "Selamat datang di panel admin!"
+      });
+      navigate('/admin/dashboard');
+      return;
+    }
+
+    // If both fail
+    toast({
+      title: "Login gagal",
+      description: "Email atau password salah.",
+      variant: "destructive"
+    });
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -97,28 +93,6 @@ const Login = () => {
                 </TabsList>
                 
                 <TabsContent value="login" className="space-y-4">
-                  {/* Login Type Selector */}
-                  <div className="flex space-x-2 mb-4">
-                    <Button
-                      type="button"
-                      variant={loginType === 'citizen' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setLoginType('citizen')}
-                      className="flex-1"
-                    >
-                      Masyarakat
-                    </Button>
-                    <Button
-                      type="button"
-                      variant={loginType === 'admin' ? 'default' : 'outline'}
-                      size="sm"
-                      onClick={() => setLoginType('admin')}
-                      className="flex-1"
-                    >
-                      Admin
-                    </Button>
-                  </div>
-
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email / NIK</Label>
@@ -127,7 +101,7 @@ const Login = () => {
                         <Input
                           id="email"
                           type="text"
-                          placeholder={loginType === 'citizen' ? "m.fajarbaru@gmail.com" : "adminfajarbaru@gmail.com"}
+                          placeholder="Masukan email/NIK"
                           value={loginData.email}
                           onChange={(e) => setLoginData({...loginData, email: e.target.value})}
                           className="pl-10"
@@ -142,7 +116,7 @@ const Login = () => {
                         <Input
                           id="password"
                           type="password"
-                          placeholder={loginType === 'citizen' ? "mfajarbaru" : "fajarbaru123"}
+                          placeholder="Masukan kata sandi"
                           value={loginData.password}
                           onChange={(e) => setLoginData({...loginData, password: e.target.value})}
                           className="pl-10"
@@ -151,7 +125,7 @@ const Login = () => {
                     </div>
                     
                     <Button type="submit" className="w-full bg-gradient-village hover:opacity-90">
-                      Masuk sebagai {loginType === 'citizen' ? 'Masyarakat' : 'Admin'}
+                      Masuk
                     </Button>
                     
                     <div className="text-center">
