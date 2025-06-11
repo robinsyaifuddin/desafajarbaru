@@ -1,10 +1,10 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider } from "@/contexts/AdminContext";
-import { CitizenProvider } from "@/contexts/CitizenContext";
 import AdminLayout from "@/components/admin/AdminLayout";
 import Index from "./pages/Index";
 import Infographics from "./pages/Infographics";
@@ -48,71 +48,63 @@ import Gender from "./pages/statistics/Gender";
 import FamilyRelation from "./pages/statistics/FamilyRelation";
 import ResidentStatus from "./pages/statistics/ResidentStatus";
 
-// Add CitizenDashboard import
-import CitizenDashboard from "./pages/CitizenDashboard";
-
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AdminProvider>
-      <CitizenProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/infographics" element={<Infographics />} />
-              
-              {/* Statistics routes */}
-              <Route path="/infographics/age-range" element={<AgeRange />} />
-              <Route path="/infographics/age-category" element={<AgeCategory />} />
-              <Route path="/infographics/education" element={<Education />} />
-              <Route path="/infographics/occupation" element={<Occupation />} />
-              <Route path="/infographics/marital-status" element={<MaritalStatus />} />
-              <Route path="/infographics/religion" element={<Religion />} />
-              <Route path="/infographics/gender" element={<Gender />} />
-              <Route path="/infographics/family-relation" element={<FamilyRelation />} />
-              <Route path="/infographics/resident-status" element={<ResidentStatus />} />
-              
-              <Route path="/news" element={<News />} />
-              <Route path="/news/:id" element={<NewsDetail />} />
-              <Route path="/services/idm" element={<IDM />} />
-              <Route path="/services/ppid" element={<PPID />} />
-              <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
-              <Route path="/services/apb-desa" element={<APBDesa />} />
-              <Route path="/services/belanja" element={<Belanja />} />
-              <Route path="/services/bansos" element={<Bansos />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/village-map" element={<VillageMap />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/document-request" element={<DocumentRequest />} />
-              <Route path="/budget" element={<Budget />} />
-              <Route path="/rw-detail/:rwId" element={<RWDetail />} />
-              <Route path="/gallery" element={<Gallery />} />
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/infographics" element={<Infographics />} />
+            
+            {/* Statistics routes */}
+            <Route path="/infographics/age-range" element={<AgeRange />} />
+            <Route path="/infographics/age-category" element={<AgeCategory />} />
+            <Route path="/infographics/education" element={<Education />} />
+            <Route path="/infographics/occupation" element={<Occupation />} />
+            <Route path="/infographics/marital-status" element={<MaritalStatus />} />
+            <Route path="/infographics/religion" element={<Religion />} />
+            <Route path="/infographics/gender" element={<Gender />} />
+            <Route path="/infographics/family-relation" element={<FamilyRelation />} />
+            <Route path="/infographics/resident-status" element={<ResidentStatus />} />
+            
+            <Route path="/news" element={<News />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/services/idm" element={<IDM />} />
+            <Route path="/services/ppid" element={<PPID />} />
+            <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
+            <Route path="/services/apb-desa" element={<APBDesa />} />
+            <Route path="/services/belanja" element={<Belanja />} />
+            <Route path="/services/bansos" element={<Bansos />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/village-map" element={<VillageMap />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/document-request" element={<DocumentRequest />} />
+            <Route path="/budget" element={<Budget />} />
+            <Route path="/rw-detail/:rwId" element={<RWDetail />} />
+            <Route path="/gallery" element={<Gallery />} />
 
-              {/* Citizen Dashboard route */}
-              <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
-
-              {/* Admin routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
-              <Route path="/admin/news" element={<AdminLayout><AdminNews /></AdminLayout>} />
-              <Route path="/admin/residents" element={<AdminLayout><AdminResidents /></AdminLayout>} />
-              <Route path="/admin/gallery" element={<AdminLayout><AdminGallery /></AdminLayout>} />
-              <Route path="/admin/statistics" element={<AdminLayout><AdminStatistics /></AdminLayout>} />
-              <Route path="/admin/map" element={<AdminLayout><AdminMap /></AdminLayout>} />
-              <Route path="/admin/finance" element={<AdminLayout><AdminFinance /></AdminLayout>} />
-              <Route path="/admin/events" element={<AdminLayout><AdminEvents /></AdminLayout>} />
-              <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
-              
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </CitizenProvider>
+            {/* Admin routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
+            <Route path="/admin/news" element={<AdminLayout><AdminNews /></AdminLayout>} />
+            <Route path="/admin/residents" element={<AdminLayout><AdminResidents /></AdminLayout>} />
+            <Route path="/admin/gallery" element={<AdminLayout><AdminGallery /></AdminLayout>} />
+            <Route path="/admin/statistics" element={<AdminLayout><AdminStatistics /></AdminLayout>} />
+            <Route path="/admin/map" element={<AdminLayout><AdminMap /></AdminLayout>} />
+            <Route path="/admin/finance" element={<AdminLayout><AdminFinance /></AdminLayout>} />
+            <Route path="/admin/events" element={<AdminLayout><AdminEvents /></AdminLayout>} />
+            <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
     </AdminProvider>
   </QueryClientProvider>
 );

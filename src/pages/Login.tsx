@@ -8,17 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { User, Lock, Phone, MapPin, Users } from 'lucide-react';
 import Footer from '@/components/Footer';
-import { useCitizen } from '@/contexts/CitizenContext';
-import { useAdmin } from '@/contexts/AdminContext';
-import { useNavigate } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const { toast } = useToast();
-  const { login: citizenLogin } = useCitizen();
-  const { login: adminLogin } = useAdmin();
-  
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({
     name: '', nik: '', phone: '', address: '', email: '', password: ''
@@ -26,44 +17,14 @@ const Login = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Try citizen login first
-    const citizenSuccess = citizenLogin(loginData.email, loginData.password);
-    if (citizenSuccess) {
-      toast({
-        title: "Login berhasil",
-        description: "Selamat datang di portal masyarakat!"
-      });
-      navigate('/citizen/dashboard');
-      return;
-    }
-
-    // Try admin login
-    const adminSuccess = adminLogin(loginData.email, loginData.password);
-    if (adminSuccess) {
-      toast({
-        title: "Login berhasil",
-        description: "Selamat datang di panel admin!"
-      });
-      navigate('/admin/dashboard');
-      return;
-    }
-
-    // If both fail
-    toast({
-      title: "Login gagal",
-      description: "Email atau password salah.",
-      variant: "destructive"
-    });
+    console.log('Login attempt:', loginData);
+    // Handle login logic here
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Registration attempt:', registerData);
-    toast({
-      title: "Pendaftaran berhasil",
-      description: "Akun Anda telah dibuat. Silakan login."
-    });
+    // Handle registration logic here
   };
 
   return (
@@ -101,7 +62,7 @@ const Login = () => {
                         <Input
                           id="email"
                           type="text"
-                          placeholder="Masukan email/NIK"
+                          placeholder="Masukkan email atau NIK"
                           value={loginData.email}
                           onChange={(e) => setLoginData({...loginData, email: e.target.value})}
                           className="pl-10"
@@ -116,7 +77,7 @@ const Login = () => {
                         <Input
                           id="password"
                           type="password"
-                          placeholder="Masukan kata sandi"
+                          placeholder="Masukkan password"
                           value={loginData.password}
                           onChange={(e) => setLoginData({...loginData, password: e.target.value})}
                           className="pl-10"
