@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,87 +9,68 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { MessageSquare, Send, Upload, Camera, Clock, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
 const CitizenComplaints = () => {
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     type: '',
     category: '',
     title: '',
     description: '',
-    location: '',
+    location: ''
   });
-
-  const complaintCategories = [
-    'Infrastruktur',
-    'Kebersihan',
-    'Keamanan',
-    'Pelayanan Publik',
-    'Lingkungan',
-    'Pendidikan',
-    'Kesehatan',
-    'Ekonomi',
-    'Lainnya'
-  ];
-
-  const complaints = [
-    {
-      id: 1,
-      type: 'Pengaduan',
-      title: 'Jalan Berlubang di RT 03',
-      category: 'Infrastruktur',
-      date: '2024-01-20',
-      status: 'Ditindaklanjuti',
-      statusColor: 'bg-blue-500',
-      response: 'Pengaduan telah diterima dan sedang dikoordinasikan dengan dinas terkait.'
-    },
-    {
-      id: 2,
-      type: 'Aspirasi',
-      title: 'Pembangunan Taman Bermain Anak',
-      category: 'Lingkungan',
-      date: '2024-01-18',
-      status: 'Diproses',
-      statusColor: 'bg-yellow-500',
-      response: 'Aspirasi sedang dikaji oleh tim perencanaan desa.'
-    },
-    {
-      id: 3,
-      type: 'Pengaduan',
-      title: 'Lampu Jalan Mati',
-      category: 'Infrastruktur',
-      date: '2024-01-15',
-      status: 'Selesai',
-      statusColor: 'bg-green-500',
-      response: 'Lampu jalan telah diperbaiki. Terima kasih atas laporannya.'
-    }
-  ];
-
+  const complaintCategories = ['Infrastruktur', 'Kebersihan', 'Keamanan', 'Pelayanan Publik', 'Lingkungan', 'Pendidikan', 'Kesehatan', 'Ekonomi', 'Lainnya'];
+  const complaints = [{
+    id: 1,
+    type: 'Pengaduan',
+    title: 'Jalan Berlubang di RT 03',
+    category: 'Infrastruktur',
+    date: '2024-01-20',
+    status: 'Ditindaklanjuti',
+    statusColor: 'bg-blue-500',
+    response: 'Pengaduan telah diterima dan sedang dikoordinasikan dengan dinas terkait.'
+  }, {
+    id: 2,
+    type: 'Aspirasi',
+    title: 'Pembangunan Taman Bermain Anak',
+    category: 'Lingkungan',
+    date: '2024-01-18',
+    status: 'Diproses',
+    statusColor: 'bg-yellow-500',
+    response: 'Aspirasi sedang dikaji oleh tim perencanaan desa.'
+  }, {
+    id: 3,
+    type: 'Pengaduan',
+    title: 'Lampu Jalan Mati',
+    category: 'Infrastruktur',
+    date: '2024-01-15',
+    status: 'Selesai',
+    statusColor: 'bg-green-500',
+    response: 'Lampu jalan telah diperbaiki. Terima kasih atas laporannya.'
+  }];
   const handleSubmit = () => {
     if (!formData.type || !formData.category || !formData.title || !formData.description) {
       toast({
         title: "Form Belum Lengkap",
         description: "Mohon lengkapi semua field yang diperlukan.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     toast({
       title: "Berhasil Dikirim",
-      description: `${formData.type} Anda telah berhasil dikirim dan akan ditindaklanjuti.`,
+      description: `${formData.type} Anda telah berhasil dikirim dan akan ditindaklanjuti.`
     });
-
     setFormData({
       type: '',
       category: '',
       title: '',
       description: '',
-      location: '',
+      location: ''
     });
   };
-
-  const getStatusIcon = (status) => {
+  const getStatusIcon = status => {
     switch (status) {
       case 'Selesai':
         return <CheckCircle size={16} className="text-green-500" />;
@@ -102,13 +82,11 @@ const CitizenComplaints = () => {
         return <Clock size={16} className="text-gray-500" />;
     }
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <Tabs defaultValue="submit" className="space-y-6">
         <TabsList className="grid grid-cols-2 w-full max-w-md">
-          <TabsTrigger value="submit">Kirim Pengaduan/Aspirasi</TabsTrigger>
-          <TabsTrigger value="status">Status & Riwayat</TabsTrigger>
+          <TabsTrigger value="submit" className="text-sm">Pengaduan/Aspirasi</TabsTrigger>
+          <TabsTrigger value="status" className="text-sm">Status & Riwayat</TabsTrigger>
         </TabsList>
 
         {/* Form Pengaduan/Aspirasi */}
@@ -123,10 +101,10 @@ const CitizenComplaints = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="type">Jenis Laporan *</Label>
-                  <Select 
-                    value={formData.type} 
-                    onValueChange={(value) => setFormData({...formData, type: value})}
-                  >
+                  <Select value={formData.type} onValueChange={value => setFormData({
+                  ...formData,
+                  type: value
+                })}>
                     <SelectTrigger>
                       <SelectValue placeholder="Pilih jenis laporan" />
                     </SelectTrigger>
@@ -139,19 +117,17 @@ const CitizenComplaints = () => {
 
                 <div className="space-y-2">
                   <Label htmlFor="category">Kategori *</Label>
-                  <Select 
-                    value={formData.category} 
-                    onValueChange={(value) => setFormData({...formData, category: value})}
-                  >
+                  <Select value={formData.category} onValueChange={value => setFormData({
+                  ...formData,
+                  category: value
+                })}>
                     <SelectTrigger>
                       <SelectValue placeholder="Pilih kategori" />
                     </SelectTrigger>
                     <SelectContent>
-                      {complaintCategories.map((category) => (
-                        <SelectItem key={category} value={category}>
+                      {complaintCategories.map(category => <SelectItem key={category} value={category}>
                           {category}
-                        </SelectItem>
-                      ))}
+                        </SelectItem>)}
                     </SelectContent>
                   </Select>
                 </div>
@@ -159,33 +135,26 @@ const CitizenComplaints = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="title">Judul/Subjek *</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({...formData, title: e.target.value})}
-                  placeholder="Masukkan judul pengaduan/aspirasi"
-                />
+                <Input id="title" value={formData.title} onChange={e => setFormData({
+                ...formData,
+                title: e.target.value
+              })} placeholder="Masukkan judul pengaduan/aspirasi" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="location">Lokasi Kejadian</Label>
-                <Input
-                  id="location"
-                  value={formData.location}
-                  onChange={(e) => setFormData({...formData, location: e.target.value})}
-                  placeholder="Contoh: Jl. Fajar Baru RT 01/RW 01"
-                />
+                <Input id="location" value={formData.location} onChange={e => setFormData({
+                ...formData,
+                location: e.target.value
+              })} placeholder="Contoh: Jl. Fajar Baru RT 01/RW 01" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="description">Deskripsi Detail *</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({...formData, description: e.target.value})}
-                  placeholder="Jelaskan detail pengaduan/aspirasi Anda..."
-                  rows={5}
-                />
+                <Textarea id="description" value={formData.description} onChange={e => setFormData({
+                ...formData,
+                description: e.target.value
+              })} placeholder="Jelaskan detail pengaduan/aspirasi Anda..." rows={5} />
               </div>
 
               <div className="space-y-4">
@@ -225,10 +194,7 @@ const CitizenComplaints = () => {
                 <Button variant="outline">
                   Reset Form
                 </Button>
-                <Button 
-                  onClick={handleSubmit}
-                  className="bg-emerald-600 hover:bg-emerald-700"
-                >
+                <Button onClick={handleSubmit} className="bg-emerald-600 hover:bg-emerald-700">
                   <Send size={16} className="mr-2" />
                   Kirim Laporan
                 </Button>
@@ -243,8 +209,7 @@ const CitizenComplaints = () => {
             <h3 className="text-xl font-semibold text-gray-800 mb-6">Status & Riwayat Pengaduan/Aspirasi</h3>
             
             <div className="space-y-4">
-              {complaints.map((complaint) => (
-                <Card key={complaint.id} className="p-4 border-l-4 border-l-emerald-500">
+              {complaints.map(complaint => <Card key={complaint.id} className="p-4 border-l-4 border-l-emerald-500">
                   <div className="space-y-3">
                     <div className="flex flex-col md:flex-row md:items-start justify-between">
                       <div className="flex-1">
@@ -267,13 +232,11 @@ const CitizenComplaints = () => {
                       </div>
                     </div>
                     
-                    {complaint.response && (
-                      <div className="bg-gray-50 p-3 rounded-lg">
+                    {complaint.response && <div className="bg-gray-50 p-3 rounded-lg">
                         <p className="text-sm text-gray-700">
                           <strong>Tanggapan:</strong> {complaint.response}
                         </p>
-                      </div>
-                    )}
+                      </div>}
                     
                     <div className="flex justify-end">
                       <Button variant="outline" size="sm">
@@ -281,21 +244,16 @@ const CitizenComplaints = () => {
                       </Button>
                     </div>
                   </div>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
-            {complaints.length === 0 && (
-              <div className="text-center py-8">
+            {complaints.length === 0 && <div className="text-center py-8">
                 <MessageSquare className="mx-auto text-gray-300 mb-4" size={48} />
                 <p className="text-gray-500">Belum ada pengaduan atau aspirasi</p>
-              </div>
-            )}
+              </div>}
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default CitizenComplaints;
