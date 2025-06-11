@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -10,10 +9,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Camera, Edit, Save, X, Shield, Users } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
-
 const CitizenProfile = () => {
-  const { user } = useAuth();
-  const { toast } = useToast();
+  const {
+    user
+  } = useAuth();
+  const {
+    toast
+  } = useToast();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
     fullName: user?.name || '',
@@ -27,42 +29,48 @@ const CitizenProfile = () => {
     occupation: 'Karyawan Swasta',
     address: 'Jl. Fajar Baru No. 123, RT 01/RW 01',
     phone: '081234567890',
-    email: user?.email || '',
+    email: user?.email || ''
   });
-
-  const [familyMembers] = useState([
-    { name: 'Muhammad Fajar Baru', nik: '1871010101000001', relation: 'Kepala Keluarga', birthDate: '1990-01-01' },
-    { name: 'Siti Fatimah', nik: '1871010101000002', relation: 'Istri', birthDate: '1992-03-15' },
-    { name: 'Ahmad Fajar', nik: '1871010101000003', relation: 'Anak', birthDate: '2015-06-20' },
-  ]);
-
+  const [familyMembers] = useState([{
+    name: 'Muhammad Fajar Baru',
+    nik: '1871010101000001',
+    relation: 'Kepala Keluarga',
+    birthDate: '1990-01-01'
+  }, {
+    name: 'Siti Fatimah',
+    nik: '1871010101000002',
+    relation: 'Istri',
+    birthDate: '1992-03-15'
+  }, {
+    name: 'Ahmad Fajar',
+    nik: '1871010101000003',
+    relation: 'Anak',
+    birthDate: '2015-06-20'
+  }]);
   const handleSave = () => {
     toast({
       title: "Profil Berhasil Diperbarui",
-      description: "Data profil Anda telah disimpan dengan sukses.",
+      description: "Data profil Anda telah disimpan dengan sukses."
     });
     setIsEditing(false);
   };
-
   const handleCancel = () => {
     setIsEditing(false);
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       <Tabs defaultValue="personal" className="space-y-6">
         <TabsList className="grid grid-cols-3 w-full max-w-md">
           <TabsTrigger value="personal" className="flex items-center space-x-2">
             <Edit size={16} />
-            <span>Data Pribadi</span>
+            <span className="text-sm">Data Pribadi</span>
           </TabsTrigger>
           <TabsTrigger value="security" className="flex items-center space-x-2">
-            <Shield size={16} />
-            <span>Keamanan</span>
+            
+            <span className="text-sm">Keamanan</span>
           </TabsTrigger>
           <TabsTrigger value="family" className="flex items-center space-x-2">
             <Users size={16} />
-            <span>Kartu Keluarga</span>
+            <span className="text-sm">Kartu Keluarga</span>
           </TabsTrigger>
         </TabsList>
 
@@ -71,16 +79,10 @@ const CitizenProfile = () => {
           <Card className="p-6">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-gray-800">Informasi Pribadi</h3>
-              {!isEditing ? (
-                <Button 
-                  onClick={() => setIsEditing(true)}
-                  className="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700"
-                >
+              {!isEditing ? <Button onClick={() => setIsEditing(true)} className="mt-4 md:mt-0 bg-emerald-600 hover:bg-emerald-700">
                   <Edit size={16} className="mr-2" />
                   Edit Profil
-                </Button>
-              ) : (
-                <div className="flex space-x-2 mt-4 md:mt-0">
+                </Button> : <div className="flex space-x-2 mt-4 md:mt-0">
                   <Button onClick={handleSave} className="bg-emerald-600 hover:bg-emerald-700">
                     <Save size={16} className="mr-2" />
                     Simpan
@@ -89,8 +91,7 @@ const CitizenProfile = () => {
                     <X size={16} className="mr-2" />
                     Batal
                   </Button>
-                </div>
-              )}
+                </div>}
             </div>
 
             {/* Foto Profil */}
@@ -99,11 +100,9 @@ const CitizenProfile = () => {
                 <div className="w-24 h-24 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
                   {user?.name?.charAt(0) || 'U'}
                 </div>
-                {isEditing && (
-                  <button className="absolute -bottom-2 -right-2 bg-emerald-600 text-white p-2 rounded-full hover:bg-emerald-700 transition-colors">
+                {isEditing && <button className="absolute -bottom-2 -right-2 bg-emerald-600 text-white p-2 rounded-full hover:bg-emerald-700 transition-colors">
                     <Camera size={16} />
-                  </button>
-                )}
+                  </button>}
               </div>
               <p className="text-sm text-gray-600">Foto Profil</p>
             </div>
@@ -112,52 +111,42 @@ const CitizenProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="fullName">Nama Lengkap</Label>
-                <Input
-                  id="fullName"
-                  value={profileData.fullName}
-                  onChange={(e) => setProfileData({...profileData, fullName: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="fullName" value={profileData.fullName} onChange={e => setProfileData({
+                ...profileData,
+                fullName: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="nik">NIK</Label>
-                <Input
-                  id="nik"
-                  value={profileData.nik}
-                  onChange={(e) => setProfileData({...profileData, nik: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="nik" value={profileData.nik} onChange={e => setProfileData({
+                ...profileData,
+                nik: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="birthPlace">Tempat Lahir</Label>
-                <Input
-                  id="birthPlace"
-                  value={profileData.birthPlace}
-                  onChange={(e) => setProfileData({...profileData, birthPlace: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="birthPlace" value={profileData.birthPlace} onChange={e => setProfileData({
+                ...profileData,
+                birthPlace: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="birthDate">Tanggal Lahir</Label>
-                <Input
-                  id="birthDate"
-                  type="date"
-                  value={profileData.birthDate}
-                  onChange={(e) => setProfileData({...profileData, birthDate: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="birthDate" type="date" value={profileData.birthDate} onChange={e => setProfileData({
+                ...profileData,
+                birthDate: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="gender">Jenis Kelamin</Label>
-                <Select
-                  value={profileData.gender}
-                  onValueChange={(value) => setProfileData({...profileData, gender: value})}
-                  disabled={!isEditing}
-                >
+                <Select value={profileData.gender} onValueChange={value => setProfileData({
+                ...profileData,
+                gender: value
+              })} disabled={!isEditing}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -170,11 +159,10 @@ const CitizenProfile = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="religion">Agama</Label>
-                <Select
-                  value={profileData.religion}
-                  onValueChange={(value) => setProfileData({...profileData, religion: value})}
-                  disabled={!isEditing}
-                >
+                <Select value={profileData.religion} onValueChange={value => setProfileData({
+                ...profileData,
+                religion: value
+              })} disabled={!isEditing}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -191,11 +179,10 @@ const CitizenProfile = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="maritalStatus">Status Perkawinan</Label>
-                <Select
-                  value={profileData.maritalStatus}
-                  onValueChange={(value) => setProfileData({...profileData, maritalStatus: value})}
-                  disabled={!isEditing}
-                >
+                <Select value={profileData.maritalStatus} onValueChange={value => setProfileData({
+                ...profileData,
+                maritalStatus: value
+              })} disabled={!isEditing}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -210,11 +197,10 @@ const CitizenProfile = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="education">Pendidikan Terakhir</Label>
-                <Select
-                  value={profileData.education}
-                  onValueChange={(value) => setProfileData({...profileData, education: value})}
-                  disabled={!isEditing}
-                >
+                <Select value={profileData.education} onValueChange={value => setProfileData({
+                ...profileData,
+                education: value
+              })} disabled={!isEditing}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -232,44 +218,34 @@ const CitizenProfile = () => {
 
               <div className="space-y-2">
                 <Label htmlFor="occupation">Pekerjaan</Label>
-                <Input
-                  id="occupation"
-                  value={profileData.occupation}
-                  onChange={(e) => setProfileData({...profileData, occupation: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="occupation" value={profileData.occupation} onChange={e => setProfileData({
+                ...profileData,
+                occupation: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="phone">Nomor Telepon</Label>
-                <Input
-                  id="phone"
-                  value={profileData.phone}
-                  onChange={(e) => setProfileData({...profileData, phone: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="phone" value={profileData.phone} onChange={e => setProfileData({
+                ...profileData,
+                phone: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={profileData.email}
-                  onChange={(e) => setProfileData({...profileData, email: e.target.value})}
-                  disabled={!isEditing}
-                />
+                <Input id="email" type="email" value={profileData.email} onChange={e => setProfileData({
+                ...profileData,
+                email: e.target.value
+              })} disabled={!isEditing} />
               </div>
 
               <div className="md:col-span-2 space-y-2">
                 <Label htmlFor="address">Alamat Lengkap</Label>
-                <Textarea
-                  id="address"
-                  value={profileData.address}
-                  onChange={(e) => setProfileData({...profileData, address: e.target.value})}
-                  disabled={!isEditing}
-                  rows={3}
-                />
+                <Textarea id="address" value={profileData.address} onChange={e => setProfileData({
+                ...profileData,
+                address: e.target.value
+              })} disabled={!isEditing} rows={3} />
               </div>
             </div>
           </Card>
@@ -360,8 +336,7 @@ const CitizenProfile = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {familyMembers.map((member, index) => (
-                      <tr key={index} className="hover:bg-gray-50">
+                    {familyMembers.map((member, index) => <tr key={index} className="hover:bg-gray-50">
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                           {member.name}
                         </td>
@@ -374,8 +349,7 @@ const CitizenProfile = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {member.birthDate}
                         </td>
-                      </tr>
-                    ))}
+                      </tr>)}
                   </tbody>
                 </table>
               </div>
@@ -383,8 +357,6 @@ const CitizenProfile = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default CitizenProfile;
