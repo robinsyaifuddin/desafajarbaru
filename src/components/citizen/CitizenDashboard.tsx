@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useCitizen } from '@/contexts/CitizenContext';
-import { User, FileText, MessageSquare, Bell, Settings, Logout } from 'lucide-react';
+import { User, FileText, MessageSquare, Bell, Settings, LogOut } from 'lucide-react';
 import CitizenProfile from './CitizenProfile';
 import PublicServices from './PublicServices';
 import Complaints from './Complaints';
@@ -73,7 +73,7 @@ const CitizenDashboard = () => {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleLogout}>
-                  <Logout className="mr-2 h-4 w-4" />
+                  <LogOut className="mr-2 h-4 w-4" />
                   Keluar
                 </DropdownMenuItem>
               </DropdownMenuContent>

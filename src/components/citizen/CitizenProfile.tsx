@@ -14,7 +14,20 @@ import { useToast } from '@/hooks/use-toast';
 const CitizenProfile = () => {
   const { citizen, updateProfile } = useCitizen();
   const { toast } = useToast();
-  const [formData, setFormData] = useState(citizen || {});
+  const [formData, setFormData] = useState(citizen || {
+    name: '',
+    nik: '',
+    birthPlace: '',
+    birthDate: '',
+    gender: 'Laki-laki' as 'Laki-laki' | 'Perempuan',
+    religion: '',
+    maritalStatus: '',
+    education: '',
+    occupation: '',
+    phone: '',
+    address: '',
+    email: ''
+  });
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
@@ -91,7 +104,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="name">Nama Lengkap</Label>
                   <Input
                     id="name"
-                    value={formData.name}
+                    value={formData.name || ''}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
                 </div>
@@ -100,7 +113,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="nik">NIK</Label>
                   <Input
                     id="nik"
-                    value={formData.nik}
+                    value={formData.nik || ''}
                     onChange={(e) => setFormData({...formData, nik: e.target.value})}
                   />
                 </div>
@@ -109,7 +122,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="birthPlace">Tempat Lahir</Label>
                   <Input
                     id="birthPlace"
-                    value={formData.birthPlace}
+                    value={formData.birthPlace || ''}
                     onChange={(e) => setFormData({...formData, birthPlace: e.target.value})}
                   />
                 </div>
@@ -119,14 +132,14 @@ const CitizenProfile = () => {
                   <Input
                     id="birthDate"
                     type="date"
-                    value={formData.birthDate}
+                    value={formData.birthDate || ''}
                     onChange={(e) => setFormData({...formData, birthDate: e.target.value})}
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label>Jenis Kelamin</Label>
-                  <Select value={formData.gender} onValueChange={(value) => setFormData({...formData, gender: value})}>
+                  <Select value={formData.gender || 'Laki-laki'} onValueChange={(value) => setFormData({...formData, gender: value as 'Laki-laki' | 'Perempuan'})}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -139,7 +152,7 @@ const CitizenProfile = () => {
 
                 <div className="space-y-2">
                   <Label>Agama</Label>
-                  <Select value={formData.religion} onValueChange={(value) => setFormData({...formData, religion: value})}>
+                  <Select value={formData.religion || ''} onValueChange={(value) => setFormData({...formData, religion: value})}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -156,7 +169,7 @@ const CitizenProfile = () => {
 
                 <div className="space-y-2">
                   <Label>Status Perkawinan</Label>
-                  <Select value={formData.maritalStatus} onValueChange={(value) => setFormData({...formData, maritalStatus: value})}>
+                  <Select value={formData.maritalStatus || ''} onValueChange={(value) => setFormData({...formData, maritalStatus: value})}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -173,7 +186,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="education">Pendidikan Terakhir</Label>
                   <Input
                     id="education"
-                    value={formData.education}
+                    value={formData.education || ''}
                     onChange={(e) => setFormData({...formData, education: e.target.value})}
                   />
                 </div>
@@ -182,7 +195,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="occupation">Pekerjaan</Label>
                   <Input
                     id="occupation"
-                    value={formData.occupation}
+                    value={formData.occupation || ''}
                     onChange={(e) => setFormData({...formData, occupation: e.target.value})}
                   />
                 </div>
@@ -191,7 +204,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="phone">Nomor Telepon</Label>
                   <Input
                     id="phone"
-                    value={formData.phone}
+                    value={formData.phone || ''}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                   />
                 </div>
@@ -200,7 +213,7 @@ const CitizenProfile = () => {
                   <Label htmlFor="address">Alamat Lengkap</Label>
                   <Input
                     id="address"
-                    value={formData.address}
+                    value={formData.address || ''}
                     onChange={(e) => setFormData({...formData, address: e.target.value})}
                   />
                 </div>
@@ -210,7 +223,7 @@ const CitizenProfile = () => {
                   <Input
                     id="email"
                     type="email"
-                    value={formData.email}
+                    value={formData.email || ''}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                   />
                 </div>
