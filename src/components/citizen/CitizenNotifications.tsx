@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Bell, CheckCircle, AlertTriangle, Info, Trash2, MarkAsUnread } from 'lucide-react';
+import { Bell, CheckCircle, AlertTriangle, Info, Trash2, Mail } from 'lucide-react';
 
 const CitizenNotifications = () => {
   const [notifications, setNotifications] = useState([
@@ -161,7 +160,7 @@ const CitizenNotifications = () => {
                   onClick={() => markAsUnread(notification.id)}
                   className="text-gray-600 hover:bg-gray-50"
                 >
-                  <MarkAsUnread size={16} />
+                  <Mail size={16} />
                 </Button>
               )}
               <Button
