@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
@@ -22,7 +23,7 @@ const Login = () => {
   const [registerData, setRegisterData] = useState({
     name: '', nik: '', phone: '', address: '', email: '', password: ''
   });
-  const [loginType, setLoginType: React.Dispatch<React.SetStateAction<"citizen" | "admin">> = useState<'citizen' | 'admin'>('citizen');
+  const [loginType, setLoginType] = useState<'citizen' | 'admin'>('citizen');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
