@@ -2,9 +2,16 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { User, FileText, MessageSquare, Vote, Bell, HelpCircle, LogOut } from 'lucide-react';
+import { User, FileText, MessageSquare, Vote, Bell, HelpCircle, LogOut, MoreVertical } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 import CitizenProfile from './CitizenProfile';
 import CitizenServices from './CitizenServices';
 import CitizenComplaints from './CitizenComplaints';
@@ -31,6 +38,10 @@ const CitizenDashboard = () => {
     { id: 'help', label: 'Bantuan/FAQ', icon: HelpCircle, component: CitizenHelp },
   ];
 
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <div className="max-w-7xl mx-auto">
@@ -46,38 +57,54 @@ const CitizenDashboard = () => {
                   Portal Digital Desa Fajar Baru - Akses Layanan & Informasi
                 </p>
               </div>
-              <button
-                onClick={handleLogout}
-                className="mt-4 md:mt-0 flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-all duration-300"
-              >
-                <LogOut size={16} />
-                <span>Keluar</span>
-              </button>
+              <div className="flex items-center space-x-3 mt-4 md:mt-0">
+                {/* Mobile Menu - Titik 3 */}
+                <div className="md:hidden">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="bg-white/20 hover:bg-white/30 text-white"
+                      >
+                        <MoreVertical size={18} />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent 
+                      align="end" 
+                      className="w-56 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2"
+                    >
+                      {tabs.map((tab) => {
+                        const IconComponent = tab.icon;
+                        return (
+                          <DropdownMenuItem
+                            key={tab.id}
+                            onClick={() => handleTabChange(tab.id)}
+                            className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group cursor-pointer"
+                          >
+                            <IconComponent size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                            <span>{tab.label}</span>
+                          </DropdownMenuItem>
+                        );
+                      })}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+                
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-all duration-300"
+                >
+                  <LogOut size={16} />
+                  <span>Keluar</span>
+                </button>
+              </div>
             </div>
           </Card>
         </div>
 
         {/* Dashboard Content */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          {/* Mobile Tab Navigation */}
-          <div className="md:hidden">
-            <TabsList className="grid grid-cols-3 gap-1 p-1 bg-white rounded-lg shadow-sm">
-              {tabs.slice(0, 6).map((tab) => {
-                const IconComponent = tab.icon;
-                return (
-                  <TabsTrigger
-                    key={tab.id}
-                    value={tab.id}
-                    className="flex flex-col items-center space-y-1 p-3 text-xs"
-                  >
-                    <IconComponent size={16} />
-                    <span className="hidden sm:block">{tab.label}</span>
-                  </TabsTrigger>
-                );
-              })}
-            </TabsList>
-          </div>
-
           {/* Desktop Tab Navigation */}
           <div className="hidden md:block">
             <TabsList className="grid grid-cols-6 gap-2 p-2 bg-white rounded-xl shadow-sm">
@@ -95,6 +122,24 @@ const CitizenDashboard = () => {
                 );
               })}
             </TabsList>
+          </div>
+
+          {/* Active Tab Indicator for Mobile */}
+          <div className="md:hidden">
+            <Card className="p-4 bg-white shadow-sm">
+              {tabs.map((tab) => {
+                if (tab.id === activeTab) {
+                  const IconComponent = tab.icon;
+                  return (
+                    <div key={tab.id} className="flex items-center space-x-3">
+                      <IconComponent size={20} className="text-emerald-600" />
+                      <h2 className="text-lg font-semibold text-gray-800">{tab.label}</h2>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </Card>
           </div>
 
           {/* Tab Content */}
