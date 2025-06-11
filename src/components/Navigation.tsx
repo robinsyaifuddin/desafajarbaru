@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart, Clock } from 'lucide-react';
+import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart, Clock, LogOut, UserCircle, Bell, FileEdit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +22,7 @@ const Navigation = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout, isAuthenticated } = useAuth();
 
   const menuItems = [
     { name: 'Beranda', href: '/', icon: Home },
@@ -49,7 +53,6 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Real-time date and time update
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentDateTime(new Date());
@@ -112,13 +115,18 @@ const Navigation = () => {
 
   const dateTime = formatDateTime(currentDateTime);
 
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       isScrolled 
         ? 'bg-white/95 backdrop-blur-xl shadow-2xl shadow-black/10' 
         : 'bg-white/90 backdrop-blur-md shadow-lg'
     }`}>
-      {/* Top Info Bar - Made much smaller and single line */}
+      {/* Top Info Bar */}
       <div className={`bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 text-white px-2 hidden lg:block transition-all duration-500 ${
         isScrolled ? 'py-0.5' : 'py-1'
       }`}>
@@ -138,7 +146,6 @@ const Navigation = () => {
             </div>
           </div>
           <div className="flex items-center space-x-1.5">
-            {/* Single line Date and Time Display */}
             <div className="flex items-center space-x-1.5 bg-white/10 backdrop-blur-sm rounded px-2 py-0.5 border border-white/20">
               <Clock size={10} className="animate-pulse delay-500" />
               <span className="font-medium">{dateTime.dayName}, {dateTime.date}</span>
@@ -149,10 +156,10 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Main Navigation - Keep existing code */}
+      {/* Main Navigation */}
       <div className="container mx-auto px-4 py-2 lg:py-2.5">
         <div className="flex items-center justify-between">
-          {/* Logo - Updated with new logo */}
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative w-10 h-10 lg:w-12 lg:h-12">
               <img 
@@ -169,7 +176,7 @@ const Navigation = () => {
             </div>
           </Link>
 
-          {/* Desktop Menu - Adjusted spacing */}
+          {/* Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-6">
             {menuItems.map((item) => {
               const IconComponent = item.icon;
@@ -266,15 +273,104 @@ const Navigation = () => {
               )}
             </div>
 
-            <Link to="/login">
-              <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-xl text-sm px-4 py-2">
-                Login
-              </Button>
-            </Link>
+            {/* Profile Dropdown or Login Button */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center space-x-2 p-2 rounded-xl hover:bg-gray-100 transition-all duration-300">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white text-sm">
+                      {user?.name?.charAt(0) || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                  <ChevronDown size={14} className="text-gray-600" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                    <p className="text-xs text-gray-500">{user?.email}</p>
+                  </div>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <UserCircle size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                      <span>Profil Saya</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/document-request" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <FileEdit size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                      <span>Permohonan Dokumen</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                    <Bell size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                    <span>Notifikasi</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 rounded-xl transition-all duration-300 group cursor-pointer"
+                  >
+                    <LogOut size={16} className="group-hover:scale-110 transition-transform duration-300" />
+                    <span>Keluar</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/login">
+                <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-xl text-sm px-4 py-2">
+                  Login
+                </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center space-x-2">
+            {/* Mobile Profile or Login */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center p-2 rounded-xl hover:bg-gray-100 transition-all duration-300">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src="" />
+                    <AvatarFallback className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white text-sm">
+                      {user?.name?.charAt(0) || 'U'}
+                    </AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2">
+                  <div className="px-4 py-3 border-b border-gray-100">
+                    <p className="text-sm font-medium text-gray-900">{user?.name}</p>
+                    <p className="text-xs text-gray-500">{user?.email}</p>
+                  </div>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <UserCircle size={16} />
+                      <span>Profil Saya</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/document-request" className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                      <FileEdit size={16} />
+                      <span>Permohonan Dokumen</span>
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-center space-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700 rounded-xl transition-all duration-300 group">
+                    <Bell size={16} />
+                    <span>Notifikasi</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 hover:text-red-700 rounded-xl transition-all duration-300 group cursor-pointer"
+                  >
+                    <LogOut size={16} />
+                    <span>Keluar</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : null}
+            
             {/* Mobile Search */}
             <button
               onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -392,11 +488,13 @@ const Navigation = () => {
                 )}
               </div>
               
-              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white w-full mt-4 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
-                  Login
-                </Button>
-              </Link>
+              {!isAuthenticated && (
+                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                  <Button className="bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white w-full mt-4 shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+                    Login
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}
