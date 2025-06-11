@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import { Card } from '@/components/ui/card';
@@ -8,23 +7,66 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { User, Lock, Phone, MapPin, Users } from 'lucide-react';
 import Footer from '@/components/Footer';
+import { useCitizen } from '@/contexts/CitizenContext';
+import { useAdmin } from '@/contexts/AdminContext';
+import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const { login: citizenLogin } = useCitizen();
+  const { login: adminLogin } = useAdmin();
+  
   const [loginData, setLoginData] = useState({ email: '', password: '' });
   const [registerData, setRegisterData] = useState({
     name: '', nik: '', phone: '', address: '', email: '', password: ''
   });
+  const [loginType, setLoginType: React.Dispatch<React.SetStateAction<"citizen" | "admin">> = useState<'citizen' | 'admin'>('citizen');
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login attempt:', loginData);
-    // Handle login logic here
+    
+    if (loginType === 'citizen') {
+      const success = citizenLogin(loginData.email, loginData.password);
+      if (success) {
+        toast({
+          title: "Login berhasil",
+          description: "Selamat datang di portal masyarakat!"
+        });
+        navigate('/citizen/dashboard');
+      } else {
+        toast({
+          title: "Login gagal",
+          description: "Email atau password salah.",
+          variant: "destructive"
+        });
+      }
+    } else {
+      const success = adminLogin(loginData.email, loginData.password);
+      if (success) {
+        toast({
+          title: "Login berhasil",
+          description: "Selamat datang di panel admin!"
+        });
+        navigate('/admin/dashboard');
+      } else {
+        toast({
+          title: "Login gagal",
+          description: "Email atau password salah.",
+          variant: "destructive"
+        });
+      }
+    }
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Registration attempt:', registerData);
-    // Handle registration logic here
+    toast({
+      title: "Pendaftaran berhasil",
+      description: "Akun Anda telah dibuat. Silakan login."
+    });
   };
 
   return (
@@ -54,6 +96,28 @@ const Login = () => {
                 </TabsList>
                 
                 <TabsContent value="login" className="space-y-4">
+                  {/* Login Type Selector */}
+                  <div className="flex space-x-2 mb-4">
+                    <Button
+                      type="button"
+                      variant={loginType === 'citizen' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setLoginType('citizen')}
+                      className="flex-1"
+                    >
+                      Masyarakat
+                    </Button>
+                    <Button
+                      type="button"
+                      variant={loginType === 'admin' ? 'default' : 'outline'}
+                      size="sm"
+                      onClick={() => setLoginType('admin')}
+                      className="flex-1"
+                    >
+                      Admin
+                    </Button>
+                  </div>
+
                   <form onSubmit={handleLogin} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email">Email / NIK</Label>
@@ -62,7 +126,7 @@ const Login = () => {
                         <Input
                           id="email"
                           type="text"
-                          placeholder="Masukkan email atau NIK"
+                          placeholder={loginType === 'citizen' ? "m.fajarbaru@gmail.com" : "adminfajarbaru@gmail.com"}
                           value={loginData.email}
                           onChange={(e) => setLoginData({...loginData, email: e.target.value})}
                           className="pl-10"
@@ -77,7 +141,7 @@ const Login = () => {
                         <Input
                           id="password"
                           type="password"
-                          placeholder="Masukkan password"
+                          placeholder={loginType === 'citizen' ? "mfajarbaru" : "fajarbaru123"}
                           value={loginData.password}
                           onChange={(e) => setLoginData({...loginData, password: e.target.value})}
                           className="pl-10"
@@ -86,7 +150,7 @@ const Login = () => {
                     </div>
                     
                     <Button type="submit" className="w-full bg-gradient-village hover:opacity-90">
-                      Masuk
+                      Masuk sebagai {loginType === 'citizen' ? 'Masyarakat' : 'Admin'}
                     </Button>
                     
                     <div className="text-center">
