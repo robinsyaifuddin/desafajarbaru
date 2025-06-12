@@ -9,6 +9,11 @@ import Gallery from '@/pages/Gallery';
 import Budget from '@/pages/Budget';
 import Infographics from '@/pages/Infographics';
 import NotFound from '@/pages/NotFound';
+import Services from '@/pages/Services';
+import Contact from '@/pages/Contact';
+import Events from '@/pages/Events';
+import DocumentRequest from '@/pages/DocumentRequest';
+import AdministrasiPenduduk from '@/pages/AdministrasiPenduduk';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminNews from '@/pages/admin/AdminNews';
 import AdminResidents from '@/pages/admin/AdminResidents';
@@ -50,6 +55,11 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/budget" element={<Budget />} />
             <Route path="/infographics" element={<Infographics />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/document-request" element={<DocumentRequest />} />
+            <Route path="/administrasi-penduduk" element={<AdministrasiPenduduk />} />
             
             {/* Statistics routes */}
             <Route path="/infographics/age-range" element={<AgeRange />} />
