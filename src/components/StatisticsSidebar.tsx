@@ -1,138 +1,213 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { 
   Users, 
-  Calendar,
-  GraduationCap,
-  Briefcase,
-  Heart,
-  MapPin,
-  User,
-  Home as HomeIcon,
-  Activity,
-  Droplets,
-  Eye,
-  Globe,
-  TrendingUp,
-  Gift,
-  BarChart3
+  UserCheck, 
+  Heart, 
+  GraduationCap, 
+  Briefcase, 
+  Calendar, 
+  Home,
+  MoreVertical,
+  Menu
 } from 'lucide-react';
 
-const statisticMenus = [
-  {
-    title: 'Statistik Penduduk',
-    items: [
-      { title: 'Rentang Umur', url: '/infographics/age-range', icon: Calendar },
-      { title: 'Kategori Umur', url: '/infographics/age-category', icon: Users },
-      { title: 'Pendidikan Dalam KK', url: '/infographics/education', icon: GraduationCap },
-      { title: 'Pekerjaan', url: '/infographics/occupation', icon: Briefcase },
-      { title: 'Status Perkawinan', url: '/infographics/marital-status', icon: Heart },
-      { title: 'Agama', url: '/infographics/religion', icon: Globe },
-      { title: 'Jenis Kelamin', url: '/infographics/gender', icon: User },
-      { title: 'Hubungan Dalam KK', url: '/infographics/family-relation', icon: HomeIcon },
-      { title: 'Status Penduduk', url: '/infographics/resident-status', icon: MapPin },
-      { title: 'Golongan Darah', url: '/infographics/blood-type', icon: Droplets },
-      { title: 'Penyandang Cacat', url: '/infographics/disability', icon: Eye },
-      { title: 'Suku / Etnis', url: '/infographics/ethnicity', icon: Activity },
-    ]
-  },
-  {
-    title: 'Statistik Keluarga',
-    items: [
-      { title: 'Kelas Sosial', url: '/infographics/social-class', icon: TrendingUp },
-    ]
-  },
-  {
-    title: 'Statistik Bantuan',
-    items: [
-      { title: 'Penerima Bantuan Penduduk', url: '/infographics/individual-aid', icon: Gift },
-      { title: 'Penerima Bantuan Keluarga', url: '/infographics/family-aid', icon: HomeIcon },
-    ]
-  },
-  {
-    title: 'Statistik Lainnya',
-    items: [
-      { title: 'Populasi Per Wilayah', url: '/infographics/population-per-area', icon: BarChart3 },
-    ]
-  }
-];
-
-export function StatisticsSidebar() {
+const StatisticsSidebar = () => {
   const location = useLocation();
-  const currentPath = location.pathname;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const statisticsItems = [
+    {
+      title: 'Jenis Kelamin',
+      path: '/infographics/gender',
+      icon: Users,
+      description: 'Data berdasarkan jenis kelamin'
+    },
+    {
+      title: 'Rentang Usia',
+      path: '/infographics/age-range',
+      icon: Calendar,
+      description: 'Distribusi usia penduduk'
+    },
+    {
+      title: 'Kategori Usia',
+      path: '/infographics/age-category',
+      icon: UserCheck,
+      description: 'Pengelompokan kategori usia'
+    },
+    {
+      title: 'Status Perkawinan',
+      path: '/infographics/marital-status',
+      icon: Heart,
+      description: 'Data status perkawinan'
+    },
+    {
+      title: 'Pendidikan',
+      path: '/infographics/education',
+      icon: GraduationCap,
+      description: 'Tingkat pendidikan penduduk'
+    },
+    {
+      title: 'Pekerjaan',
+      path: '/infographics/occupation',
+      icon: Briefcase,
+      description: 'Data pekerjaan penduduk'
+    },
+    {
+      title: 'Agama',
+      path: '/infographics/religion',
+      icon: Home,
+      description: 'Distribusi agama penduduk'
+    },
+    {
+      title: 'Status Penduduk',
+      path: '/infographics/resident-status',
+      icon: UserCheck,
+      description: 'Status kependudukan'
+    },
+    {
+      title: 'Hubungan Keluarga',
+      path: '/infographics/family-relation',
+      icon: Users,
+      description: 'Status dalam keluarga'
+    }
+  ];
+
+  const isActivePath = (path: string) => location.pathname === path;
+
+  const MobileDropdownMenu = () => (
+    <div className="md:hidden fixed top-16 right-4 z-50">
+      <DropdownMenu open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="outline"
+            size="sm"
+            className="bg-white/95 backdrop-blur-sm border shadow-lg"
+          >
+            <MoreVertical size={18} />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent 
+          align="end" 
+          className="w-64 bg-white/95 backdrop-blur-xl border-0 shadow-2xl rounded-2xl p-2 mt-2 max-h-96 overflow-y-auto"
+        >
+          {statisticsItems.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <DropdownMenuItem key={item.path} asChild>
+                <Link
+                  to={item.path}
+                  className={`flex items-center space-x-3 px-4 py-3 text-sm rounded-xl transition-all duration-300 group cursor-pointer ${
+                    isActivePath(item.path)
+                      ? 'bg-gradient-to-r from-emerald-50 to-blue-50 text-emerald-700 border-l-4 border-emerald-500'
+                      : 'text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-blue-50 hover:text-emerald-700'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <IconComponent 
+                    size={16} 
+                    className={`group-hover:scale-110 transition-transform duration-300 ${
+                      isActivePath(item.path) ? 'text-emerald-600' : ''
+                    }`} 
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium truncate">{item.title}</p>
+                    <p className="text-xs opacity-75 truncate">{item.description}</p>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+            );
+          })}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
 
   return (
-    <Sidebar className="w-64 sm:w-72 lg:w-80 border-r bg-white/95 backdrop-blur-sm">
-      <SidebarContent className="scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-        <div className="p-3 sm:p-4 border-b">
-          <Link 
-            to="/infographics" 
-            className="flex items-center space-x-2 text-sm sm:text-base lg:text-lg font-semibold text-gray-800 hover:text-emerald-600 transition-colors"
-          >
-            <BarChart3 size={18} className="sm:size-5" />
-            <span className="truncate">Kembali ke Infografis</span>
-          </Link>
+    <>
+      {/* Mobile Three-dot Menu */}
+      <MobileDropdownMenu />
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block w-80 min-h-screen bg-gray-50 border-r border-gray-200 pt-20">
+        <div className="sticky top-20 p-4 space-y-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <Card className="p-6 bg-gradient-to-br from-emerald-50 to-blue-50 border-emerald-200">
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Statistik Penduduk</h3>
+            <p className="text-sm text-gray-600">
+              Jelajahi data demografi dan statistik kependudukan Desa Fajar Baru
+            </p>
+          </Card>
+
+          <div className="space-y-2">
+            {statisticsItems.map((item) => {
+              const IconComponent = item.icon;
+              const isActive = isActivePath(item.path);
+              
+              return (
+                <Link key={item.path} to={item.path}>
+                  <Card className={`p-4 cursor-pointer transition-all duration-300 hover:shadow-md group ${
+                    isActive 
+                      ? 'bg-gradient-to-r from-emerald-50 to-blue-50 border-emerald-200 shadow-sm' 
+                      : 'hover:bg-gray-50 border-gray-200'
+                  }`}>
+                    <div className="flex items-start space-x-3">
+                      <div className={`p-2 rounded-lg transition-colors duration-300 ${
+                        isActive 
+                          ? 'bg-emerald-100 text-emerald-600' 
+                          : 'bg-gray-100 text-gray-600 group-hover:bg-emerald-100 group-hover:text-emerald-600'
+                      }`}>
+                        <IconComponent size={20} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className={`font-semibold transition-colors duration-300 ${
+                          isActive ? 'text-emerald-800' : 'text-gray-800 group-hover:text-emerald-800'
+                        }`}>
+                          {item.title}
+                        </h4>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {item.description}
+                        </p>
+                      </div>
+                      {isActive && (
+                        <div className="w-1 h-8 bg-emerald-500 rounded-full"></div>
+                      )}
+                    </div>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-        
-        {statisticMenus.map((group, index) => (
-          <SidebarGroup key={index} className="px-2 sm:px-3">
-            <SidebarGroupLabel className="text-xs sm:text-sm font-semibold text-gray-700 px-2 py-2 mb-1">
-              {group.title}
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {group.items.map((item) => {
-                  const IconComponent = item.icon;
-                  const isActive = currentPath === item.url;
-                  
-                  return (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild>
-                        <Link
-                          to={item.url}
-                          className={cn(
-                            "flex items-center space-x-3 px-3 py-2.5 text-xs sm:text-sm rounded-lg transition-all duration-200 group hover:scale-[1.02]",
-                            isActive 
-                              ? "bg-emerald-100 text-emerald-700 font-medium shadow-sm border border-emerald-200" 
-                              : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                          )}
-                        >
-                          <IconComponent 
-                            size={14} 
-                            className={cn(
-                              "flex-shrink-0 transition-colors",
-                              isActive ? "text-emerald-600" : "text-gray-500 group-hover:text-gray-700"
-                            )}
-                          />
-                          <span className="truncate leading-tight">{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  );
-                })}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        ))}
-        
-        <div className="p-3 sm:p-4 mt-auto border-t bg-gray-50">
-          <p className="text-xs text-gray-500 text-center leading-relaxed">
-            Data statistik terkini Desa Fajar Baru Way Kandis
-          </p>
-        </div>
-      </SidebarContent>
-    </Sidebar>
+      </div>
+
+      {/* Mobile Active Tab Indicator */}
+      <div className="md:hidden fixed top-16 left-4 z-40">
+        <Card className="px-4 py-2 bg-white/95 backdrop-blur-sm shadow-lg">
+          {statisticsItems.map((item) => {
+            if (isActivePath(item.path)) {
+              const IconComponent = item.icon;
+              return (
+                <div key={item.path} className="flex items-center space-x-2">
+                  <IconComponent size={16} className="text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-800">{item.title}</span>
+                </div>
+              );
+            }
+            return null;
+          })}
+        </Card>
+      </div>
+    </>
   );
-}
+};
+
+export default StatisticsSidebar;
