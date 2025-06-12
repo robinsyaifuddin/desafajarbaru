@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { StatisticsSidebar } from './StatisticsSidebar';
+import StatisticsSidebar from './StatisticsSidebar';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import { Menu } from 'lucide-react';
