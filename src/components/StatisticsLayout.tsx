@@ -18,14 +18,14 @@ export function StatisticsLayout({ children, title, description }: StatisticsLay
       <Navigation />
       
       {/* Increased padding top to prevent navbar overlap */}
-      <div className="pt-28 lg:pt-36">
+      <div className="pt-20 lg:pt-24">
         <SidebarProvider>
           <div className="flex min-h-screen w-full">
             <StatisticsSidebar />
             
             <main className="flex-1 overflow-x-hidden">
               {/* Mobile sidebar trigger */}
-              <div className="lg:hidden p-3 border-b bg-white sticky top-0 z-40">
+              <div className="lg:hidden p-3 border-b bg-white sticky top-20 z-40 shadow-sm">
                 <SidebarTrigger className="flex items-center space-x-2 text-sm">
                   <Menu size={18} />
                   <span>Menu Statistik</span>
