@@ -45,6 +45,11 @@ const AdminSidebar = () => {
       href: '/admin/statistics',
     },
     {
+      title: 'Kelola Statistik',
+      icon: BarChart3,
+      href: '/admin/statistics-management',
+    },
+    {
       title: 'Peta Desa',
       icon: MapPin,
       href: '/admin/map',
