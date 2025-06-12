@@ -1,20 +1,20 @@
+
 import React from 'react';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { StatisticsSidebar } from './StatisticsSidebar';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import { Menu } from 'lucide-react';
+
 interface StatisticsLayoutProps {
   children: React.ReactNode;
   title: string;
   description?: string;
 }
-export function StatisticsLayout({
-  children,
-  title,
-  description
-}: StatisticsLayoutProps) {
-  return <div className="min-h-screen bg-gray-50">
+
+export function StatisticsLayout({ children, title, description }: StatisticsLayoutProps) {
+  return (
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       
       {/* Increased padding top to prevent navbar overlap */}
@@ -32,14 +32,16 @@ export function StatisticsLayout({
                 </SidebarTrigger>
               </div>
               
-              <div className="container mx-auto px- sm:px-4 lg:px-6 py-4 sm:py-10 lg:py-10 ">
+              <div className="container mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
                 <div className="mb-6 lg:mb-8">
                   <h1 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-800 mb-2 sm:mb-4 leading-tight">
                     {title}
                   </h1>
-                  {description && <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl leading-relaxed">
+                  {description && (
+                    <p className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-3xl leading-relaxed">
                       {description}
-                    </p>}
+                    </p>
+                  )}
                 </div>
                 
                 <div className="w-full overflow-x-auto">
@@ -52,5 +54,6 @@ export function StatisticsLayout({
       </div>
       
       <Footer />
-    </div>;
+    </div>
+  );
 }
