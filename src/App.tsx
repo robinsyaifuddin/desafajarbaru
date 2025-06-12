@@ -1,16 +1,14 @@
+
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Home from '@/pages/Home';
+import Index from '@/pages/Index';
 import News from '@/pages/News';
 import Gallery from '@/pages/Gallery';
-import Contact from '@/pages/Contact';
 import Budget from '@/pages/Budget';
 import Infographics from '@/pages/Infographics';
-import Events from '@/pages/Events';
 import NotFound from '@/pages/NotFound';
-import AdminLogin from '@/pages/admin/AdminLogin';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminNews from '@/pages/admin/AdminNews';
 import AdminResidents from '@/pages/admin/AdminResidents';
@@ -45,13 +43,11 @@ function App() {
     <AdminProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Index />} />
           <Route path="/news" element={<News />} />
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/budget" element={<Budget />} />
           <Route path="/infographics" element={<Infographics />} />
-          <Route path="/events" element={<Events />} />
           
           {/* Statistics routes */}
           <Route path="/infographics/age-range" element={<AgeRange />} />
@@ -72,7 +68,6 @@ function App() {
           <Route path="/infographics/population-per-area" element={<PopulationPerArea />} />
 
           {/* Admin routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
           <Route path="/admin/news" element={<AdminLayout><AdminNews /></AdminLayout>} />
           <Route path="/admin/residents" element={<AdminLayout><AdminResidents /></AdminLayout>} />
