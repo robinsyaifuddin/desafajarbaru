@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -134,7 +133,7 @@ const Bansos = () => {
 
   const trendPenerima = [
     { tahun: 2020, penerima: 623 },
-    { tahun: 2021, tahun: 732 },
+    { tahun: 2021, penerima: 732 },
     { tahun: 2022, penerima: 789 },
     { tahun: 2023, penerima: 812 },
     { tahun: 2024, penerima: 847 }
@@ -245,7 +244,7 @@ const Bansos = () => {
                   <div>
                     <h3 className="text-sm font-medium text-gray-500">Total Penerima</h3>
                     <p className="text-2xl font-bold text-gray-800">
-                      {bans osStats.totalPenerima.toLocaleString()}
+                      {bansosStats.totalPenerima.toLocaleString()}
                     </p>
                   </div>
                 </div>

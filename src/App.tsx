@@ -16,9 +16,7 @@ import Profile from '@/pages/Profile';
 import DocumentRequest from '@/pages/DocumentRequest';
 import AdministrasiPenduduk from '@/pages/AdministrasiPenduduk';
 import IDM from '@/pages/IDM';
-import PPID from '@/pages/PP
-
-ID';
+import PPID from '@/pages/PPID';
 import APBDesa from '@/pages/APBDesa';
 import Belanja from '@/pages/Belanja';
 import Bansos from '@/pages/Bansos';

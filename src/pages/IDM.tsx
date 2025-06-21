@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -157,9 +156,9 @@ const IDM = () => {
                   </div>
                   <Progress value={78.34} className="h-3" />
                   <div className="flex justify-between text-sm text-gray-500">
-                    <span>Tertinggal (< 0.6)</span>
+                    <span>Tertinggal (&lt; 0.6)</span>
                     <span>Berkembang (0.6-0.8)</span>
-                    <span>Maju (> 0.8)</span>
+                    <span>Maju (&gt; 0.8)</span>
                   </div>
                 </div>
               </CardContent>
