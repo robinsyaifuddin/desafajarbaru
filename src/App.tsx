@@ -15,6 +15,13 @@ import Events from '@/pages/Events';
 import Profile from '@/pages/Profile';
 import DocumentRequest from '@/pages/DocumentRequest';
 import AdministrasiPenduduk from '@/pages/AdministrasiPenduduk';
+import IDM from '@/pages/IDM';
+import PPID from '@/pages/PP
+
+ID';
+import APBDesa from '@/pages/APBDesa';
+import Belanja from '@/pages/Belanja';
+import Bansos from '@/pages/Bansos';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminNews from '@/pages/admin/AdminNews';
 import AdminResidents from '@/pages/admin/AdminResidents';
@@ -62,6 +69,14 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/document-request" element={<DocumentRequest />} />
             <Route path="/administrasi-penduduk" element={<AdministrasiPenduduk />} />
+            
+            {/* Service submenu routes */}
+            <Route path="/services/idm" element={<IDM />} />
+            <Route path="/services/ppid" element={<PPID />} />
+            <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
+            <Route path="/services/apb-desa" element={<APBDesa />} />
+            <Route path="/services/belanja" element={<Belanja />} />
+            <Route path="/services/bansos" element={<Bansos />} />
             
             {/* Statistics routes */}
             <Route path="/infographics/age-range" element={<AgeRange />} />

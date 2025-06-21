@@ -1,113 +1,221 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Heart, Users, Baby, GraduationCap, Home, Utensils, Shield, CheckCircle } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { 
+  Heart, 
+  Users, 
+  Baby, 
+  GraduationCap, 
+  Home,
+  Utensils,
+  Shield,
+  TrendingUp,
+  Calendar,
+  Search,
+  Filter,
+  FileText,
+  CheckCircle,
+  Clock,
+  AlertCircle,
+  MapPin,
+  Phone,
+  Eye
+} from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 const Bansos = () => {
+  const [selectedProgram, setSelectedProgram] = useState('all');
+  const [selectedPeriod, setSelectedPeriod] = useState('2024');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const bansosStats = {
+    totalPenerima: 847,
+    totalAnggaran: 2450000000,
+    totalRealisasi: 2156000000,
+    persentaseRealisasi: 88.0,
+    jumlahProgram: 8,
+    keluargaPenerima: 542
+  };
+
   const programBansos = [
     {
       nama: 'Program Keluarga Harapan (PKH)',
+      kode: 'PKH',
+      sasaran: 'Keluarga Miskin',
       penerima: 156,
-      anggaran: 234000000,
-      realisasi: 175500000,
-      persentase: 75.0,
-      deskripsi: 'Bantuan tunai bersyarat untuk keluarga miskin',
+      anggaran: 468000000,
+      realisasi: 421200000,
+      persentase: 90.0,
+      color: 'bg-blue-500',
       icon: Heart,
-      color: 'bg-red-500',
-      kriteria: ['Keluarga sangat miskin', 'Memiliki anak balita/sekolah', 'Ibu hamil/menyusui']
+      periode: 'Bulanan',
+      status: 'aktif',
+      deskripsi: 'Bantuan tunai bersyarat untuk keluarga sangat miskin dengan komponen kesehatan, pendidikan, dan kesejahteraan sosial'
     },
     {
       nama: 'Bantuan Pangan Non Tunai (BPNT)',
-      penerima: 203,
-      anggaran: 152250000,
-      realisasi: 152250000,
+      kode: 'BPNT',
+      sasaran: 'Keluarga Penerima Manfaat',
+      penerima: 234,
+      anggaran: 561600000,
+      realisasi: 561600000,
       persentase: 100.0,
-      deskripsi: 'Bantuan beras dan telur untuk keluarga miskin',
-      icon: Utensils,
       color: 'bg-green-500',
-      kriteria: ['Terdaftar di DTKS', 'Keluarga miskin', 'Punya KTP dan KK']
+      icon: Utensils,
+      periode: 'Bulanan',
+      status: 'aktif',
+      deskripsi: 'Bantuan pangan dalam bentuk non tunai untuk memenuhi sebagian kebutuhan pangan pokok'
+    },
+    {
+      nama: 'Bantuan Langsung Tunai Dana Desa (BLT-DD)',
+      kode: 'BLT-DD',
+      sasaran: 'Keluarga Miskin',
+      penerima: 198,
+      anggaran: 594000000,
+      realisasi: 475200000,
+      persentase: 80.0,
+      color: 'bg-orange-500',
+      icon: Home,
+      periode: 'Bulanan',
+      status: 'aktif',
+      deskripsi: 'Bantuan langsung tunai dari dana desa untuk mengurangi dampak ekonomi dan meningkatkan daya beli masyarakat miskin'
     },
     {
       nama: 'Program Indonesia Pintar (PIP)',
+      kode: 'PIP',
+      sasaran: 'Anak Sekolah',
       penerima: 89,
-      anggaran: 89000000,
-      realisasi: 71200000,
-      persentase: 80.0,
-      deskripsi: 'Bantuan pendidikan untuk anak sekolah',
-      icon: GraduationCap,
-      color: 'bg-blue-500',
-      kriteria: ['Siswa dari keluarga miskin', 'Usia sekolah 6-21 tahun', 'Terdaftar di sekolah']
-    },
-    {
-      nama: 'Bantuan Iuran JKN (BI-JKN)',
-      penerima: 445,
-      anggaran: 133500000,
-      realisasi: 133500000,
-      persentase: 100.0,
-      deskripsi: 'Bantuan iuran BPJS Kesehatan',
-      icon: Shield,
+      anggaran: 267000000,
+      realisasi: 240300000,
+      persentase: 90.0,
       color: 'bg-purple-500',
-      kriteria: ['Tidak mampu bayar iuran', 'WNI', 'Terdaftar di DTKS']
+      icon: GraduationCap,
+      periode: 'Semester',
+      status: 'aktif',
+      deskripsi: 'Bantuan biaya personal pendidikan untuk anak usia sekolah dari keluarga miskin atau rentan miskin'
     },
     {
-      nama: 'Bantuan Stimulan Perumahan Swadaya (BSPS)',
-      penerima: 12,
-      anggaran: 180000000,
-      realisasi: 144000000,
-      persentase: 80.0,
-      deskripsi: 'Bantuan perbaikan rumah tidak layak huni',
-      icon: Home,
-      color: 'bg-orange-500',
-      kriteria: ['Rumah tidak layak huni', 'Keluarga miskin', 'Luas tanah minimum 60m²']
+      nama: 'Jaminan Kesehatan Nasional (JKN-KIS)',
+      kode: 'JKN-KIS',
+      sasaran: 'Masyarakat Miskin',
+      penerima: 412,
+      anggaran: 0, // Ditanggung pemerintah pusat
+      realisasi: 0,
+      persentase: 100.0,
+      color: 'bg-red-500',
+      icon: Shield,
+      periode: 'Tahunan',
+      status: 'aktif',
+      deskripsi: 'Jaminan kesehatan untuk masyarakat miskin dan tidak mampu yang dikelola oleh BPJS Kesehatan'
     },
     {
-      nama: 'Bantuan Sosial Lansia',
+      nama: 'Bantuan Ibu Hamil dan Balita',
+      kode: 'BUMIL-BALITA',
+      sasaran: 'Ibu Hamil & Balita',
       penerima: 67,
-      anggaran: 80400000,
-      realisasi: 60300000,
-      persentase: 75.0,
-      deskripsi: 'Bantuan untuk lansia terlantar',
-      icon: Users,
-      color: 'bg-indigo-500',
-      kriteria: ['Usia 60 tahun ke atas', 'Tidak ada yang menanggung', 'Kondisi terlantar']
+      anggaran: 134000000,
+      realisasi: 107200000,
+      persentase: 80.0,
+      color: 'bg-pink-500',
+      icon: Baby,
+      periode: 'Bulanan',
+      status: 'aktif',
+      deskripsi: 'Bantuan khusus untuk ibu hamil dan balita guna meningkatkan status gizi dan kesehatan'
     }
   ];
 
-  const distribusiPenerima = [
-    { kategori: 'RT 01', jumlah: 145, persentase: 15.8 },
-    { kategori: 'RT 02', jumlah: 132, persentase: 14.4 },
-    { kategori: 'RT 03', jumlah: 158, persentase: 17.2 },
-    { kategori: 'RT 04', jumlah: 121, persentase: 13.2 },
-    { kategori: 'RT 05', jumlah: 167, persentase: 18.2 },
-    { kategori: 'RT 06', jumlah: 134, persentase: 14.6 },
-    { kategori: 'RT 07', jumlah: 61, persentase: 6.6 }
+  const trendPenerima = [
+    { tahun: 2020, penerima: 623 },
+    { tahun: 2021, tahun: 732 },
+    { tahun: 2022, penerima: 789 },
+    { tahun: 2023, penerima: 812 },
+    { tahun: 2024, penerima: 847 }
   ];
 
-  const trendBansos = [
-    { tahun: '2020', total: 678, anggaran: 750000000 },
-    { tahun: '2021', total: 756, anggaran: 845000000 },
-    { tahun: '2022', total: 834, anggaran: 920000000 },
-    { tahun: '2023', total: 912, anggaran: 1050000000 },
-    { tahun: '2024', total: 972, anggaran: 1169150000 }
+  const distribusiPerWilayah = [
+    { wilayah: 'RT 01', penerima: 87, persentase: 10.3 },
+    { wilayah: 'RT 02', penerima: 94, persentase: 11.1 },
+    { wilayah: 'RT 03', penerima: 76, persentase: 9.0 },
+    { wilayah: 'RT 04', penerima: 112, persentase: 13.2 },
+    { wilayah: 'RT 05', penerima: 89, persentase: 10.5 },
+    { wilayah: 'RT 06', penerima: 103, persentase: 12.2 },
+    { wilayah: 'RT 07', penerima: 92, persentase: 10.9 },
+    { wilayah: 'RT 08', penerima: 98, persentase: 11.6 },
+    { wilayah: 'RT 09', penerima: 71, persentase: 8.4 },
+    { wilayah: 'RT 10', penerima: 25, persentase: 2.9 }
   ];
 
-  const COLORS = ['#EF4444', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#6366F1'];
+  const penyaluranTerbaru = [
+    {
+      id: 'PENY-2024-001',
+      program: 'PKH',
+      tanggal: '2024-11-25',
+      penerima: 156,
+      totalNominal: 93600000,
+      status: 'selesai',
+      periode: 'November 2024'
+    },
+    {
+      id: 'PENY-2024-002',
+      program: 'BPNT',
+      tanggal: '2024-11-20',
+      penerima: 234,
+      totalNominal: 46800000,
+      status: 'selesai',
+      periode: 'November 2024'
+    },
+    {
+      id: 'PENY-2024-003',
+      program: 'BLT-DD',
+      tanggal: '2024-11-15',
+      penerima: 198,
+      totalNominal: 59400000,
+      status: 'proses',
+      periode: 'November 2024'
+    },
+    {
+      id: 'PENY-2024-004',
+      program: 'PIP',
+      tanggal: '2024-11-10',
+      penerima: 89,
+      totalNominal: 44500000,
+      status: 'selesai',
+      periode: 'Semester II 2024'
+    }
+  ];
 
-  const formatRupiah = (angka) => {
+  const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('id-ID', {
       style: 'currency',
       currency: 'IDR',
       minimumFractionDigits: 0
-    }).format(angka);
+    }).format(amount);
   };
 
-  const totalPenerima = programBansos.reduce((sum, program) => sum + program.penerima, 0);
-  const totalAnggaran = programBansos.reduce((sum, program) => sum + program.anggaran, 0);
-  const totalRealisasi = programBansos.reduce((sum, program) => sum + program.realisasi, 0);
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'selesai':
+        return <Badge className="bg-green-100 text-green-800">Selesai</Badge>;
+      case 'proses':
+        return <Badge className="bg-blue-100 text-blue-800">Proses</Badge>;
+      case 'pending':
+        return <Badge className="bg-yellow-100 text-yellow-800">Pending</Badge>;
+      case 'aktif':
+        return <Badge className="bg-green-100 text-green-800">Aktif</Badge>;
+      default:
+        return <Badge variant="outline">{status}</Badge>;
+    }
+  };
+
+  const COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#8b5cf6', '#ef4444', '#ec4899'];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -118,263 +226,611 @@ const Bansos = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-              Bantuan Sosial Desa Fajar Baru
+              Bantuan Sosial (Bansos)
             </h1>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto">
-              Transparansi penyaluran bantuan sosial untuk masyarakat kurang mampu 
-              dalam rangka peningkatan kesejahteraan dan pengentasan kemiskinan
+              Program bantuan sosial untuk meningkatkan kesejahteraan masyarakat miskin dan rentan 
+              serta mengurangi kesenjangan sosial di Desa Fajar Baru
             </p>
           </div>
 
-          {/* Summary Card */}
-          <Card className="mb-8 bg-gradient-to-r from-red-500 to-pink-600 text-white">
-            <CardHeader>
-              <CardTitle className="text-2xl flex items-center">
-                <Heart className="mr-3" size={32} />
-                Ringkasan Bansos 2024
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <h3 className="text-3xl font-bold">{totalPenerima.toLocaleString()}</h3>
-                  <p className="opacity-90">Total Penerima</p>
+          {/* Stats Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-6 mb-12">
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <Users className="text-blue-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">Total Penerima</h3>
+                    <p className="text-2xl font-bold text-gray-800">
+                      {bans osStats.totalPenerima.toLocaleString()}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-3xl font-bold">{formatRupiah(totalAnggaran)}</h3>
-                  <p className="opacity-90">Total Anggaran</p>
-                </div>
-                <div>
-                  <h3 className="text-3xl font-bold">{((totalRealisasi/totalAnggaran)*100).toFixed(1)}%</h3>
-                  <p className="opacity-90">Tingkat Realisasi</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
 
-          {/* Programs */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-              Program Bantuan Sosial
-            </h2>
-            <div className="grid lg:grid-cols-2 gap-6">
-              {programBansos.map((program, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <CardTitle className="flex items-center">
-                      <div className={`w-12 h-12 ${program.color} rounded-full flex items-center justify-center mr-4`}>
-                        <program.icon className="text-white" size={24} />
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <Heart className="text-green-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">Keluarga Penerima</h3>
+                    <p className="text-2xl font-bold text-gray-800">
+                      {bansosStats.keluargaPenerima}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                    <Shield className="text-purple-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">Jumlah Program</h3>
+                    <p className="text-2xl font-bold text-gray-800">
+                      {bansosStats.jumlahProgram}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                    <TrendingUp className="text-orange-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">Total Anggaran</h3>
+                    <p className="text-xl font-bold text-gray-800">
+                      {formatCurrency(bansosStats.totalAnggaran)}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                    <CheckCircle className="text-indigo-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">Realisasi</h3>
+                    <p className="text-xl font-bold text-gray-800">
+                      {formatCurrency(bansosStats.totalRealisasi)}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center">
+                  <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                    <Calendar className="text-red-600" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-500">% Realisasi</h3>
+                    <p className="text-2xl font-bold text-gray-800">
+                      {bansosStats.persentaseRealisasi}%
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Main Content */}
+          <Tabs defaultValue="programs" className="space-y-8">
+            <TabsList className="grid w-full lg:w-fit lg:grid-cols-5 bg-white border rounded-lg p-1">
+              <TabsTrigger value="programs" className="data-[state=active]:bg-village-green data-[state=active]:text-white">
+                Program
+              </TabsTrigger>
+              <TabsTrigger value="recipients" className="data-[state=active]:bg-village-green data-[state=active]:text-white">
+                Penerima
+              </TabsTrigger>
+              <TabsTrigger value="distribution" className="data-[state=active]:bg-village-green data-[state=active]:text-white">
+                Penyaluran
+              </TabsTrigger>
+              <TabsTrigger value="statistics" className="data-[state=active]:bg-village-green data-[state=active]:text-white">
+                Statistik
+              </TabsTrigger>
+              <TabsTrigger value="reports" className="data-[state=active]:bg-village-green data-[state=active]:text-white">
+                Laporan
+              </TabsTrigger>
+            </TabsList>
+
+            {/* Programs Tab */}
+            <TabsContent value="programs" className="space-y-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Heart className="mr-3 text-village-green" size={24} />
+                    Program Bantuan Sosial Aktif
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    {programBansos.map((program, index) => (
+                      <div key={index} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <div className="flex items-start space-x-4">
+                          <div className={`w-12 h-12 ${program.color} rounded-full flex items-center justify-center`}>
+                            <program.icon className="text-white" size={24} />
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex justify-between items-start mb-2">
+                              <div>
+                                <h3 className="text-lg font-semibold text-gray-800">{program.nama}</h3>
+                                <p className="text-sm text-gray-500">
+                                  {program.kode} • Sasaran: {program.sasaran} • {program.periode}
+                                </p>
+                              </div>
+                              <div className="flex space-x-2">
+                                {getStatusBadge(program.status)}
+                                <Badge variant="secondary">{program.penerima} penerima</Badge>
+                              </div>
+                            </div>
+                            
+                            <p className="text-gray-600 text-sm mb-4">{program.deskripsi}</p>
+                            
+                            {program.anggaran > 0 && (
+                              <>
+                                <div className="grid md:grid-cols-3 gap-4 mb-4">
+                                  <div>
+                                    <span className="text-sm text-gray-500">Anggaran</span>
+                                    <p className="text-lg font-semibold text-gray-800">
+                                      {formatCurrency(program.anggaran)}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <span className="text-sm text-gray-500">Realisasi</span>
+                                    <p className="text-lg font-semibold text-green-600">
+                                      {formatCurrency(program.realisasi)}
+                                    </p>
+                                  </div>
+                                  <div>
+                                    <span className="text-sm text-gray-500">Sisa Anggaran</span>
+                                    <p className="text-lg font-semibold text-orange-600">
+                                      {formatCurrency(program.anggaran - program.realisasi)}
+                                    </p>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex justify-between items-center mb-2">
+                                  <span className="text-sm font-medium text-gray-700">Progress Realisasi</span>
+                                  <span className="text-sm font-medium">
+                                    {((program.realisasi / program.anggaran) * 100).toFixed(1)}%
+                                  </span>
+                                </div>
+                                <Progress 
+                                  value={(program.realisasi / program.anggaran) * 100} 
+                                  className="h-2"
+                                />
+                              </>
+                            )}
+                            
+                            {program.anggaran === 0 && (
+                              <div className="bg-blue-50 p-4 rounded-lg">
+                                <p className="text-blue-800 text-sm">
+                                  <Shield className="inline mr-2" size={16} />
+                                  Program ini dibiayai langsung oleh pemerintah pusat melalui BPJS
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Recipients Tab */}
+            <TabsContent value="recipients" className="space-y-8">
+              {/* Filters */}
+              <Card>
+                <CardContent className="p-6">
+                  <div className="flex flex-col md:flex-row gap-4 items-center">
+                    <div className="flex-1">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                        <Input
+                          placeholder="Cari nama penerima..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+                    </div>
+                    <Select value={selectedProgram} onValueChange={setSelectedProgram}>
+                      <SelectTrigger className="w-full md:w-[200px]">
+                        <SelectValue placeholder="Pilih Program" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="all">Semua Program</SelectItem>
+                        {programBansos.map((program) => (
+                          <SelectItem key={program.kode} value={program.kode}>
+                            {program.nama}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Button variant="outline">
+                      <Filter size={16} className="mr-2" />
+                      Filter
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Distribution by Area */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <MapPin className="mr-3 text-village-blue" size={24} />
+                    Distribusi Penerima per Wilayah
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid lg:grid-cols-2 gap-8">
+                    <div>
+                      <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={distribusiPerWilayah}>
+                          <CartesianGrid strokeDasharray="3 3" />
+                          <XAxis dataKey="wilayah" />
+                          <YAxis />
+                          <Tooltip />
+                          <Bar dataKey="penerima" fill="#22c55e" />
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h3 className="font-semibold text-gray-800 mb-4">Rincian per RT</h3>
+                      {distribusiPerWilayah.map((item, index) => (
+                        <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                          <span className="font-medium text-gray-800">{item.wilayah}</span>
+                          <div className="flex items-center space-x-4">
+                            <span className="text-lg font-semibold text-gray-800">
+                              {item.penerima} orang
+                            </span>
+                            <Badge variant="secondary">{item.persentase}%</Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Recipients Info */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Informasi Penerima Bantuan</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <div className="flex items-start space-x-4">
+                      <AlertCircle className="text-yellow-600 mt-1" size={24} />
                       <div>
-                        <h3 className="text-lg">{program.nama}</h3>
-                        <p className="text-sm text-gray-500">{program.deskripsi}</p>
+                        <h3 className="font-semibold text-yellow-800 mb-2">Akses Data Penerima</h3>
+                        <p className="text-yellow-700 text-sm mb-4">
+                          Data penerima bantuan sosial bersifat rahasia dan dilindungi sesuai dengan 
+                          peraturan perlindungan data pribadi. Akses data hanya dapat dilakukan oleh 
+                          pihak yang berwenang dan untuk kepentingan yang sah.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-4">
+                          <Button variant="outline" className="text-yellow-800 border-yellow-300">
+                            <Phone size={16} className="mr-2" />
+                            Hubungi Petugas
+                          </Button>
+                          <Button variant="outline" className="text-yellow-800 border-yellow-300">
+                            <Eye size={16} className="mr-2" />
+                            Verifikasi Status
+                          </Button>
+                        </div>
                       </div>
-                    </CardTitle>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Distribution Tab */}
+            <TabsContent value="distribution" className="space-y-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <TrendingUp className="mr-3 text-village-orange" size={24} />
+                    Penyaluran Bantuan Terbaru
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {penyaluranTerbaru.map((penyaluran, index) => (
+                      <div key={index} className="border rounded-lg p-6 hover:bg-gray-50 transition-colors">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                          <div>
+                            <h3 className="font-semibold text-gray-800 mb-1">
+                              Penyaluran {penyaluran.program} - {penyaluran.periode}
+                            </h3>
+                            <div className="flex flex-wrap gap-2 text-sm text-gray-500">
+                              <span>ID: {penyaluran.id}</span>
+                              <span>•</span>
+                              <span>{penyaluran.tanggal}</span>
+                              <span>•</span>
+                              <span>{penyaluran.penerima} penerima</span>
+                            </div>
+                          </div>
+                          <div className="flex flex-col md:items-end mt-2 md:mt-0">
+                            <div className="text-xl font-bold text-gray-800 mb-1">
+                              {formatCurrency(penyaluran.totalNominal)}
+                            </div>
+                            {getStatusBadge(penyaluran.status)}
+                          </div>
+                        </div>
+                        
+                        <div className="grid md:grid-cols-3 gap-4 text-sm">
+                          <div>
+                            <span className="text-gray-500">Nominal per Penerima:</span>
+                            <p className="font-medium text-gray-800">
+                              {formatCurrency(penyaluran.totalNominal / penyaluran.penerima)}
+                            </p>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Jumlah Penerima:</span>
+                            <p className="font-medium text-gray-800">{penyaluran.penerima} orang</p>
+                          </div>
+                          <div>
+                            <span className="text-gray-500">Status:</span>
+                            <p className="font-medium text-gray-800 capitalize">{penyaluran.status}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 text-center">
+                    <Button variant="outline">
+                      Lihat Semua Penyaluran
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Distribution Schedule */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Calendar className="mr-3 text-village-green" size={24} />
+                    Jadwal Penyaluran Bantuan
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-4">Jadwal Reguler</h3>
+                      <div className="space-y-3">
+                        {[
+                          { program: 'PKH', jadwal: 'Setiap tanggal 25', status: 'Aktif' },
+                          { program: 'BPNT', jadwal: 'Setiap tanggal 20', status: 'Aktif' },
+                          { program: 'BLT-DD', jadwal: 'Setiap tanggal 15', status: 'Aktif' },
+                          { program: 'PIP', jadwal: 'Awal Semester', status: 'Aktif' }
+                        ].map((item, index) => (
+                          <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <div>
+                              <span className="font-medium text-gray-800">{item.program}</span>
+                              <p className="text-sm text-gray-500">{item.jadwal}</p>
+                            </div>
+                            <Badge className="bg-green-100 text-green-800">{item.status}</Badge>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="font-semibold text-gray-800 mb-4">Penyaluran Mendatang</h3>
+                      <div className="space-y-3">
+                        {[
+                          { program: 'PKH Desember', tanggal: '25 Desember 2024', estimasi: 'Rp 93.6 Juta' },
+                          { program: 'BPNT Desember', tanggal: '20 Desember 2024', estimasi: 'Rp 46.8 Juta' },
+                          { program: 'BLT-DD Desember', tanggal: '15 Desember 2024', estimasi: 'Rp 59.4 Juta' },
+                          { program: 'Bonus Tahun Baru', tanggal: '30 Desember 2024', estimasi: 'Rp 25.0 Juta' }
+                        ].map((item, index) => (
+                          <div key={index} className="p-3 border rounded-lg">
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <span className="font-medium text-gray-800">{item.program}</span>
+                                <p className="text-sm text-gray-500">{item.tanggal}</p>
+                              </div>
+                              <span className="text-sm font-semibold text-village-green">{item.estimasi}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Statistics Tab */}
+            <TabsContent value="statistics" className="space-y-8">
+              <div className="grid lg:grid-cols-2 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Tren Jumlah Penerima</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4 text-center">
-                        <div>
-                          <h4 className="text-2xl font-bold text-gray-800">{program.penerima}</h4>
-                          <p className="text-sm text-gray-600">Penerima</p>
-                        </div>
-                        <div>
-                          <h4 className="text-2xl font-bold text-green-600">{program.persentase}%</h4>
-                          <p className="text-sm text-gray-600">Realisasi</p>
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <div className="flex justify-between mb-2">
-                          <span className="text-gray-600">Anggaran</span>
-                          <span className="font-semibold">{formatRupiah(program.anggaran)}</span>
-                        </div>
-                        <div className="flex justify-between mb-2">
-                          <span className="text-gray-600">Realisasi</span>
-                          <span className="font-semibold text-green-600">{formatRupiah(program.realisasi)}</span>
-                        </div>
-                        <Progress value={program.persentase} className="h-2" />
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Kriteria Penerima:</h4>
-                        <ul className="space-y-1">
-                          {program.kriteria.map((kriteria, kriteriaIndex) => (
-                            <li key={kriteriaIndex} className="flex items-center text-sm text-gray-600">
-                              <CheckCircle size={12} className="text-green-500 mr-2" />
-                              {kriteria}
-                            </li>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <LineChart data={trendPenerima}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="tahun" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line 
+                          type="monotone" 
+                          dataKey="penerima" 
+                          stroke="#22c55e" 
+                          strokeWidth={3}
+                          dot={{ fill: '#22c55e', strokeWidth: 2, r: 6 }}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Distribusi Program Bantuan</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ResponsiveContainer width="100%" height={300}>
+                      <PieChart>
+                        <Pie
+                          data={programBansos.filter(p => p.anggaran > 0)}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={100}
+                          dataKey="anggaran"
+                          nameKey="kode"
+                        >
+                          {programBansos.filter(p => p.anggaran > 0).map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                           ))}
-                        </ul>
-                      </div>
+                        </Pie>
+                        <Tooltip formatter={(value) => formatCurrency(Number(value))} />
+                      </PieChart>
+                    </ResponsiveContainer>
+                    <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+                      {programBansos.filter(p => p.anggaran > 0).map((program, index) => (
+                        <div key={index} className="flex items-center">
+                          <div 
+                            className="w-3 h-3 rounded mr-2" 
+                            style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                          ></div>
+                          <span>{program.kode}</span>
+                        </div>
+                      ))}
                     </div>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          {/* Charts */}
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <Card>
-              <CardHeader>
-                <CardTitle>Distribusi Penerima Per RT</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie
-                      data={distribusiPenerima}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      label={({ kategori, persentase }) => `${kategori}: ${persentase}%`}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="jumlah"
-                    >
-                      {distribusiPenerima.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip />
-                  </PieChart>
-                </ResponsiveContainer>
-                <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
-                  {distribusiPenerima.map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <div 
-                        className="w-3 h-3 rounded-full mr-2" 
-                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
-                      ></div>
-                      <span>{item.kategori}: {item.jumlah} KK</span>
+              {/* Impact Metrics */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Dampak Program Bantuan Sosial</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 p-6 rounded-xl text-center">
+                      <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                      <h3 className="font-semibold text-blue-800">Cakupan Penerima</h3>
+                      <p className="text-3xl font-bold text-blue-600 mt-2">65.2%</p>
+                      <p className="text-sm text-blue-700">dari keluarga miskin</p>
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                    <div className="bg-green-50 p-6 rounded-xl text-center">
+                      <TrendingUp className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                      <h3 className="font-semibold text-green-800">Peningkatan Ekonomi</h3>
+                      <p className="text-3xl font-bold text-green-600 mt-2">23.4%</p>
+                      <p className="text-sm text-green-700">daya beli masyarakat</p>
+                    </div>
+                    <div className="bg-orange-50 p-6 rounded-xl text-center">
+                      <Heart className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+                      <h3 className="font-semibold text-orange-800">Kepuasan</h3>
+                      <p className="text-3xl font-bold text-orange-600 mt-2">87.5%</p>
+                      <p className="text-sm text-orange-700">penerima puas</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Trend Bantuan Sosial</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={trendBansos}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="tahun" />
-                    <YAxis yAxisId="left" orientation="left" />
-                    <YAxis yAxisId="right" orientation="right" tickFormatter={(value) => `${value/1000000000}M`} />
-                    <Tooltip 
-                      formatter={(value, name) => {
-                        if (name === 'total') return [value.toLocaleString(), 'Penerima'];
-                        return [formatRupiah(value), 'Anggaran'];
-                      }}
-                    />
-                    <Bar yAxisId="left" dataKey="total" fill="#EF4444" name="total" />
-                    <Bar yAxisId="right" dataKey="anggaran" fill="#3B82F6" name="anggaran" />
-                  </BarChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Reports Tab */}
+            <TabsContent value="reports" className="space-y-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <FileText className="mr-3 text-village-green" size={24} />
+                    Laporan Program Bantuan Sosial
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {[
+                      { nama: 'Laporan Penyaluran Bansos November 2024', ukuran: '2.1 MB', tanggal: '30 Nov 2024', kategori: 'Bulanan' },
+                      { nama: 'Evaluasi Program PKH Triwulan IV 2024', ukuran: '3.5 MB', tanggal: '25 Nov 2024', kategori: 'Evaluasi' },
+                      { nama: 'Data Penerima BPNT Semester II 2024', ukuran: '1.8 MB', tanggal: '20 Nov 2024', kategori: 'Data' },
+                      { nama: 'Laporan BLT-DD Tahun 2024', ukuran: '4.2 MB', tanggal: '15 Nov 2024', kategori: 'Tahunan' },
+                      { nama: 'Analisis Dampak Program Bansos 2024', ukuran: '5.1 MB', tanggal: '10 Nov 2024', kategori: 'Analisis' },
+                      { nama: 'Verifikasi Data Penerima PIP 2024', ukuran: '2.7 MB', tanggal: '05 Nov 2024', kategori: 'Verifikasi' }
+                    ].map((laporan, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
+                        <div className="flex items-center space-x-3">
+                          <FileText className="text-red-600" size={20} />
+                          <div>
+                            <h4 className="font-medium text-gray-800">{laporan.nama}</h4>
+                            <div className="flex items-center gap-2 text-sm text-gray-500">
+                              <Badge variant="outline" className="text-xs">{laporan.kategori}</Badge>
+                              <span>{laporan.ukuran}</span>
+                              <span>•</span>
+                              <span>{laporan.tanggal}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          Unduh
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
 
-          {/* Process Information */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Baby className="mr-3 text-village-green" size={24} />
-                  Alur Pendaftaran Bansos
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ol className="space-y-4">
-                  <li className="flex">
-                    <span className="bg-village-green text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3 mt-0.5">1</span>
-                    <div>
-                      <h4 className="font-semibold">Pendataan</h4>
-                      <p className="text-sm text-gray-600">RT/RW melakukan pendataan calon penerima</p>
+                  <div className="mt-8 p-6 bg-green-50 rounded-xl">
+                    <div className="flex items-start space-x-4">
+                      <Shield className="text-green-600 mt-1" size={24} />
+                      <div>
+                        <h3 className="font-semibold text-green-800 mb-2">Komitmen Transparansi Bantuan Sosial</h3>
+                        <p className="text-green-700 text-sm mb-4">
+                          Desa Fajar Baru berkomitmen untuk menjalankan program bantuan sosial secara 
+                          transparan, akuntabel, dan tepat sasaran. Semua data dan laporan dapat diakses 
+                          oleh masyarakat sesuai dengan ketentuan perlindungan data pribadi.
+                        </p>
+                        <div className="grid md:grid-cols-3 gap-4 text-sm">
+                          <div className="flex items-center">
+                            <CheckCircle className="text-green-600 mr-2" size={16} />
+                            <span>Data Terverifikasi</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Shield className="text-green-600 mr-2" size={16} />
+                            <span>Perlindungan Data</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Heart className="text-green-600 mr-2" size={16} />
+                            <span>Tepat Sasaran</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </li>
-                  <li className="flex">
-                    <span className="bg-village-green text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3 mt-0.5">2</span>
-                    <div>
-                      <h4 className="font-semibold">Verifikasi</h4>
-                      <p className="text-sm text-gray-600">Perangkat desa melakukan verifikasi data</p>
-                    </div>
-                  </li>
-                  <li className="flex">
-                    <span className="bg-village-green text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3 mt-0.5">3</span>
-                    <div>
-                      <h4 className="font-semibold">Penetapan</h4>
-                      <p className="text-sm text-gray-600">Kepala desa menetapkan daftar penerima</p>
-                    </div>
-                  </li>
-                  <li className="flex">
-                    <span className="bg-village-green text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3 mt-0.5">4</span>
-                    <div>
-                      <h4 className="font-semibold">Penyaluran</h4>
-                      <p className="text-sm text-gray-600">Bantuan disalurkan sesuai jadwal</p>
-                    </div>
-                  </li>
-                  <li className="flex">
-                    <span className="bg-village-green text-white rounded-full w-8 h-8 flex items-center justify-center text-sm mr-3 mt-0.5">5</span>
-                    <div>
-                      <h4 className="font-semibold">Monitoring</h4>
-                      <p className="text-sm text-gray-600">Evaluasi dan monitoring penerima</p>
-                    </div>
-                  </li>
-                </ol>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Users className="mr-3 text-village-blue" size={24} />
-                  Kontak & Informasi
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-gray-800">Penanggung Jawab Bansos</h4>
-                  <p className="text-gray-600">Ibu Sari Dewi, S.Sos</p>
-                  <p className="text-sm text-gray-500">Seksi Kesejahteraan</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-800">Lokasi Pendaftaran</h4>
-                  <p className="text-gray-600">Kantor Desa Fajar Baru<br />Jl. Way Kandis No. 123, Bandar Lampung</p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-800">Jam Pelayanan</h4>
-                  <p className="text-gray-600">
-                    Senin - Kamis: 08:00 - 15:00 WIB<br />
-                    Jumat: 08:00 - 11:30 WIB
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold text-gray-800">Kontak</h4>
-                  <p className="text-gray-600">
-                    Telepon: (0721) 123-4567<br />
-                    WhatsApp: 0812-3456-7890<br />
-                    Email: bansos@fajar-baru.desa.id
-                  </p>
-                </div>
-                
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Pengaduan</h4>
-                  <p className="text-blue-700 text-sm">
-                    Jika ada keluhan atau masukan tentang penyaluran bantuan sosial, 
-                    silakan hubungi nomor pengaduan di atas atau datang langsung ke kantor desa.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 
