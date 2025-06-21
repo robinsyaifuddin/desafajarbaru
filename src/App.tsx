@@ -20,6 +20,9 @@ import PPID from '@/pages/PPID';
 import APBDesa from '@/pages/APBDesa';
 import Belanja from '@/pages/Belanja';
 import Bansos from '@/pages/Bansos';
+import Login from '@/pages/Login';
+import AdminLogin from '@/pages/AdminLogin';
+import CitizenDashboard from '@/pages/CitizenDashboard';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
 import AdminNews from '@/pages/admin/AdminNews';
 import AdminResidents from '@/pages/admin/AdminResidents';
@@ -67,6 +70,11 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/document-request" element={<DocumentRequest />} />
             <Route path="/administrasi-penduduk" element={<AdministrasiPenduduk />} />
+            
+            {/* Authentication routes */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
             
             {/* Service submenu routes */}
             <Route path="/services/idm" element={<IDM />} />

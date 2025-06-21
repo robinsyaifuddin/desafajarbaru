@@ -10,6 +10,7 @@ interface User {
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => boolean;
+  register: (name: string, email: string, password: string) => boolean;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -43,7 +44,44 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(userData));
       return true;
     }
+
+    // Check for registered users in localStorage
+    const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+    const foundUser = registeredUsers.find((u: any) => u.email === email && u.password === password);
+    
+    if (foundUser) {
+      const userData: User = {
+        email: foundUser.email,
+        name: foundUser.name,
+        role: 'citizen'
+      };
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      return true;
+    }
+
     return false;
+  };
+
+  const register = (name: string, email: string, password: string): boolean => {
+    try {
+      const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+      
+      // Check if user already exists
+      if (registeredUsers.some((u: any) => u.email === email)) {
+        return false; // User already exists
+      }
+
+      // Add new user
+      const newUser = { name, email, password };
+      registeredUsers.push(newUser);
+      localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+      
+      return true;
+    } catch (error) {
+      console.error('Registration error:', error);
+      return false;
+    }
   };
 
   const logout = () => {
@@ -62,6 +100,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const value: AuthContextType = {
     user,
     login,
+    register,
     logout,
     isAuthenticated: !!user,
   };
