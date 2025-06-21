@@ -12,6 +12,7 @@ import NotFound from '@/pages/NotFound';
 import Services from '@/pages/Services';
 import Contact from '@/pages/Contact';
 import Events from '@/pages/Events';
+import Profile from '@/pages/Profile';
 import DocumentRequest from '@/pages/DocumentRequest';
 import AdministrasiPenduduk from '@/pages/AdministrasiPenduduk';
 import AdminDashboard from '@/pages/admin/AdminDashboard';
@@ -58,6 +59,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/document-request" element={<DocumentRequest />} />
             <Route path="/administrasi-penduduk" element={<AdministrasiPenduduk />} />
             
