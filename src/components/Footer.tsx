@@ -1,22 +1,10 @@
-
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
-
 const Footer = () => {
-  const quickLinks = [
-    'Profil Desa', 'Struktur Organisasi', 'Visi & Misi', 'Sejarah Desa'
-  ];
-
-  const services = [
-    'Administrasi Penduduk', 'Surat Keterangan', 'IDM', 'APB Desa'
-  ];
-
-  const tourism = [
-    'Air Terjun Way Kandis', 'Kebun Raya', 'Puncak Hijau', 'Sungai Way Kandis'
-  ];
-
-  return (
-    <footer className="bg-gray-900 text-white">
+  const quickLinks = ['Profil Desa', 'Struktur Organisasi', 'Visi & Misi', 'Sejarah Desa'];
+  const services = ['Administrasi Penduduk', 'Surat Keterangan', 'IDM', 'APB Desa'];
+  const tourism = ['Air Terjun Way Kandis', 'Kebun Raya', 'Puncak Hijau', 'Sungai Way Kandis'];
+  return <footer className="bg-gray-900 text-white">
       {/* Main Footer */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
@@ -24,11 +12,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 flex-shrink-0">
-                <img 
-                  src="/lovable-uploads/6d651776-4595-4e2e-a27c-cbcc298cd82f.png" 
-                  alt="Logo Desa Fajar Baru"
-                  className="w-full h-full object-contain"
-                />
+                <img src="/lovable-uploads/6d651776-4595-4e2e-a27c-cbcc298cd82f.png" alt="Logo Desa Fajar Baru" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h3 className="font-bold text-xl">Desa Fajar Baru</h3>
@@ -58,13 +42,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-6">Tentang Desa</h4>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
+              {quickLinks.map((link, index) => <li key={index}>
                   <a href="#" className="text-gray-300 hover:text-white transition-colors">
                     {link}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -72,13 +54,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold text-lg mb-6">Layanan</h4>
             <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
+              {services.map((service, index) => <li key={index}>
                   <a href="#" className="text-gray-300 hover:text-white transition-colors">
                     {service}
                   </a>
-                </li>
-              ))}
+                </li>)}
             </ul>
           </div>
 
@@ -110,18 +90,7 @@ const Footer = () => {
             </div>
 
             {/* Tourism Links */}
-            <div>
-              <h5 className="font-medium text-white mb-3">Destinasi Wisata</h5>
-              <ul className="space-y-2">
-                {tourism.slice(0, 3).map((destination, index) => (
-                  <li key={index}>
-                    <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                      {destination}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -150,8 +119,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
