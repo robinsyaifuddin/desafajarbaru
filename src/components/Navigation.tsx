@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, MapPin, Phone, Mail, ChevronDown, ChevronUp, Search, Home, User, BarChart3, Newspaper, Settings, Users, FileText, Building2, CreditCard, Heart, Clock, LogOut, UserCircle, Bell, FileEdit } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -134,7 +135,7 @@ const Navigation = () => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1.5 hover:scale-105 transition-transform duration-300">
               <MapPin size={10} className="animate-pulse" />
-              <span>Way Kandis, Bandar Lampung</span>
+              <span>Jati Agung, Lampung Selatan</span>
             </div>
             <div className="flex items-center space-x-1.5 hover:scale-105 transition-transform duration-300">
               <Phone size={10} className="animate-pulse delay-150" />
@@ -163,7 +164,7 @@ const Navigation = () => {
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative w-10 h-10 lg:w-12 lg:h-12">
               <img 
-                src="/lovable-uploads/bdcea5cc-3297-411e-a78d-3084095d265f.png" 
+                src="/lovable-uploads/6d651776-4595-4e2e-a27c-cbcc298cd82f.png" 
                 alt="Logo Desa Fajar Baru"
                 className="w-full h-full object-contain"
               />
@@ -172,7 +173,7 @@ const Navigation = () => {
               <h1 className="font-bold text-lg lg:text-xl text-gray-800 group-hover:text-emerald-600 transition-colors duration-300">
                 Desa Fajar Baru
               </h1>
-              <p className="text-xs lg:text-sm text-gray-600">Way Kandis, Bandar Lampung</p>
+              <p className="text-xs lg:text-sm text-gray-600">Jati Agung, Lampung Selatan</p>
             </div>
           </Link>
 

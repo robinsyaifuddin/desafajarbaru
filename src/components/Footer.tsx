@@ -23,12 +23,16 @@ const Footer = () => {
           {/* Village Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-village rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">FB</span>
+              <div className="w-12 h-12 flex-shrink-0">
+                <img 
+                  src="/lovable-uploads/6d651776-4595-4e2e-a27c-cbcc298cd82f.png" 
+                  alt="Logo Desa Fajar Baru"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-xl">Desa Fajar Baru</h3>
-                <p className="text-gray-400 text-sm">Way Kandis, Bandar Lampung</p>
+                <p className="text-gray-400 text-sm">Jati Agung, Lampung Selatan</p>
               </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
@@ -87,8 +91,8 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <MapPin size={18} className="text-village-green mt-1 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">
-                  Jl. Raya Way Kandis No. 123<br />
-                  Bandar Lampung, Lampung 35142
+                  Kec. Jati Agung<br />
+                  Kab. Lampung Selatan, Lampung
                 </span>
               </div>
               <div className="flex items-center space-x-3">

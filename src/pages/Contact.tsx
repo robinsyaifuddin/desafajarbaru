@@ -37,7 +37,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Alamat',
-      value: 'Jl. Way Kandis No. 123, Bandar Lampung, Lampung 35142',
+      value: 'Kec. Jati Agung, Kabupaten Lampung Selatan, Lampung',
       color: 'bg-red-500'
     },
     {
@@ -193,7 +193,8 @@ const Contact = () => {
                   <div className="text-center text-gray-500">
                     <MapPin size={48} className="mx-auto mb-2" />
                     <p>Peta Lokasi Kantor Desa</p>
-                    <p className="text-sm">Jl. Way Kandis No. 123</p>
+                    <p className="text-sm">Kec. Jati Agung</p>
+                    <p className="text-sm">Kab. Lampung Selatan</p>
                   </div>
                 </div>
               </Card>
