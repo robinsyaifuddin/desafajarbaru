@@ -9,35 +9,35 @@ import Footer from '@/components/Footer';
 
 const Profile = () => {
   const villageData = {
-    establishment: '1965',
-    area: '847 Ha',
-    population: '2,847 jiwa',
-    families: '847 KK',
+    establishment: '1960',
+    area: '6,40 km²',
+    population: '7.041 jiwa',
+    families: '1.800 KK',
     rw: '8 RW',
     rt: '24 RT'
   };
 
   const officials = [
     {
-      name: 'Bapak Suryadi, S.Sos',
+      name: 'M. Agus Budiantoro, S.HI, MH',
       position: 'Kepala Desa',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80',
-      period: '2019 - 2025'
+      period: '2019 - 2027'
     },
     {
-      name: 'Ibu Siti Aminah, S.E',
+      name: 'Sekretaris Desa',
       position: 'Sekretaris Desa',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b332e234?auto=format&fit=crop&w=400&q=80',
       period: '2020 - 2026'
     },
     {
-      name: 'Bapak Ahmad Fauzi, S.H',
-      position: 'Kasi Pemerintahan',
+      name: 'Kaur Keuangan',
+      position: 'Kaur Keuangan',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
       period: '2020 - 2026'
     },
     {
-      name: 'Ibu Dewi Sartika, S.Pd',
+      name: 'Kasi Kesejahteraan',
       position: 'Kasi Kesejahteraan',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&q=80',
       period: '2021 - 2027'
@@ -46,24 +46,24 @@ const Profile = () => {
 
   const achievements = [
     {
+      year: '2024',
+      award: 'Status Desa Maju',
+      category: 'IDM 0,7578 - Kemendes RI'
+    },
+    {
+      year: '2024',
+      award: 'Kampung Pengawasan Partisipatif',
+      category: 'Bawaslu Lampung Selatan'
+    },
+    {
       year: '2023',
-      award: 'Desa Terbaik Tingkat Kecamatan',
-      category: 'Pembangunan Infrastruktur'
+      award: 'Koordinator Terbaik ke-3',
+      category: 'Sosialisasi Perda Lampung'
     },
     {
-      year: '2022',
-      award: 'Desa Wisata Terpopuler',
-      category: 'Pariwisata Daerah'
-    },
-    {
-      year: '2021',
-      award: 'Desa Mandiri Energi',
-      category: 'Lingkungan Hidup'
-    },
-    {
-      year: '2020',
-      award: 'Desa Bebas Buta Huruf',
-      category: 'Pendidikan'
+      year: '2023',
+      award: 'Penghargaan SDGs',
+      category: 'Kementerian Desa RI'
     }
   ];
 
@@ -80,7 +80,7 @@ const Profile = () => {
             </h1>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Mengenal lebih dekat sejarah, visi misi, dan struktur pemerintahan 
-              Desa Fajar Baru Way Kandis, Bandar Lampung
+              Desa Fajar Baru, Kecamatan Jati Agung, Kabupaten Lampung Selatan
             </p>
           </div>
 
@@ -123,21 +123,30 @@ const Profile = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Sejarah Desa</h2>
             <div className="prose max-w-none text-gray-600">
               <p className="mb-4">
-                Desa Fajar Baru didirikan pada tahun 1965 sebagai bagian dari program transmigrasi 
-                pemerintah Indonesia. Nama "Fajar Baru" dipilih untuk melambangkan harapan dan 
-                semangat baru para penduduk yang datang dari berbagai daerah di Indonesia.
+                Pada mulanya Desa Fajar Baru merupakan bagian dari Desa Karang Anyar, yang pada tahun 1959 
+                disebut dengan susukan Fajar Baru. Selanjutnya tahun 1960 memisahkan diri dari Desa Karang Anyar 
+                dengan kepala desa A. Sastro Rejo.
               </p>
               <p className="mb-4">
-                Awalnya, desa ini merupakan area hutan yang kemudian dibuka dan dikembangkan 
-                menjadi pemukiman. Para transmigran yang datang sebagian besar berasal dari 
-                Jawa Tengah dan Jawa Timur, membawa serta budaya dan tradisi yang kemudian 
-                berpadu dengan budaya lokal Lampung.
+                Tahun 1965 setelah G30S kembali menggabungkan diri dengan Desa Karang Anyar yang waktu itu 
+                dipimpin Kepala Desa Hadi Sumarto, tahun 1968 dipimpin A.Hakim hingga tahun 1984. Pada tahun 
+                tersebut diadakan pemekaran desa dan sebagai penjabat Kepala Desa Bapak Aliesan dengan sebutan 
+                Desa Fajar Baru Kecamatan Tanjung Bintang Kabupaten Lampung Selatan.
+              </p>
+              <p className="mb-4">
+                Pada tanggal 20 Oktober 1986 ditetapkan menjadi Desa Persiapan dengan Kepala Desa Persiapan 
+                diangkat Sdr. Aliesan selama 5 tahun. Desa Fajar Baru definitif menjadi desa tahun 1991, 
+                dan tahun 1992 diadakan Pilkades pertama yang terpilih lagi Sdr. Aliesan hingga tahun 2002.
+              </p>
+              <p className="mb-4">
+                Setelah beberapa periode kepemimpinan yang dipimpin oleh Pariman, Suparno, Ir. Zoehery Zoel, 
+                dan Solichen S.Sos, pada tahun 2013 terpilih Sdr. Sucipto yang menjabat hingga 2019.
               </p>
               <p>
-                Seiring berjalannya waktu, Desa Fajar Baru berkembang menjadi salah satu desa 
-                yang mandiri dan sejahtera di Kecamatan Way Kandis. Dengan potensi alam yang 
-                melimpah dan masyarakat yang gotong royong, desa ini terus berkembang hingga 
-                menjadi desa wisata yang menarik bagi pengunjung.
+                Kepala Desa saat ini, M. Agus Budiantoro, S.HI, MH (lahir 16 Agustus 1986 di Bandar Lampung), 
+                memulai karier sebagai guru honorer, kemudian sebagai anggota BPD (2013–2019), dan pada 2019 
+                terpilih sebagai Kepala Desa periode 2019–2027. Beliau dikenal sebagai sosok yang aktif 
+                berorganisasi dan menjabat sebagai Sekretaris APDESI Provinsi Lampung (2023–2028).
               </p>
             </div>
           </Card>
@@ -150,8 +159,8 @@ const Profile = () => {
                 <h3 className="text-2xl font-bold text-gray-800">Visi Desa</h3>
               </div>
               <blockquote className="text-lg text-gray-700 italic border-l-4 border-village-green pl-4">
-                "Mewujudkan Desa Fajar Baru sebagai desa yang mandiri, sejahtera, dan berdaya 
-                saing dengan tetap melestarikan nilai-nilai budaya dan lingkungan hidup"
+                "Menjadi desa maju, mandiri, dan berdaya saing dengan peningkatan infrastruktur, 
+                ekonomi desa, serta kualitas kehidupan sosial dan ekologis"
               </blockquote>
             </Card>
 
@@ -163,19 +172,19 @@ const Profile = () => {
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-village-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  Meningkatkan kualitas pelayanan publik yang profesional dan transparan
+                  Melanjutkan peningkatan infrastruktur jalan lingkungan dan jalan usaha tani
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-village-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  Mengembangkan potensi ekonomi desa melalui UMKM dan pariwisata
+                  Meningkatkan ketahanan pangan melalui penguatan BUMDes "Madani"
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-village-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  Membangun infrastruktur desa yang mendukung kesejahteraan masyarakat
+                  Meningkatkan kesejahteraan masyarakat lewat program BLT-DD dan bantuan sosial
                 </li>
                 <li className="flex items-start">
                   <div className="w-2 h-2 bg-village-blue rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                  Melestarikan budaya lokal dan menjaga kelestarian lingkungan
+                  Mendukung pembangunan religi dan sosial serta menjaga partisipasi demokratis
                 </li>
               </ul>
             </Card>
@@ -223,58 +232,101 @@ const Profile = () => {
             </div>
           </Card>
 
+          {/* Programs Section */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            <Card className="p-8 animate-fade-in">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Program Unggulan</h3>
+              <div className="space-y-4 text-gray-700">
+                <div className="border-l-4 border-village-green pl-4">
+                  <h4 className="font-semibold mb-1">BUMDes "Madani"</h4>
+                  <p className="text-sm">Pengembangan hidroponik, pembibitan, dan kemitraan jual gabah dengan alokasi dana Rp296 juta</p>
+                </div>
+                <div className="border-l-4 border-village-blue pl-4">
+                  <h4 className="font-semibold mb-1">Ketahanan Pangan</h4>
+                  <p className="text-sm">Program sapi/kambing desa dan alokasi 20% dana desa untuk ketahanan pangan</p>
+                </div>
+                <div className="border-l-4 border-village-orange pl-4">
+                  <h4 className="font-semibold mb-1">Masjid As-Safinatu Al-Abbas</h4>
+                  <p className="text-sm">Pembangunan masjid dengan waqaf tanah 600 m² dan dana awal Rp120 juta</p>
+                </div>
+              </div>
+            </Card>
+
+            <Card className="p-8 animate-fade-in">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">Program Sosial</h3>
+              <div className="space-y-4 text-gray-700">
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                  <span className="font-medium">BLT-DD 2023</span>
+                  <span className="text-village-green font-semibold">35 KPM</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                  <span className="font-medium">Bantuan Yatim</span>
+                  <span className="text-village-blue font-semibold">80 Anak</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                  <span className="font-medium">Bantuan Duafa</span>
+                  <span className="text-village-orange font-semibold">45 Orang</span>
+                </div>
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                  <span className="font-medium">Siltap Aparat & Kader</span>
+                  <span className="text-purple-500 font-semibold">Rutin</span>
+                </div>
+              </div>
+            </Card>
+          </div>
+
           {/* Geographic Information */}
           <div className="grid lg:grid-cols-2 gap-8">
             <Card className="p-8 animate-fade-in">
               <h3 className="text-2xl font-bold text-gray-800 mb-6">Letak Geografis</h3>
               <div className="space-y-4 text-gray-700">
                 <div className="flex justify-between">
-                  <span className="font-medium">Koordinat:</span>
-                  <span>5°22&apos;S, 105°16&apos;E</span>
+                  <span className="font-medium">Luas Wilayah:</span>
+                  <span>6,40 km²</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium">Ketinggian:</span>
-                  <span>45-120 mdpl</span>
+                  <span className="font-medium">Status IDM:</span>
+                  <span className="text-village-green font-semibold">Desa Maju (0,7578)</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium">Iklim:</span>
-                  <span>Tropis</span>
+                  <span className="font-medium">Kecamatan:</span>
+                  <span>Jati Agung</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium">Curah Hujan:</span>
-                  <span>2.500 mm/tahun</span>
+                  <span className="font-medium">Kabupaten:</span>
+                  <span>Lampung Selatan</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium">Suhu Rata-rata:</span>
-                  <span>26-32°C</span>
+                  <span className="font-medium">Provinsi:</span>
+                  <span>Lampung</span>
                 </div>
               </div>
             </Card>
 
             <Card className="p-8 animate-fade-in">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Batas Wilayah</h3>
-              <div className="space-y-4 text-gray-700">
-                <div className="flex justify-between">
-                  <span className="font-medium">Utara:</span>
-                  <span>Desa Sukarame</span>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">UMKM & Produk Unggulan</h3>
+              <div className="space-y-3 text-gray-700">
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-village-green rounded-full mr-3"></div>
+                  <span>Eco-sabun ramah lingkungan</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Selatan:</span>
-                  <span>Desa Sukamaju</span>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-village-blue rounded-full mr-3"></div>
+                  <span>Kerajinan tapis tradisional</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Timur:</span>
-                  <span>Desa Way Kandis</span>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-village-orange rounded-full mr-3"></div>
+                  <span>Tas dan kerajinan tangan</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="font-medium">Barat:</span>
-                  <span>Hutan Lindung</span>
+                <div className="flex items-center">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                  <span>Produk hidroponik BUMDes</span>
                 </div>
               </div>
-              <Link to="/village-map">
+              <Link to="/services">
                 <Button className="w-full mt-6 bg-gradient-village hover:opacity-90">
                   <MapPin size={16} className="mr-2" />
-                  Lihat Peta Desa
+                  Lihat Layanan Desa
                 </Button>
               </Link>
             </Card>

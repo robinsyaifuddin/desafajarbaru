@@ -7,25 +7,25 @@ const VillageProfile = () => {
   const profileData = [
     {
       title: 'Sejarah Desa',
-      content: 'Desa Fajar Baru didirikan pada tahun 1965 dengan semangat gotong royong masyarakat transmigran dari Jawa. Nama "Fajar Baru" melambangkan harapan akan kehidupan yang lebih baik.',
+      content: 'Desa Fajar Baru berdiri tahun 1960 setelah memisahkan diri dari Desa Karang Anyar. Melalui perjalanan panjang hingga menjadi desa definitif tahun 1991, kini dipimpin M. Agus Budiantoro, S.HI, MH periode 2019-2027.',
       icon: Calendar
     },
     {
       title: 'Visi Desa',
-      content: 'Menjadi desa mandiri, sejahtera, dan berkelanjutan dengan memanfaatkan teknologi digital untuk pelayanan prima kepada masyarakat.',
+      content: 'Menjadi desa maju, mandiri, dan berdaya saing dengan peningkatan infrastruktur, ekonomi desa, serta kualitas kehidupan sosial dan ekologis.',
       icon: Award
     },
     {
-      title: 'Misi Desa',
-      content: 'Meningkatkan kualitas hidup masyarakat melalui pembangunan infrastruktur, pemberdayaan ekonomi lokal, dan pelestarian lingkungan.',
+      title: 'Program Unggulan',
+      content: 'BUMDes "Madani" dengan fokus hidroponik dan ketahanan pangan, program bantuan sosial BLT-DD, pembangunan infrastruktur, dan pengembangan UMKM desa.',
       icon: Users
     }
   ];
 
   const achievements = [
-    { title: 'Desa Digital Terbaik', year: '2023', category: 'Provinsi Lampung' },
-    { title: 'Desa Wisata Unggulan', year: '2022', category: 'Kabupaten Bandar Lampung' },
-    { title: 'Desa Bersih Mandiri', year: '2021', category: 'Nasional' }
+    { title: 'Status Desa Maju', year: '2024', category: 'IDM 0,7578 - Kemendes RI' },
+    { title: 'Penghargaan SDGs', year: '2023', category: 'Kementerian Desa RI' },
+    { title: 'Kampung Pengawasan Partisipatif', year: '2024', category: 'Bawaslu Lampung Selatan' }
   ];
 
   return (
@@ -37,7 +37,7 @@ const VillageProfile = () => {
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Mengenal lebih dekat tentang sejarah, visi, misi, dan pencapaian Desa Fajar Baru
-            dalam perjalanan menuju desa yang maju dan mandiri.
+            dalam perjalanan menuju desa yang maju dan mandiri dengan status Desa Maju IDM 0,7578.
           </p>
         </div>
 
@@ -76,24 +76,24 @@ const VillageProfile = () => {
             <div>
               <MapPin className="w-12 h-12 text-village-green mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Lokasi</h3>
-              <p className="text-gray-600">Way Kandis, Bandar Lampung<br />Provinsi Lampung</p>
+              <p className="text-gray-600">Jati Agung, Lampung Selatan<br />Provinsi Lampung</p>
             </div>
             <div>
               <Users className="w-12 h-12 text-village-blue mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Luas Wilayah</h3>
-              <p className="text-gray-600">847 Hektar<br />8 RW, 24 RT</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">Data Penduduk</h3>
+              <p className="text-gray-600">7.041 Jiwa<br />Luas 6,40 km²</p>
             </div>
             <div>
               <Award className="w-12 h-12 text-village-orange mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Status</h3>
-              <p className="text-gray-600">Desa Swadaya<br />Mandiri</p>
+              <p className="text-gray-600">Desa Maju<br />IDM 0,7578</p>
             </div>
           </div>
         </Card>
 
         {/* Achievements */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-gray-800 mb-8">Prestasi & Penghargaan</h3>
+          <h3 className="text-2xl font-bold text-gray-800 mb-8">Prestasi & Penghargaan Terkini</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {achievements.map((achievement, index) => (
               <Card key={index} className="p-6 text-center hover:shadow-lg transition-shadow duration-300 animate-fade-in" style={{animationDelay: `${index * 0.1}s`}}>
