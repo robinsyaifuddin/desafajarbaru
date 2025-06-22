@@ -1,12 +1,9 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, Building2, MapPin, Wifi, Smartphone, BarChart3, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 const HeroSection = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-16">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-16">
       {/* Advanced Background with Gradient and Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-blue-50 to-green-50">
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/10 via-blue-600/10 to-green-600/10"></div>
@@ -22,9 +19,9 @@ const HeroSection = () => {
         {/* Grid Pattern */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div className="w-full h-full bg-grid-pattern bg-repeat" style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
-            backgroundSize: '50px 50px'
-          }}></div>
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
         </div>
       </div>
 
@@ -123,21 +120,14 @@ const HeroSection = () => {
           {/* Enhanced Action Buttons - Moved above statistics cards */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link to="/infographics" className="w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                className="w-full bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group"
-              >
+              <Button size="lg" className="w-full bg-gradient-to-r from-emerald-600 via-blue-600 to-green-600 hover:from-emerald-700 hover:via-blue-700 hover:to-green-700 text-white px-8 py-4 text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group">
                 Jelajahi Smart Village
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={20} />
               </Button>
             </Link>
             
             <Link to="/services/administrasi-penduduk" className="w-full sm:w-auto">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full border-2 border-gray-300 hover:bg-gray-50 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-8 py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/80"
-              >
+              <Button variant="outline" size="lg" className="w-full border-2 border-gray-300 hover:bg-gray-50 hover:border-emerald-300 text-gray-700 hover:text-emerald-700 px-8 py-4 text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm bg-white/80">
                 Layanan Digital
               </Button>
             </Link>
@@ -180,24 +170,9 @@ const HeroSection = () => {
           </div>
 
           {/* Enhanced Contact Info */}
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg border border-white/30 max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-gray-600">
-              <div className="flex items-center justify-center sm:justify-start">
-                <MapPin className="w-4 h-4 mr-2 text-emerald-600" />
-                <span className="text-sm">Jl. Way Kandis No. 123, Bandar Lampung</span>
-              </div>
-              <div className="flex items-center justify-center sm:justify-start">
-                <span className="text-sm">📞 (0721) 123-4567</span>
-              </div>
-              <div className="flex items-center justify-center sm:justify-start">
-                <span className="text-sm">✉️ info@fajar-baru.desa.id</span>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
