@@ -15,69 +15,69 @@ const News = () => {
   const newsItems = [
     {
       id: 1,
-      title: 'Pembangunan Jalan Utama Desa Fase II Dimulai',
-      category: 'Pembangunan',
-      excerpt: 'Pemerintah Desa Fajar Baru memulai pembangunan jalan utama fase kedua dengan anggaran Rp 500 juta untuk meningkatkan aksesibilitas...',
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
+      title: 'Desa Fajar Baru Raih Status Desa Maju dengan IDM 0.7578',
+      category: 'Pemerintahan',
+      excerpt: 'Dalam Musyawarah Desa 2024, Desa Fajar Baru berhasil meraih status Desa Maju dengan Indeks Desa Membangun (IDM) 0.7578 dari Kementerian Desa RI...',
+      image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=80',
       date: '25 Januari 2024',
-      author: 'Admin Desa',
+      author: 'M. Agus Budiantoro',
       views: 245,
       readTime: '5 min'
     },
     {
       id: 2,
-      title: 'Pelatihan UMKM Digital Marketing Sukses Digelar',
+      title: 'BUMDes Madani Kembangkan Program Hidroponik dengan Dana 296 Juta',
       category: 'UMKM',
-      excerpt: 'Sebanyak 50 pelaku UMKM mengikuti pelatihan digital marketing yang diselenggarakan oleh Dinas Koperasi dan UMKM Kota Bandar Lampung...',
-      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80',
+      excerpt: 'Dana desa dialokasikan 20% untuk ketahanan pangan melalui pengembangan BUMDes Madani yang fokus pada sektor hidroponik, pembibitan, dan kemitraan jual gabah...',
+      image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=600&q=80',
       date: '23 Januari 2024',
-      author: 'Humas Desa',
+      author: 'Tim BUMDes',
       views: 189,
       readTime: '4 min'
     },
     {
       id: 3,
-      title: 'Musyawarah Desa Membahas APBDes 2024',
-      category: 'Pemerintahan',
-      excerpt: 'Kepala Desa bersama BPD dan tokoh masyarakat membahas Anggaran Pendapatan dan Belanja Desa tahun 2024 dengan fokus pembangunan infrastruktur...',
-      image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80',
+      title: 'Pembangunan Masjid As-Safinatu Al-Abbas Dimulai',
+      category: 'Kegiatan',
+      excerpt: 'Peletakan batu pertama Masjid As-Safinatu Al-Abbas dilaksanakan pada 31 Maret 2023 dengan wakaf tanah 600 m² dan dana awal Rp 120 juta...',
+      image: 'https://images.unsplash.com/photo-1564769625392-651b2abd5e37?auto=format&fit=crop&w=600&q=80',
       date: '20 Januari 2024',
-      author: 'Sekretaris Desa',
+      author: 'Panitia Pembangunan',
       views: 312,
       readTime: '5 min'
     },
     {
       id: 4,
-      title: 'Festival Budaya Way Kandis Meriah Digelar',
-      category: 'Kegiatan',
-      excerpt: 'Festival budaya tahunan Way Kandis sukses digelar dengan berbagai pertunjukan seni tradisional dan pameran produk lokal...',
-      image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800&q=80',
+      title: 'Program BLT-DD Disalurkan untuk 145 KK',
+      category: 'Sosial',
+      excerpt: 'Bantuan Langsung Tunai Dana Desa (BLT-DD) tahun 2023 telah disalurkan kepada 145 Kepala Keluarga dengan total bantuan Rp 87 juta...',
+      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=600&q=80',
       date: '18 Januari 2024',
-      author: 'Karang Taruna',
+      author: 'Tim PKH Desa',
       views: 467,
       readTime: '3 min'
     },
     {
       id: 5,
-      title: 'Program Bantuan Sosial Tunai Disalurkan',
-      category: 'Sosial',
-      excerpt: 'Penyaluran bantuan sosial tunai kepada 150 keluarga penerima manfaat sebagai upaya pemulihan ekonomi pasca pandemi...',
-      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80',
+      title: 'Pembangunan Infrastruktur Jalan Desa Tahap II',
+      category: 'Pembangunan',
+      excerpt: 'Melalui Musrenbang Desa, pembangunan jalan desa dan lingkungan di semua dusun memasuki tahap kedua dengan fokus pada jalan tani...',
+      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80',
       date: '15 Januari 2024',
-      author: 'Tim PKH',
+      author: 'Tim Pembangunan',
       views: 523,
-      readTime: '2 min'
+      readTime: '6 min'
     },
     {
       id: 6,
-      title: 'Vaksinasi COVID-19 Dosis Booster Berlangsung',
-      category: 'Sosial',
-      excerpt: 'Kegiatan vaksinasi dosis booster COVID-19 diselenggarakan di Balai Desa dengan target 200 warga per hari...',
-      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80',
+      title: 'Kampung Pengawasan Partisipatif Pilkada 2024',
+      category: 'Pemerintahan',
+      excerpt: 'Desa Fajar Baru terpilih sebagai ikon Kampung Pengawasan Partisipatif dalam Pilkada 2024 oleh Bawaslu Lampung Selatan...',
+      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=600&q=80',
       date: '12 Januari 2024',
-      author: 'Puskesmas',
+      author: 'Bawaslu Lamsel',
       views: 178,
-      readTime: '2 min'
+      readTime: '4 min'
     }
   ];
 
@@ -109,7 +109,7 @@ const News = () => {
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
               Informasi terkini seputar kegiatan, pembangunan, dan perkembangan 
-              terbaru di Desa Fajar Baru Way Kandis
+              terbaru di Desa Fajar Baru, Jati Agung, Lampung Selatan
             </p>
           </div>
 
@@ -135,11 +135,11 @@ const News = () => {
           {filteredNews.length > 0 && (
             <Card className="mb-12 overflow-hidden animate-fade-in hover:shadow-xl transition-shadow duration-300">
               <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative">
+                <div className="relative h-80 lg:h-96">
                   <img 
                     src={filteredNews[0].image} 
                     alt={filteredNews[0].title}
-                    className="w-full h-64 lg:h-full object-cover"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-village-green text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -147,7 +147,7 @@ const News = () => {
                     </span>
                   </div>
                 </div>
-                <div className="p-6 lg:p-8">
+                <div className="p-6 lg:p-8 flex flex-col justify-center">
                   <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(filteredNews[0].category)}`}>
                       {filteredNews[0].category}
@@ -161,7 +161,7 @@ const News = () => {
                       <span>{filteredNews[0].readTime}</span>
                     </div>
                   </div>
-                  <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-4">
+                  <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-4 line-clamp-2">
                     {filteredNews[0].title}
                   </h2>
                   <p className="text-gray-600 mb-6 line-clamp-3">
@@ -192,21 +192,23 @@ const News = () => {
           {/* News Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredNews.slice(1).map((item, index) => (
-              <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in" style={{animationDelay: `${index * 0.1}s`}}>
+              <Card key={item.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-fade-in group" style={{animationDelay: `${index * 0.1}s`}}>
                 <div className="relative">
-                  <img 
-                    src={item.image} 
-                    alt={item.title}
-                    className="w-full h-48 object-cover"
-                  />
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
                   <div className="absolute top-4 left-4">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryColor(item.category)}`}>
                       {item.category}
                     </span>
                   </div>
                 </div>
-                <div className="p-4 lg:p-6">
-                  <div className="flex flex-wrap items-center gap-2 lg:gap-4 text-xs text-gray-500 mb-3">
+                <div className="p-6">
+                  <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 mb-3">
                     <div className="flex items-center gap-1">
                       <Calendar size={12} />
                       <span>{item.date}</span>
@@ -216,13 +218,13 @@ const News = () => {
                       <span>{item.readTime}</span>
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-2">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3 line-clamp-2 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
                     {item.excerpt}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between pt-2 border-t">
                     <div className="flex items-center gap-3 text-xs text-gray-500">
                       <div className="flex items-center gap-1">
                         <User size={12} />
@@ -235,9 +237,8 @@ const News = () => {
                     </div>
                     <Link to={`/news/${item.id}`}>
                       <Button 
-                        variant="outline" 
                         size="sm" 
-                        className="border-village-green text-village-green hover:bg-village-green hover:text-white flex-shrink-0"
+                        className="bg-village-green hover:bg-village-green/90 text-white"
                       >
                         Baca
                       </Button>

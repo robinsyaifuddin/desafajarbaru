@@ -23,78 +23,146 @@ const NewsDetail = () => {
     {
       id: 1,
       author: 'Ahmad Ridwan',
-      content: 'Terima kasih atas informasinya yang sangat bermanfaat. Semoga program ini dapat berjalan dengan lancar.',
+      content: 'Alhamdulillah, sangat bangga dengan prestasi Desa Fajar Baru. Semoga terus maju dan berkembang untuk kesejahteraan masyarakat.',
       date: '2 jam yang lalu',
-      likes: 5
+      likes: 12
     },
     {
       id: 2,
       author: 'Siti Nurhaliza',
-      content: 'Sangat bangga dengan perkembangan desa kita. Mari kita dukung semua program pembangunan.',
+      content: 'Program BUMDes Madani sangat bagus untuk ketahanan pangan. Mari kita dukung program-program desa untuk kemajuan bersama.',
       date: '5 jam yang lalu',
-      likes: 3
+      likes: 8
+    },
+    {
+      id: 3,
+      author: 'Budi Santoso',
+      content: 'Terima kasih kepada Kepala Desa dan jajarannya yang telah bekerja keras. Mudah-mudahan semua program dapat terlaksana dengan baik.',
+      date: '1 hari yang lalu',
+      likes: 15
     }
   ]);
   const [newComment, setNewComment] = useState('');
   const [showShareMenu, setShowShareMenu] = useState(false);
 
-  // Sample news data - in a real app, this would come from an API
+  // Sample news data with detailed content
   const newsItems = {
     1: {
       id: 1,
-      title: 'Pembangunan Jalan Utama Desa Fase II Dimulai',
-      category: 'Pembangunan',
-      excerpt: 'Pemerintah Desa Fajar Baru memulai pembangunan jalan utama fase kedua dengan anggaran Rp 500 juta untuk meningkatkan aksesibilitas...',
+      title: 'Desa Fajar Baru Raih Status Desa Maju dengan IDM 0.7578',
+      category: 'Pemerintahan',
+      excerpt: 'Dalam Musyawarah Desa 2024, Desa Fajar Baru berhasil meraih status Desa Maju dengan Indeks Desa Membangun (IDM) 0.7578 dari Kementerian Desa RI.',
       content: `
-        <p>Pembangunan jalan utama Desa Fajar Baru fase kedua resmi dimulai hari ini dengan total anggaran sebesar Rp 500 juta. Proyek ini merupakan kelanjutan dari fase pertama yang telah berhasil diselesaikan tahun lalu.</p>
-        
-        <p>Kepala Desa menyatakan bahwa pembangunan ini bertujuan untuk meningkatkan aksesibilitas dan mobilitas masyarakat, terutama untuk menghubungkan area pertanian dengan pusat desa. "Dengan adanya jalan yang baik, diharapkan dapat memperlancar distribusi hasil pertanian dan meningkatkan perekonomian masyarakat," ujar Kepala Desa.</p>
-        
-        <p>Pekerjaan meliputi pelebaran jalan dari 4 meter menjadi 6 meter, perbaikan sistem drainase sepanjang 2 kilometer, dan pemasangan penerangan jalan LED yang hemat energi. Seluruh material yang digunakan dipastikan berkualitas tinggi untuk memastikan daya tahan jalan dalam jangka panjang.</p>
-        
-        <p>Tim konstruksi yang terdiri dari 25 pekerja telah dimobilisasi dan akan bekerja secara bertahap untuk meminimalisir gangguan terhadap aktivitas masyarakat sehari-hari. Jadwal kerja diatur dari pukul 07.00 hingga 16.00 WIB untuk menghindari jam sibuk.</p>
-        
-        <p>Proyek ini diharapkan dapat selesai dalam waktu 6 bulan ke depan, tepatnya pada bulan Juli 2024. Masyarakat diminta untuk bersabar dan mendukung kelancaran pembangunan demi kemajuan bersama.</p>
-        
-        <p>Selain pembangunan jalan, pemerintah desa juga merencanakan pembangunan jembatan penghubung di area sungai Way Kandis yang akan dimulai setelah proyek jalan selesai. Hal ini merupakan bagian dari rencana pembangunan infrastruktur jangka panjang Desa Fajar Baru.</p>
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Pencapaian luar biasa telah diraih oleh Desa Fajar Baru, Kecamatan Jati Agung, Lampung Selatan. Dalam Musyawarah Desa yang digelar pada tahun 2024, desa yang dipimpin oleh M. Agus Budiantoro, S.HI, MH ini berhasil meraih status "Desa Maju" dengan Indeks Desa Membangun (IDM) sebesar 0.7578.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Indeks Desa Membangun (IDM)</h3>
+          <p class="mb-4">Indeks Desa Membangun (IDM) merupakan indeks komposit yang menggambarkan tingkat perkembangan desa berdasarkan tiga dimensi utama: Dimensi Sosial, Dimensi Ekonomi, dan Dimensi Ekologi/Lingkungan. Dengan skor 0.7578, Desa Fajar Baru berhasil masuk dalam kategori "Desa Maju" yang menunjukkan pencapaian signifikan dalam berbagai aspek pembangunan desa.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Faktor Pendukung Keberhasilan</h3>
+          <p class="mb-4">Keberhasilan ini tidak lepas dari berbagai program pembangunan yang telah dilaksanakan secara konsisten, meliputi:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Pembangunan infrastruktur jalan desa dan lingkungan di semua dusun</li>
+            <li>Pengembangan BUMDes "Madani" dengan fokus pada ketahanan pangan</li>
+            <li>Program bantuan sosial yang tepsasaran</li>
+            <li>Peningkatan partisipasi masyarakat dalam pembangunan</li>
+            <li>Penguatan tata kelola pemerintahan desa yang transparan</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Komitmen Kepemimpinan</h3>
+          <p class="mb-4">Kepala Desa M. Agus Budiantoro yang menjabat periode 2019-2027 menyatakan bahwa pencapaian ini merupakan hasil kerja keras seluruh elemen masyarakat. "Status Desa Maju ini bukan hanya prestasi, tetapi juga tanggung jawab untuk terus meningkatkan kualitas hidup masyarakat," ujarnya.</p>
+          
+          <p class="mb-4">Beliau yang juga menjabat sebagai Sekretaris APDESI Provinsi Lampung periode 2023-2028 menambahkan bahwa berbagai penghargaan yang telah diraih desa, termasuk reward kinerja 3 tahun berturut-turut dari Kementerian Desa RI, menjadi motivasi untuk terus berinovasi dalam pembangunan desa.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Rencana Pembangunan Berkelanjutan</h3>
+          <p class="mb-4">Dengan status Desa Maju yang telah diraih, Desa Fajar Baru berkomitmen untuk terus melanjutkan program-program pembangunan berkelanjutan. Fokus utama untuk periode mendatang meliputi:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Percepatan penurunan stunting melalui program ketahanan pangan</li>
+            <li>Pengembangan sektor pariwisata dan ekonomi kreatif</li>
+            <li>Peningkatan kualitas sumber daya manusia</li>
+            <li>Penguatan kelembagaan desa</li>
+            <li>Pembangunan infrastruktur yang ramah lingkungan</li>
+          </ul>
+          
+          <p class="mt-6">Pencapaian status Desa Maju dengan IDM 0.7578 ini diharapkan dapat menjadi inspirasi bagi desa-desa lain di Kabupaten Lampung Selatan untuk terus berkomitmen dalam pembangunan yang berkelanjutan dan berpusat pada kesejahteraan masyarakat.</p>
+        </div>
       `,
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=80',
       date: '25 Januari 2024',
-      author: 'Admin Desa',
+      author: 'M. Agus Budiantoro',
       views: 245,
-      readTime: '5 min'
+      readTime: '8 min'
     },
     2: {
       id: 2,
-      title: 'Pelatihan UMKM Digital Marketing Sukses Digelar',
+      title: 'BUMDes Madani Kembangkan Program Hidroponik dengan Dana 296 Juta',
       category: 'UMKM',
-      excerpt: 'Sebanyak 50 pelaku UMKM mengikuti pelatihan digital marketing yang diselenggarakan oleh Dinas Koperasi dan UMKM Kota Bandar Lampung...',
+      excerpt: 'Dana desa dialokasikan 20% untuk ketahanan pangan melalui pengembangan BUMDes Madani yang fokus pada sektor hidroponik, pembibitan, dan kemitraan jual gabah.',
       content: `
-        <p>Pelatihan digital marketing untuk pelaku UMKM Desa Fajar Baru telah sukses digelar dengan dihadiri 50 peserta dari berbagai sektor usaha. Kegiatan yang berlangsung selama 3 hari ini bertujuan untuk meningkatkan kemampuan pemasaran digital para pelaku usaha lokal.</p>
-        
-        <p>Materi pelatihan meliputi strategi media sosial, pembuatan konten yang menarik, teknik penjualan online, dan analisis pasar digital. Para peserta juga mendapat kesempatan praktik langsung membuat akun bisnis di berbagai platform media sosial.</p>
-        
-        <p>"Pelatihan ini sangat bermanfaat bagi kami para pelaku UMKM. Sekarang kami lebih paham bagaimana cara memasarkan produk secara online dan menjangkau lebih banyak pelanggan," ujar Ibu Sari, salah satu peserta yang memiliki usaha keripik pisang.</p>
-        
-        <p>Narasumber pelatihan adalah praktisi digital marketing berpengalaman dari Jakarta yang telah membantu ratusan UMKM mengembangkan bisnis mereka. Pelatihan ini juga didukung penuh oleh Dinas Koperasi dan UMKM Kota Bandar Lampung.</p>
-        
-        <p>Sebagai tindak lanjut, akan dibentuk komunitas digital marketing UMKM Desa Fajar Baru untuk saling berbagi pengalaman dan tips. Pemerintah desa juga berkomitmen memberikan pendampingan berkelanjutan untuk memastikan implementasi ilmu yang telah didapat.</p>
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Badan Usaha Milik Desa (BUMDes) "Madani" Desa Fajar Baru kembali menunjukkan komitmennya dalam mendukung ketahanan pangan melalui program inovatif hidroponik. Dengan alokasi dana sebesar Rp 296 juta dari dana desa, program ini diharapkan dapat meningkatkan produktivitas pertanian dan kesejahteraan masyarakat.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Alokasi Dana untuk Ketahanan Pangan</h3>
+          <p class="mb-4">Sesuai dengan kebijakan pemerintah desa, 20% dari total dana desa dialokasikan khusus untuk program ketahanan pangan. Dana sebesar Rp 296 juta ini akan digunakan untuk:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Pengembangan sistem hidroponik modern</li>
+            <li>Program pembibitan tanaman hortikultura</li>
+            <li>Kemitraan jual beli gabah dengan petani lokal</li>
+            <li>Pelatihan dan pendampingan teknologi pertanian</li>
+            <li>Pengadaan peralatan dan sarana produksi</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Program Hidroponik Unggulan</h3>
+          <p class="mb-4">Program hidroponik yang dikembangkan BUMDes Madani merupakan terobosan dalam bidang pertanian modern. Sistem ini memiliki beberapa keunggulan:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Penggunaan air yang lebih efisien</li>
+            <li>Produktivitas yang lebih tinggi dalam lahan terbatas</li>
+            <li>Kualitas hasil panen yang lebih baik</li>
+            <li>Dapat dilakukan sepanjang tahun</li>
+            <li>Ramah lingkungan dan berkelanjutan</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Kemitraan dengan Petani Lokal</h3>
+          <p class="mb-4">Selain program hidroponik, BUMDes Madani juga mengembangkan kemitraan strategis dengan petani lokal melalui program jual beli gabah. Program ini bertujuan untuk:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Memberikan kepastian pasar bagi petani</li>
+            <li>Menstabilkan harga gabah di tingkat petani</li>
+            <li>Meningkatkan nilai tambah produk pertanian</li>
+            <li>Memperkuat rantai pasok pangan lokal</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Dampak Ekonomi dan Sosial</h3>
+          <p class="mb-4">Program BUMDes Madani ini diharapkan memberikan dampak positif yang signifikan, antara lain:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Peningkatan pendapatan masyarakat</li>
+            <li>Penciptaan lapangan kerja baru</li>
+            <li>Transfer teknologi kepada masyarakat</li>
+            <li>Peningkatan ketersediaan pangan lokal</li>
+            <li>Penguatan ekonomi desa secara keseluruhan</li>
+          </ul>
+          
+          <p class="mt-6">Dengan komitmen yang kuat dari pemerintah desa dan partisipasi aktif masyarakat, BUMDes Madani optimis dapat mencapai target yang telah ditetapkan dan berkontribusi nyata dalam mewujudkan ketahanan pangan di Desa Fajar Baru.</p>
+        </div>
       `,
       image: 'https://images.unsplash.com/photo-1582562124811-c09040d0a901?auto=format&fit=crop&w=800&q=80',
       date: '23 Januari 2024',
-      author: 'Humas Desa',
+      author: 'Tim BUMDes',
       views: 189,
-      readTime: '4 min'
+      readTime: '6 min'
     }
   };
 
+  // Get article or default to first one
   const article = newsItems[parseInt(id || '1')] || newsItems[1];
+
+  // Related news (exclude current article)
+  const relatedNews = Object.values(newsItems).filter(item => item.id !== article.id).slice(0, 3);
 
   const handleAddComment = () => {
     if (newComment.trim()) {
       const comment: Comment = {
         id: comments.length + 1,
-        author: 'Pengguna',
+        author: 'Pengguna Anonim',
         content: newComment,
         date: 'Baru saja',
         likes: 0
@@ -247,19 +315,14 @@ const NewsDetail = () => {
 
           {/* Article Content */}
           <Card className="p-6 md:p-8 mb-8">
-            <div className="prose max-w-none">
-              <p className="text-lg font-medium text-gray-700 mb-6 leading-relaxed">
-                {article.excerpt}
-              </p>
-              <div 
-                className="text-gray-700 leading-relaxed space-y-4"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            </div>
+            <div 
+              className="prose max-w-none text-gray-700 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            />
           </Card>
 
           {/* Comments Section */}
-          <Card className="p-6 md:p-8">
+          <Card className="p-6 md:p-8 mb-8">
             <h3 className="text-xl md:text-2xl font-semibold mb-6 flex items-center gap-2">
               <MessageCircle size={20} />
               Komentar ({comments.length})
@@ -302,6 +365,49 @@ const NewsDetail = () => {
                         {comment.likes}
                       </Button>
                     </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </Card>
+
+          {/* Related News */}
+          <Card className="p-6 md:p-8">
+            <h3 className="text-xl md:text-2xl font-semibold mb-6">Berita Terkait</h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {relatedNews.map((news) => (
+                <Card key={news.id} className="overflow-hidden hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                  <div className="relative">
+                    <img 
+                      src={news.image} 
+                      alt={news.title}
+                      className="w-full h-32 object-cover"
+                    />
+                    <div className="absolute top-2 left-2">
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${getCategoryColor(news.category)}`}>
+                        {news.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="flex items-center text-xs text-gray-500 mb-2">
+                      <Calendar size={12} className="mr-1" />
+                      <span>{news.date}</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-800 mb-2 line-clamp-2 text-sm">
+                      {news.title}
+                    </h4>
+                    <p className="text-gray-600 text-xs mb-3 line-clamp-2">
+                      {news.excerpt}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full text-xs"
+                      onClick={() => navigate(`/news/${news.id}`)}
+                    >
+                      Baca Artikel
+                    </Button>
                   </div>
                 </Card>
               ))}
