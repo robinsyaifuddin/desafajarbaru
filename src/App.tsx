@@ -1,121 +1,337 @@
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import Index from '@/pages/Index';
-import News from '@/pages/News';
-import Gallery from '@/pages/Gallery';
-import Budget from '@/pages/Budget';
-import Infographics from '@/pages/Infographics';
-import NotFound from '@/pages/NotFound';
-import Services from '@/pages/Services';
-import Contact from '@/pages/Contact';
-import Events from '@/pages/Events';
-import Profile from '@/pages/Profile';
-import DocumentRequest from '@/pages/DocumentRequest';
-import AdministrasiPenduduk from '@/pages/AdministrasiPenduduk';
-import IDM from '@/pages/IDM';
-import PPID from '@/pages/PPID';
-import APBDesa from '@/pages/APBDesa';
-import Belanja from '@/pages/Belanja';
-import Bansos from '@/pages/Bansos';
-import Login from '@/pages/Login';
-import AdminLogin from '@/pages/AdminLogin';
-import CitizenDashboard from '@/pages/CitizenDashboard';
-import AdminDashboard from '@/pages/admin/AdminDashboard';
-import AdminNews from '@/pages/admin/AdminNews';
-import AdminResidents from '@/pages/admin/AdminResidents';
-import AdminGallery from '@/pages/admin/AdminGallery';
-import AdminStatistics from '@/pages/admin/AdminStatistics';
-import AdminMap from '@/pages/admin/AdminMap';
-import AdminFinance from '@/pages/admin/AdminFinance';
-import AdminEvents from '@/pages/admin/AdminEvents';
-import AdminSettings from '@/pages/admin/AdminSettings';
+import { AnimatePresence } from 'framer-motion';
+import useScrollToTop from '@/hooks/useScrollToTop';
+import LoadingSpinner from '@/components/LoadingSpinner';
+import PageTransition from '@/components/PageTransition';
+
+// Lazy loading untuk better performance
+const Index = React.lazy(() => import('@/pages/Index'));
+const News = React.lazy(() => import('@/pages/News'));
+const NewsDetail = React.lazy(() => import('@/pages/NewsDetail'));
+const Gallery = React.lazy(() => import('@/pages/Gallery'));
+const Budget = React.lazy(() => import('@/pages/Budget'));
+const Infographics = React.lazy(() => import('@/pages/Infographics'));
+const NotFound = React.lazy(() => import('@/pages/NotFound'));
+const Services = React.lazy(() => import('@/pages/Services'));
+const Contact = React.lazy(() => import('@/pages/Contact'));
+const Events = React.lazy(() => import('@/pages/Events'));
+const Profile = React.lazy(() => import('@/pages/Profile'));
+const DocumentRequest = React.lazy(() => import('@/pages/DocumentRequest'));
+const AdministrasiPenduduk = React.lazy(() => import('@/pages/AdministrasiPenduduk'));
+const IDM = React.lazy(() => import('@/pages/IDM'));
+const PPID = React.lazy(() => import('@/pages/PPID'));
+const APBDesa = React.lazy(() => import('@/pages/APBDesa'));
+const Belanja = React.lazy(() => import('@/pages/Belanja'));
+const Bansos = React.lazy(() => import('@/pages/Bansos'));
+const Login = React.lazy(() => import('@/pages/Login'));
+const AdminLogin = React.lazy(() => import('@/pages/AdminLogin'));
+const CitizenDashboard = React.lazy(() => import('@/pages/CitizenDashboard'));
+
+// Admin components
+const AdminDashboard = React.lazy(() => import('@/pages/admin/AdminDashboard'));
+const AdminNews = React.lazy(() => import('@/pages/admin/AdminNews'));
+const AdminResidents = React.lazy(() => import('@/pages/admin/AdminResidents'));
+const AdminGallery = React.lazy(() => import('@/pages/admin/AdminGallery'));
+const AdminStatistics = React.lazy(() => import('@/pages/admin/AdminStatistics'));
+const AdminMap = React.lazy(() => import('@/pages/admin/AdminMap'));
+const AdminFinance = React.lazy(() => import('@/pages/admin/AdminFinance'));
+const AdminEvents = React.lazy(() => import('@/pages/admin/AdminEvents'));
+const AdminSettings = React.lazy(() => import('@/pages/admin/AdminSettings'));
+const AdminStatisticsManagement = React.lazy(() => import('@/pages/admin/AdminStatisticsManagement'));
+
+// Statistics components
+const AgeRange = React.lazy(() => import('@/pages/statistics/AgeRange'));
+const AgeCategory = React.lazy(() => import('@/pages/statistics/AgeCategory'));
+const Education = React.lazy(() => import('@/pages/statistics/Education'));
+const Occupation = React.lazy(() => import('@/pages/statistics/Occupation'));
+const MaritalStatus = React.lazy(() => import('@/pages/statistics/MaritalStatus'));
+const Religion = React.lazy(() => import('@/pages/statistics/Religion'));
+const Gender = React.lazy(() => import('@/pages/statistics/Gender'));
+const FamilyRelation = React.lazy(() => import('@/pages/statistics/FamilyRelation'));
+const ResidentStatus = React.lazy(() => import('@/pages/statistics/ResidentStatus'));
+const BloodType = React.lazy(() => import('@/pages/statistics/BloodType'));
+const Disability = React.lazy(() => import('@/pages/statistics/Disability'));
+const Ethnicity = React.lazy(() => import('@/pages/statistics/Ethnicity'));
+const SocialClass = React.lazy(() => import('@/pages/statistics/SocialClass'));
+const IndividualAid = React.lazy(() => import('@/pages/statistics/IndividualAid'));
+const FamilyAid = React.lazy(() => import('@/pages/statistics/FamilyAid'));
+const PopulationPerArea = React.lazy(() => import('@/pages/statistics/PopulationPerArea'));
+
 import AdminLayout from '@/components/admin/AdminLayout';
-import AgeRange from '@/pages/statistics/AgeRange';
-import AgeCategory from '@/pages/statistics/AgeCategory';
-import Education from '@/pages/statistics/Education';
-import Occupation from '@/pages/statistics/Occupation';
-import MaritalStatus from '@/pages/statistics/MaritalStatus';
-import Religion from '@/pages/statistics/Religion';
-import Gender from '@/pages/statistics/Gender';
-import FamilyRelation from '@/pages/statistics/FamilyRelation';
-import ResidentStatus from '@/pages/statistics/ResidentStatus';
 import { AdminProvider } from '@/contexts/AdminContext';
 import { AuthProvider } from '@/contexts/AuthContext';
-import BloodType from '@/pages/statistics/BloodType';
-import Disability from '@/pages/statistics/Disability';
-import Ethnicity from '@/pages/statistics/Ethnicity';
-import SocialClass from '@/pages/statistics/SocialClass';
-import IndividualAid from '@/pages/statistics/IndividualAid';
-import FamilyAid from '@/pages/statistics/FamilyAid';
-import PopulationPerArea from '@/pages/statistics/PopulationPerArea';
-import AdminStatisticsManagement from '@/pages/admin/AdminStatisticsManagement';
+
+// Component wrapper untuk scroll to top
+const AppContent = () => {
+  useScrollToTop();
+  
+  return (
+    <Routes>
+      <Route path="/" element={
+        <PageTransition>
+          <Index />
+        </PageTransition>
+      } />
+      <Route path="/news" element={
+        <PageTransition>
+          <News />
+        </PageTransition>
+      } />
+      <Route path="/news/:id" element={
+        <PageTransition>
+          <NewsDetail />
+        </PageTransition>
+      } />
+      <Route path="/gallery" element={
+        <PageTransition>
+          <Gallery />
+        </PageTransition>
+      } />
+      <Route path="/budget" element={
+        <PageTransition>
+          <Budget />
+        </PageTransition>
+      } />
+      <Route path="/infographics" element={
+        <PageTransition>
+          <Infographics />
+        </PageTransition>
+      } />
+      <Route path="/services" element={
+        <PageTransition>
+          <Services />
+        </PageTransition>
+      } />
+      <Route path="/contact" element={
+        <PageTransition>
+          <Contact />
+        </PageTransition>
+      } />
+      <Route path="/events" element={
+        <PageTransition>
+          <Events />
+        </PageTransition>
+      } />
+      <Route path="/profile" element={
+        <PageTransition>
+          <Profile />
+        </PageTransition>
+      } />
+      <Route path="/document-request" element={
+        <PageTransition>
+          <DocumentRequest />
+        </PageTransition>
+      } />
+      <Route path="/administrasi-penduduk" element={
+        <PageTransition>
+          <AdministrasiPenduduk />
+        </PageTransition>
+      } />
+      
+      {/* Authentication routes */}
+      <Route path="/login" element={
+        <PageTransition>
+          <Login />
+        </PageTransition>
+      } />
+      <Route path="/admin-login" element={
+        <PageTransition>
+          <AdminLogin />
+        </PageTransition>
+      } />
+      <Route path="/citizen/dashboard" element={
+        <PageTransition>
+          <CitizenDashboard />
+        </PageTransition>
+      } />
+      
+      {/* Service submenu routes */}
+      <Route path="/services/idm" element={
+        <PageTransition>
+          <IDM />
+        </PageTransition>
+      } />
+      <Route path="/services/ppid" element={
+        <PageTransition>
+          <PPID />
+        </PageTransition>
+      } />
+      <Route path="/services/administrasi-penduduk" element={
+        <PageTransition>
+          <AdministrasiPenduduk />
+        </PageTransition>
+      } />
+      <Route path="/services/apb-desa" element={
+        <PageTransition>
+          <APBDesa />
+        </PageTransition>
+      } />
+      <Route path="/services/belanja" element={
+        <PageTransition>
+          <Belanja />
+        </PageTransition>
+      } />
+      <Route path="/services/bansos" element={
+        <PageTransition>
+          <Bansos />
+        </PageTransition>
+      } />
+      
+      {/* Statistics routes */}
+      <Route path="/infographics/age-range" element={
+        <PageTransition>
+          <AgeRange />
+        </PageTransition>
+      } />
+      <Route path="/infographics/age-category" element={
+        <PageTransition>
+          <AgeCategory />
+        </PageTransition>
+      } />
+      <Route path="/infographics/education" element={
+        <PageTransition>
+          <Education />
+        </PageTransition>
+      } />
+      <Route path="/infographics/occupation" element={
+        <PageTransition>
+          <Occupation />
+        </PageTransition>
+      } />
+      <Route path="/infographics/marital-status" element={
+        <PageTransition>
+          <MaritalStatus />
+        </PageTransition>
+      } />
+      <Route path="/infographics/religion" element={
+        <PageTransition>
+          <Religion />
+        </PageTransition>
+      } />
+      <Route path="/infographics/gender" element={
+        <PageTransition>
+          <Gender />
+        </PageTransition>
+      } />
+      <Route path="/infographics/family-relation" element={
+        <PageTransition>
+          <FamilyRelation />
+        </PageTransition>
+      } />
+      <Route path="/infographics/resident-status" element={
+        <PageTransition>
+          <ResidentStatus />
+        </PageTransition>
+      } />
+      <Route path="/infographics/blood-type" element={
+        <PageTransition>
+          <BloodType />
+        </PageTransition>
+      } />
+      <Route path="/infographics/disability" element={
+        <PageTransition>
+          <Disability />
+        </PageTransition>
+      } />
+      <Route path="/infographics/ethnicity" element={
+        <PageTransition>
+          <Ethnicity />
+        </PageTransition>
+      } />
+      <Route path="/infographics/social-class" element={
+        <PageTransition>
+          <SocialClass />
+        </PageTransition>
+      } />
+      <Route path="/infographics/individual-aid" element={
+        <PageTransition>
+          <IndividualAid />
+        </PageTransition>
+      } />
+      <Route path="/infographics/family-aid" element={
+        <PageTransition>
+          <FamilyAid />
+        </PageTransition>
+      } />
+      <Route path="/infographics/population-per-area" element={
+        <PageTransition>
+          <PopulationPerArea />
+        </PageTransition>
+      } />
+
+      {/* Admin routes */}
+      <Route path="/admin/dashboard" element={
+        <PageTransition>
+          <AdminLayout><AdminDashboard /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/news" element={
+        <PageTransition>
+          <AdminLayout><AdminNews /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/residents" element={
+        <PageTransition>
+          <AdminLayout><AdminResidents /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/gallery" element={
+        <PageTransition>
+          <AdminLayout><AdminGallery /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/statistics" element={
+        <PageTransition>
+          <AdminLayout><AdminStatistics /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/statistics-management" element={
+        <PageTransition>
+          <AdminLayout><AdminStatisticsManagement /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/map" element={
+        <PageTransition>
+          <AdminLayout><AdminMap /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/finance" element={
+        <PageTransition>
+          <AdminLayout><AdminFinance /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/events" element={
+        <PageTransition>
+          <AdminLayout><AdminEvents /></AdminLayout>
+        </PageTransition>
+      } />
+      <Route path="/admin/settings" element={
+        <PageTransition>
+          <AdminLayout><AdminSettings /></AdminLayout>
+        </PageTransition>
+      } />
+
+      <Route path="*" element={
+        <PageTransition>
+          <NotFound />
+        </PageTransition>
+      } />
+    </Routes>
+  );
+};
 
 function App() {
   return (
     <AuthProvider>
       <AdminProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/news" element={<News />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/budget" element={<Budget />} />
-            <Route path="/infographics" element={<Infographics />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/document-request" element={<DocumentRequest />} />
-            <Route path="/administrasi-penduduk" element={<AdministrasiPenduduk />} />
-            
-            {/* Authentication routes */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin-login" element={<AdminLogin />} />
-            <Route path="/citizen/dashboard" element={<CitizenDashboard />} />
-            
-            {/* Service submenu routes */}
-            <Route path="/services/idm" element={<IDM />} />
-            <Route path="/services/ppid" element={<PPID />} />
-            <Route path="/services/administrasi-penduduk" element={<AdministrasiPenduduk />} />
-            <Route path="/services/apb-desa" element={<APBDesa />} />
-            <Route path="/services/belanja" element={<Belanja />} />
-            <Route path="/services/bansos" element={<Bansos />} />
-            
-            {/* Statistics routes */}
-            <Route path="/infographics/age-range" element={<AgeRange />} />
-            <Route path="/infographics/age-category" element={<AgeCategory />} />
-            <Route path="/infographics/education" element={<Education />} />
-            <Route path="/infographics/occupation" element={<Occupation />} />
-            <Route path="/infographics/marital-status" element={<MaritalStatus />} />
-            <Route path="/infographics/religion" element={<Religion />} />
-            <Route path="/infographics/gender" element={<Gender />} />
-            <Route path="/infographics/family-relation" element={<FamilyRelation />} />
-            <Route path="/infographics/resident-status" element={<ResidentStatus />} />
-            <Route path="/infographics/blood-type" element={<BloodType />} />
-            <Route path="/infographics/disability" element={<Disability />} />
-            <Route path="/infographics/ethnicity" element={<Ethnicity />} />
-            <Route path="/infographics/social-class" element={<SocialClass />} />
-            <Route path="/infographics/individual-aid" element={<IndividualAid />} />
-            <Route path="/infographics/family-aid" element={<FamilyAid />} />
-            <Route path="/infographics/population-per-area" element={<PopulationPerArea />} />
-
-            {/* Admin routes */}
-            <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
-            <Route path="/admin/news" element={<AdminLayout><AdminNews /></AdminLayout>} />
-            <Route path="/admin/residents" element={<AdminLayout><AdminResidents /></AdminLayout>} />
-            <Route path="/admin/gallery" element={<AdminLayout><AdminGallery /></AdminLayout>} />
-            <Route path="/admin/statistics" element={<AdminLayout><AdminStatistics /></AdminLayout>} />
-            <Route path="/admin/statistics-management" element={<AdminLayout><AdminStatisticsManagement /></AdminLayout>} />
-            <Route path="/admin/map" element={<AdminLayout><AdminMap /></AdminLayout>} />
-            <Route path="/admin/finance" element={<AdminLayout><AdminFinance /></AdminLayout>} />
-            <Route path="/admin/events" element={<AdminLayout><AdminEvents /></AdminLayout>} />
-            <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
-
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner />}>
+            <AnimatePresence mode="wait">
+              <AppContent />
+            </AnimatePresence>
+          </Suspense>
         </BrowserRouter>
       </AdminProvider>
     </AuthProvider>
