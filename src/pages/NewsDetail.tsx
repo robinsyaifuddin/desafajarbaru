@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
@@ -45,7 +44,7 @@ const NewsDetail = () => {
   const [newComment, setNewComment] = useState('');
   const [showShareMenu, setShowShareMenu] = useState(false);
 
-  // Sample news data with detailed content
+  // Complete news data with detailed content for all articles
   const newsItems = {
     1: {
       id: 1,
@@ -64,7 +63,7 @@ const NewsDetail = () => {
           <ul class="list-disc pl-6 mb-6 space-y-2">
             <li>Pembangunan infrastruktur jalan desa dan lingkungan di semua dusun</li>
             <li>Pengembangan BUMDes "Madani" dengan fokus pada ketahanan pangan</li>
-            <li>Program bantuan sosial yang tepsasaran</li>
+            <li>Program bantuan sosial yang tepat sasaran</li>
             <li>Peningkatan partisipasi masyarakat dalam pembangunan</li>
             <li>Penguatan tata kelola pemerintahan desa yang transparan</li>
           </ul>
@@ -148,6 +147,288 @@ const NewsDetail = () => {
       date: '23 Januari 2024',
       author: 'Tim BUMDes',
       views: 189,
+      readTime: '6 min'
+    },
+    3: {
+      id: 3,
+      title: 'Pembangunan Masjid As-Safinatu Al-Abbas Dimulai',
+      category: 'Kegiatan',
+      excerpt: 'Peletakan batu pertama Masjid As-Safinatu Al-Abbas dilaksanakan pada 31 Maret 2023 dengan wakaf tanah 600 m² dan dana awal Rp 120 juta.',
+      content: `
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Sebuah momentum bersejarah bagi masyarakat Desa Fajar Baru telah terjadi pada tanggal 31 Maret 2023, yakni peletakan batu pertama pembangunan Masjid As-Safinatu Al-Abbas. Pembangunan masjid ini merupakan wujud nyata dari semangat gotong royong dan kebersamaan warga desa dalam membangun sarana ibadah yang representatif.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Wakaf Tanah dan Dana Awal</h3>
+          <p class="mb-4">Pembangunan masjid ini dimulai dengan kebaikan hati Hj. Yusuf Abbas yang mewakafkan tanah seluas 600 m² untuk lokasi masjid. Selain itu, dana awal sebesar Rp 120 juta juga telah terkumpul melalui dukungan yayasan Arab dan sumbangan masyarakat setempat.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Desain dan Konsep Bangunan</h3>
+          <p class="mb-4">Masjid As-Safinatu Al-Abbas dirancang dengan konsep arsitektur Islam modern yang memadukan nilai-nilai tradisional dengan kebutuhan masa kini. Beberapa fitur unggulan dari desain masjid ini meliputi:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Kapasitas jamaah hingga 500 orang</li>
+            <li>Ruang serbaguna untuk kegiatan keagamaan</li>
+            <li>Fasilitas wudhu yang memadai</li>
+            <li>Area parkir yang luas</li>
+            <li>Taman dan ruang terbuka hijau</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Dukungan Masyarakat</h3>
+          <p class="mb-4">Antusiasme masyarakat Desa Fajar Baru terhadap pembangunan masjid ini sangat tinggi. Hal ini terlihat dari:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Partisipasi aktif dalam gotong royong pembangunan</li>
+            <li>Sumbangan dana secara sukarela dari berbagai kalangan</li>
+            <li>Dukungan moral dan doa dari seluruh warga</li>
+            <li>Komitmen untuk menjaga dan merawat masjid</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Tahapan Pembangunan</h3>
+          <p class="mb-4">Pembangunan Masjid As-Safinatu Al-Abbas dilaksanakan secara bertahap dengan rencana sebagai berikut:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Tahap I: Pembangunan struktur utama dan atap</li>
+            <li>Tahap II: Penyelesaian interior dan fasilitas pendukung</li>
+            <li>Tahap III: Landscaping dan fasilitas luar</li>
+            <li>Tahap IV: Pengadaan peralatan dan perlengkapan masjid</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Manfaat bagi Masyarakat</h3>
+          <p class="mb-4">Kehadiran Masjid As-Safinatu Al-Abbas diharapkan memberikan manfaat yang besar bagi masyarakat:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Tempat ibadah yang nyaman dan representatif</li>
+            <li>Pusat kegiatan keagamaan dan sosial</li>
+            <li>Sarana pendidikan agama untuk anak-anak</li>
+            <li>Tempat berkumpul dan mempererat silaturahmi</li>
+            <li>Simbol kemajuan spiritual masyarakat desa</li>
+          </ul>
+          
+          <p class="mt-6">Pembangunan Masjid As-Safinatu Al-Abbas ini diharapkan dapat segera selesai dan menjadi kebanggaan masyarakat Desa Fajar Baru. Semoga masjid ini dapat menjadi pusat kegiatan ibadah dan dakwah yang bermanfaat bagi kemajuan spiritual masyarakat.</p>
+        </div>
+      `,
+      image: 'https://images.unsplash.com/photo-1564769625392-651b2abd5e37?auto=format&fit=crop&w=800&q=80',
+      date: '20 Januari 2024',
+      author: 'Panitia Pembangunan',
+      views: 312,
+      readTime: '5 min'
+    },
+    4: {
+      id: 4,
+      title: 'Program BLT-DD Disalurkan untuk 145 KK',
+      category: 'Sosial',
+      excerpt: 'Bantuan Langsung Tunai Dana Desa (BLT-DD) tahun 2023 telah disalurkan kepada 145 Kepala Keluarga dengan total bantuan Rp 87 juta.',
+      content: `
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Program Bantuan Langsung Tunai Dana Desa (BLT-DD) tahun 2023 di Desa Fajar Baru telah berhasil disalurkan kepada 145 Kepala Keluarga (KK) dengan total bantuan mencapai Rp 87 juta. Program ini merupakan bentuk komitmen pemerintah desa dalam membantu masyarakat yang terdampak ekonomi, terutama di masa pemulihan pasca pandemi.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Kriteria Penerima BLT-DD</h3>
+          <p class="mb-4">Penyaluran BLT-DD dilakukan dengan kriteria yang ketat dan transparan untuk memastikan bantuan tepat sasaran:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Keluarga Penerima Manfaat (KPM) yang terdaftar dalam Data Terpadu Kesejahteraan Sosial (DTKS)</li>
+            <li>Memiliki Kartu Keluarga (KK) dan berdomisili di Desa Fajar Baru</li>
+            <li>Tidak menerima bantuan sosial sejenis dari program lain</li>
+            <li>Termasuk dalam kategori keluarga miskin atau rentan miskin</li>
+            <li>Telah melalui proses verifikasi dan validasi data</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Mekanisme Penyaluran</h3>
+          <p class="mb-4">Penyaluran BLT-DD dilakukan melalui mekanisme yang terstruktur dan akuntabel:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Musyawarah desa untuk penetapan penerima</li>
+            <li>Pengumuman daftar penerima di tempat umum</li>
+            <li>Koordinasi dengan RT/RW setempat</li>
+            <li>Penyaluran langsung kepada KK penerima</li>
+            <li>Dokumentasi dan pelaporan yang lengkap</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Dampak Program</h3>
+          <p class="mb-4">Program BLT-DD memberikan dampak positif yang signifikan bagi masyarakat penerima:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Membantu memenuhi kebutuhan dasar keluarga</li>
+            <li>Meringankan beban ekonomi masyarakat</li>
+            <li>Meningkatkan daya beli masyarakat</li>
+            <li>Mendukung ekonomi lokal</li>
+            <li>Mengurangi tingkat kemiskinan desa</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Komitmen Transparansi</h3>
+          <p class="mb-4">Pemerintah Desa Fajar Baru berkomitmen penuh terhadap transparansi dalam pelaksanaan program BLT-DD:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Publikasi daftar penerima di website desa</li>
+            <li>Papan pengumuman di kantor desa dan tempat umum</li>
+            <li>Laporan penggunaan dana secara berkala</li>
+            <li>Membuka ruang pengaduan dan saran masyarakat</li>
+            <li>Monitoring dan evaluasi program secara rutin</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Program Pendukung Lainnya</h3>
+          <p class="mb-4">Selain BLT-DD, pemerintah desa juga melaksanakan program bantuan sosial lainnya:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Bantuan santunan untuk 80 anak yatim</li>
+            <li>Bantuan untuk 45 kaum duafa</li>
+            <li>Program sapi ketahanan pangan</li>
+            <li>Tunjangan siltap untuk aparat desa</li>
+            <li>Bantuan untuk guru ngaji dan kader posyandu</li>
+          </ul>
+          
+          <p class="mt-6">Kepala Desa M. Agus Budiantoro menyampaikan bahwa program BLT-DD ini merupakan amanah yang harus dilaksanakan dengan penuh tanggung jawab. "Kami berkomitmen untuk terus membantu masyarakat yang membutuhkan melalui program-program yang tepat sasaran dan bermanfaat," ujarnya.</p>
+        </div>
+      `,
+      image: 'https://images.unsplash.com/photo-1500673922987-e212871fec22?auto=format&fit=crop&w=800&q=80',
+      date: '18 Januari 2024',
+      author: 'Tim PKH Desa',
+      views: 467,
+      readTime: '6 min'
+    },
+    5: {
+      id: 5,
+      title: 'Pembangunan Infrastruktur Jalan Desa Tahap II',
+      category: 'Pembangunan',
+      excerpt: 'Melalui Musrenbang Desa, pembangunan jalan desa dan lingkungan di semua dusun memasuki tahap kedua dengan fokus pada jalan tani.',
+      content: `
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Pembangunan infrastruktur jalan di Desa Fajar Baru memasuki tahap kedua dengan fokus utama pada pembangunan jalan tani dan perbaikan akses jalan lingkungan di seluruh dusun. Program yang dihasilkan dari Musyawarah Perencanaan Pembangunan (Musrenbang) Desa ini merupakan prioritas utama dalam meningkatkan konektivitas dan aksesibilitas masyarakat.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Ruang Lingkup Pembangunan</h3>
+          <p class="mb-4">Tahap kedua pembangunan infrastruktur jalan mencakup area yang lebih luas dengan fokus pada:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Pembangunan jalan tani untuk memudahkan akses ke lahan pertanian</li>
+            <li>Perbaikan jalan lingkungan di semua dusun</li>
+            <li>Pembangunan jalan penghubung antar dusun</li>
+            <li>Peningkatan kualitas jalan eksisting</li>
+            <li>Pembangunan sistem drainase yang memadai</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Hasil Musrenbang Desa 2024</h3>
+          <p class="mb-4">Keputusan untuk melanjutkan pembangunan jalan tahap kedua merupakan hasil dari Musyawarah Perencanaan Pembangunan (Musrenbang) Desa yang melibatkan partisipasi aktif masyarakat:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Identifikasi kebutuhan prioritas dari setiap dusun</li>
+            <li>Pemetaan rute jalan yang strategis</li>
+            <li>Penentuan spesifikasi teknis pembangunan</li>
+            <li>Alokasi anggaran dari dana desa</li>
+            <li>Jadwal pelaksanaan yang terkoordinasi</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Spesifikasi Teknis</h3>
+          <p class="mb-4">Pembangunan jalan tahap kedua menggunakan spesifikasi teknis yang berkualitas:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Lebar jalan minimum 3,5 meter untuk jalan desa</li>
+            <li>Lebar jalan minimum 2,5 meter untuk jalan tani</li>
+            <li>Konstruksi perkerasan beton dengan ketebalan sesuai standar</li>
+            <li>Sistem drainase dengan saluran samping</li>
+            <li>Rambu-rambu jalan dan marka jalan yang memadai</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Manfaat bagi Masyarakat</h3>
+          <p class="mb-4">Pembangunan infrastruktur jalan ini memberikan manfaat yang signifikan:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Memudahkan akses transportasi masyarakat</li>
+            <li>Meningkatkan mobilitas ekonomi dan sosial</li>
+            <li>Memperlancar distribusi hasil pertanian</li>
+            <li>Meningkatkan nilai ekonomi lahan dan properti</li>
+            <li>Mendukung perkembangan usaha mikro dan kecil</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Partisipasi Masyarakat</h3>
+          <p class="mb-4">Keberhasilan pembangunan jalan tidak lepas dari partisipasi aktif masyarakat:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Gotong royong dalam persiapan lahan</li>
+            <li>Pengawasan masyarakat terhadap kualitas pekerjaan</li>
+            <li>Kontribusi tenaga dan pikiran</li>
+            <li>Komitmen untuk menjaga dan merawat jalan</li>
+            <li>Dukungan moral dan material</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Target dan Timeline</h3>
+          <p class="mb-4">Pelaksanaan pembangunan jalan tahap kedua ditargetkan dapat diselesaikan dalam waktu 6 bulan dengan rincian:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Bulan 1-2: Persiapan dan mobilisasi</li>
+            <li>Bulan 2-4: Pelaksanaan konstruksi utama</li>
+            <li>Bulan 5-6: Penyelesaian dan finishing</li>
+            <li>Evaluasi dan serah terima hasil pekerjaan</li>
+          </ul>
+          
+          <p class="mt-6">Pembangunan infrastruktur jalan tahap kedua ini merupakan komitmen nyata pemerintah desa dalam meningkatkan kualitas hidup masyarakat. Dengan infrastruktur yang baik, diharapkan dapat mendorong pertumb uhan ekonomi desa dan meningkatkan kesejahteraan masyarakat Desa Fajar Baru secara keseluruhan.</p>
+        </div>
+      `,
+      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
+      date: '15 Januari 2024',
+      author: 'Tim Pembangunan',
+      views: 523,
+      readTime: '7 min'
+    },
+    6: {
+      id: 6,
+      title: 'Kampung Pengawasan Partisipatif Pilkada 2024',
+      category: 'Pemerintahan',
+      excerpt: 'Desa Fajar Baru terpilih sebagai ikon Kampung Pengawasan Partisipatif dalam Pilkada 2024 oleh Bawaslu Lampung Selatan.',
+      content: `
+        <div class="prose max-w-none">
+          <p class="text-lg font-medium mb-6">Desa Fajar Baru mendapat kehormatan untuk terpilih sebagai ikon "Kampung Pengawasan Partisipatif" dalam Pemilihan Kepala Daerah (Pilkada) 2024 oleh Badan Pengawas Pemilihan Umum (Bawaslu) Kabupaten Lampung Selatan. Penunjukan ini merupakan pengakuan atas komitmen masyarakat desa dalam menjaga demokrasi dan integritas pemilu.</p>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Konsep Kampung Pengawasan Partisipatif</h3>
+          <p class="mb-4">Kampung Pengawasan Partisipatif adalah program inovatif yang bertujuan untuk meningkatkan partisipasi masyarakat dalam pengawasan pemilu. Program ini memiliki beberapa karakteristik utama:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Pelibatan aktif masyarakat dalam pengawasan pemilu</li>
+            <li>Pembentukan relawan pengawas partisipatif</li>
+            <li>Edukasi pemilu dan demokrasi kepada masyarakat</li>
+            <li>Pencegahan pelanggaran pemilu melalui pengawasan melekat</li>
+            <li>Pelaporan dan dokumentasi proses pemilu</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Kriteria Pemilihan</h3>
+          <p class="mb-4">Desa Fajar Baru terpilih berdasarkan beberapa kriteria yang telah ditetapkan Bawaslu:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Tingkat partisipasi masyarakat yang tinggi dalam pemilu sebelumnya</li>
+            <li>Komitmen aparat desa dalam mendukung pengawasan pemilu</li>
+            <li>Struktur masyarakat yang solid dan terorganisir</li>
+            <li>Akses informasi dan komunikasi yang memadai</li>
+            <li>Rekam jejak yang baik dalam menjaga ketertiban dan keamanan</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Program dan Kegiatan</h3>
+          <p class="mb-4">Sebagai Kampung Pengawasan Partisipatif, Desa Fajar Baru melaksanakan berbagai program dan kegiatan:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Sosialisasi tahapan dan jadwal Pilkada 2024</li>
+            <li>Pembentukan Tim Relawan Pengawas Partisipatif (RPP)</li>
+            <li>Pelatihan pengawasan pemilu untuk masyarakat</li>
+            <li>Kampanye anti money politics dan politik uang</li>
+            <li>Pengawasan tahapan pemilu secara komprehensif</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Peran Masyarakat</h3>
+          <p class="mb-4">Masyarakat Desa Fajar Baru berperan aktif dalam program pengawasan partisipatif:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Menjadi mata dan telinga pengawasan di tingkat akar rumput</li>
+            <li>Melaporkan dugaan pelanggaran pemilu yang ditemukan</li>
+            <li>Mengedukasi sesama warga tentang hak dan kewajiban dalam pemilu</li>
+            <li>Menjaga netralitas aparatur sipil negara</li>
+            <li>Menciptakan suasana pemilu yang damai dan tertib</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Dukungan Pemerintah Desa</h3>
+          <p class="mb-4">Pemerintah Desa Fajar Baru memberikan dukungan penuh terhadap program ini:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Komitmen kepala desa untuk netralitas dalam pemilu</li>
+            <li>Penyediaan fasilitas untuk kegiatan sosialisasi</li>
+            <li>Koordinasi dengan aparat keamanan setempat</li>
+            <li>Dukungan anggaran untuk kegiatan pengawasan</li>
+            <li>Fasilitasi komunikasi antara masyarakat dan Bawaslu</li>
+          </ul>
+          
+          <h3 class="text-xl font-semibold mt-8 mb-4">Dampak dan Manfaat</h3>
+          <p class="mb-4">Program Kampung Pengawasan Partisipatif memberikan dampak positif yang signifikan:</p>
+          <ul class="list-disc pl-6 mb-6 space-y-2">
+            <li>Meningkatkan kesadaran politik masyarakat</li>
+            <li>Mencegah berbagai bentuk pelanggaran pemilu</li>
+            <li>Memperkuat demokrasi di tingkat desa</li>
+            <li>Meningkatkan legitimasi hasil pemilu</li>
+            <li>Menjadi contoh bagi desa-desa lainnya</li>
+          </ul>
+          
+          <p class="mt-6">Kepala Desa M. Agus Budiantoro menyatakan kebanggaannya atas penunjukan ini. "Ini adalah bentuk kepercayaan yang besar kepada masyarakat Desa Fajar Baru. Kami berkomitmen untuk menjaga amanah ini dengan sebaik-baiknya dan menjadi contoh dalam menjaga demokrasi Indonesia," ujarnya.</p>
+        </div>
+      `,
+      image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=800&q=80',
+      date: '12 Januari 2024',
+      author: 'Bawaslu Lamsel',
+      views: 178,
       readTime: '6 min'
     }
   };
