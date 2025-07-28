@@ -242,8 +242,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 **Membangun Desa Digital yang Modern dan Terpercaya** 🏘️
 
-[Demo Live](https://your-demo-url.com) • [Documentation](docs/) • [Support](mailto:support@example.com)
+[Live](https://desafajarbaru.web.id.) • [Documentation](docs/) • [Support](mailto:mr.robinsyaifuddin@gmail.com)
 
-Made with ❤️ for Indonesian Villages
 
 </div>
