@@ -33,54 +33,27 @@ export const AdminProvider: React.FC<AdminProviderProps> = ({ children }) => {
 
   useEffect(() => {
     // Check if admin is already logged in
-    const checkAuthStatus = () => {
-      try {
-        const savedAdmin = localStorage.getItem('admin');
-        if (savedAdmin) {
-          const adminData = JSON.parse(savedAdmin);
-          // Validate saved data structure
-          if (adminData && adminData.email && adminData.isAuthenticated) {
-            setAdmin(adminData);
-          } else {
-            // Clear invalid data
-            localStorage.removeItem('admin');
-          }
-        }
-      } catch (error) {
-        // Clear corrupted data
-        localStorage.removeItem('admin');
-        console.error('Error parsing admin data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    checkAuthStatus();
+    const savedAdmin = localStorage.getItem('admin');
+    if (savedAdmin) {
+      setAdmin(JSON.parse(savedAdmin));
+    }
+    setIsLoading(false);
   }, []);
 
   const login = (email: string, password: string): boolean => {
-    try {
-      // Simple hardcoded authentication with validation
-      if (email === 'adminfajarbaru@gmail.com' && password === 'fajarbaru123') {
-        const adminData = { email, isAuthenticated: true };
-        setAdmin(adminData);
-        localStorage.setItem('admin', JSON.stringify(adminData));
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Login error:', error);
-      return false;
+    // Simple hardcoded authentication
+    if (email === 'adminfajarbaru@gmail.com' && password === 'fajarbaru123') {
+      const adminData = { email, isAuthenticated: true };
+      setAdmin(adminData);
+      localStorage.setItem('admin', JSON.stringify(adminData));
+      return true;
     }
+    return false;
   };
 
   const logout = () => {
-    try {
-      setAdmin(null);
-      localStorage.removeItem('admin');
-    } catch (error) {
-      console.error('Logout error:', error);
-    }
+    setAdmin(null);
+    localStorage.removeItem('admin');
   };
 
   return (

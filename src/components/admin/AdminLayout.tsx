@@ -24,14 +24,14 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SidebarProvider defaultOpen={true}>
+      <SidebarProvider>
         <div className="flex min-h-screen w-full">
           <AdminSidebar />
           
-          <div className="flex-1 flex flex-col min-w-0">
+          <div className="flex-1 flex flex-col">
             <AdminHeader />
-            <main className="flex-1 p-3 sm:p-4 lg:p-6 overflow-auto bg-gray-50">
-              <div className="animate-fade-in max-w-full">
+            <main className="flex-1 p-4 sm:p-6 overflow-auto">
+              <div className="animate-fade-in">
                 {children}
               </div>
             </main>

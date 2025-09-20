@@ -136,7 +136,7 @@ const AppContent = () => {
           <Login />
         </PageTransition>
       } />
-      <Route path="/admin/login" element={
+      <Route path="/admin-login" element={
         <PageTransition>
           <AdminLogin />
         </PageTransition>

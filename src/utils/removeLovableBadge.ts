@@ -36,7 +36,7 @@ export const removeLovableBadge = () => {
     allElements.forEach(element => {
       const text = element.textContent?.toLowerCase() || '';
       const html = element.innerHTML?.toLowerCase() || '';
-      const className = typeof element.className === 'string' ? element.className.toLowerCase() : '';
+      const className = element.className?.toLowerCase() || '';
       const id = element.id?.toLowerCase() || '';
       
       // Check for lovable-related content
@@ -120,7 +120,7 @@ export const removeLovableBadge = () => {
               if (
                 element.id === 'lovable-badge' ||
                 element.id === 'lovable-badge-close' ||
-                (typeof element.className === 'string' && element.className.includes('lovable')) ||
+                element.className?.includes('lovable') ||
                 element.getAttribute('href')?.includes('lovable') ||
                 element.textContent?.toLowerCase().includes('edit with')
               ) {
