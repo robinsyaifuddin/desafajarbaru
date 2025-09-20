@@ -93,14 +93,17 @@ const AdminSidebar = () => {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className="border-r border-gray-200 bg-white">
-      <SidebarHeader className="p-4 border-b border-gray-200">
+    <Sidebar 
+      className="border-r border-gray-200 bg-white transition-all duration-300 ease-in-out"
+      collapsible="icon"
+    >
+      <SidebarHeader className="p-3 sm:p-4 border-b border-gray-200">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-            <Shield className="text-white" size={20} />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-emerald-600 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <Shield className="text-white" size={isCollapsed ? 16 : 20} />
           </div>
           {!isCollapsed && (
-            <div className="overflow-hidden">
+            <div className="overflow-hidden min-w-0">
               <h2 className="font-bold text-gray-800 text-sm lg:text-base truncate">Admin CMS</h2>
               <p className="text-xs text-gray-600 truncate">Desa Fajar Baru</p>
             </div>
@@ -108,38 +111,48 @@ const AdminSidebar = () => {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="py-4">
+      <SidebarContent className="py-2 sm:py-4 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
         {/* Main Menu */}
-        <SidebarGroup>
-          <SidebarGroupLabel className={cn("px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider", isCollapsed && "sr-only")}>
+        <SidebarGroup className="mb-2">
+          <SidebarGroupLabel className={cn(
+            "px-3 sm:px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider transition-all duration-200", 
+            isCollapsed ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto mb-2"
+          )}>
             Menu Utama
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {mainMenuItems.map((item) => (
+              {mainMenuItems.map((item, index) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                     <Link
                       to={item.href}
                       className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg transition-all duration-200 group",
+                        "flex items-center gap-3 px-2 sm:px-3 py-2.5 mx-1 sm:mx-2 rounded-lg transition-all duration-200 group relative hover:scale-[1.02]",
                         isActive(item.href)
-                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg"
+                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg transform scale-105"
                           : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       )}
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
                       <item.icon 
                         size={18} 
                         className={cn(
-                          "flex-shrink-0",
-                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700"
+                          "flex-shrink-0 transition-all duration-200",
+                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700",
+                          isCollapsed && "mx-auto"
                         )} 
                       />
                       {!isCollapsed && (
-                        <span className="font-medium text-sm truncate">{item.title}</span>
+                        <span className="font-medium text-sm truncate transition-opacity duration-200">
+                          {item.title}
+                        </span>
                       )}
                       {isActive(item.href) && !isCollapsed && (
-                        <ChevronRight size={14} className="ml-auto text-white/80" />
+                        <ChevronRight size={14} className="ml-auto text-white/80 animate-pulse" />
+                      )}
+                      {isActive(item.href) && isCollapsed && (
+                        <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-white rounded-full"></div>
                       )}
                     </Link>
                   </SidebarMenuButton>
@@ -150,36 +163,46 @@ const AdminSidebar = () => {
         </SidebarGroup>
 
         {/* Data Management */}
-        <SidebarGroup>
-          <SidebarGroupLabel className={cn("px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider", isCollapsed && "sr-only")}>
+        <SidebarGroup className="mb-2">
+          <SidebarGroupLabel className={cn(
+            "px-3 sm:px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider transition-all duration-200", 
+            isCollapsed ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto mb-2"
+          )}>
             Kelola Data
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {dataMenuItems.map((item) => (
+              {dataMenuItems.map((item, index) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                     <Link
                       to={item.href}
                       className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg transition-all duration-200 group",
+                        "flex items-center gap-3 px-2 sm:px-3 py-2.5 mx-1 sm:mx-2 rounded-lg transition-all duration-200 group relative hover:scale-[1.02]",
                         isActive(item.href)
-                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg"
+                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg transform scale-105"
                           : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       )}
+                      style={{ animationDelay: `${(index + 4) * 50}ms` }}
                     >
                       <item.icon 
                         size={18} 
                         className={cn(
-                          "flex-shrink-0",
-                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700"
+                          "flex-shrink-0 transition-all duration-200",
+                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700",
+                          isCollapsed && "mx-auto"
                         )} 
                       />
                       {!isCollapsed && (
-                        <span className="font-medium text-sm truncate">{item.title}</span>
+                        <span className="font-medium text-sm truncate transition-opacity duration-200">
+                          {item.title}
+                        </span>
                       )}
                       {isActive(item.href) && !isCollapsed && (
-                        <ChevronRight size={14} className="ml-auto text-white/80" />
+                        <ChevronRight size={14} className="ml-auto text-white/80 animate-pulse" />
+                      )}
+                      {isActive(item.href) && isCollapsed && (
+                        <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-white rounded-full"></div>
                       )}
                     </Link>
                   </SidebarMenuButton>
@@ -190,36 +213,46 @@ const AdminSidebar = () => {
         </SidebarGroup>
 
         {/* System Settings */}
-        <SidebarGroup>
-          <SidebarGroupLabel className={cn("px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider", isCollapsed && "sr-only")}>
+        <SidebarGroup className="mb-2">
+          <SidebarGroupLabel className={cn(
+            "px-3 sm:px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider transition-all duration-200", 
+            isCollapsed ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto mb-2"
+          )}>
             Sistem
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {systemMenuItems.map((item) => (
+              {systemMenuItems.map((item, index) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton asChild tooltip={isCollapsed ? item.title : undefined}>
                     <Link
                       to={item.href}
                       className={cn(
-                        "flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg transition-all duration-200 group",
+                        "flex items-center gap-3 px-2 sm:px-3 py-2.5 mx-1 sm:mx-2 rounded-lg transition-all duration-200 group relative hover:scale-[1.02]",
                         isActive(item.href)
-                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg"
+                          ? "bg-gradient-to-r from-emerald-600 to-blue-600 text-white shadow-lg transform scale-105"
                           : "text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                       )}
+                      style={{ animationDelay: `${(index + 8) * 50}ms` }}
                     >
                       <item.icon 
                         size={18} 
                         className={cn(
-                          "flex-shrink-0",
-                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700"
+                          "flex-shrink-0 transition-all duration-200",
+                          isActive(item.href) ? "text-white" : "text-gray-500 group-hover:text-gray-700",
+                          isCollapsed && "mx-auto"
                         )} 
                       />
                       {!isCollapsed && (
-                        <span className="font-medium text-sm truncate">{item.title}</span>
+                        <span className="font-medium text-sm truncate transition-opacity duration-200">
+                          {item.title}
+                        </span>
                       )}
                       {isActive(item.href) && !isCollapsed && (
-                        <ChevronRight size={14} className="ml-auto text-white/80" />
+                        <ChevronRight size={14} className="ml-auto text-white/80 animate-pulse" />
+                      )}
+                      {isActive(item.href) && isCollapsed && (
+                        <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-1 h-6 bg-white rounded-full"></div>
                       )}
                     </Link>
                   </SidebarMenuButton>
@@ -230,15 +263,21 @@ const AdminSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-4 border-t border-gray-200">
-        <SidebarMenuButton asChild tooltip="Kembali ke Website">
+      <SidebarFooter className="p-3 sm:p-4 border-t border-gray-200">
+        <SidebarMenuButton asChild tooltip={isCollapsed ? "Kembali ke Website" : undefined}>
           <Link
             to="/"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900 group"
+            className="flex items-center gap-3 px-2 sm:px-3 py-2.5 rounded-lg transition-all duration-200 text-gray-700 hover:bg-gray-100 hover:text-gray-900 group hover:scale-[1.02]"
           >
-            <Home size={18} className="flex-shrink-0 text-gray-500 group-hover:text-gray-700" />
+            <Home 
+              size={18} 
+              className={cn(
+                "flex-shrink-0 text-gray-500 group-hover:text-gray-700 transition-all duration-200",
+                isCollapsed && "mx-auto"
+              )} 
+            />
             {!isCollapsed && (
-              <span className="font-medium text-sm">Kembali ke Website</span>
+              <span className="font-medium text-sm transition-opacity duration-200">Kembali ke Website</span>
             )}
           </Link>
         </SidebarMenuButton>
